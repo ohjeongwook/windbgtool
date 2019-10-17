@@ -62,10 +62,11 @@ class Disassembler:
         return crefs
 
 if __name__=='__main__':
-    import sys
     import os
-    sys.path.append(r'D:\Analysis\REPack\Src')
-    import Util.Common
+    import sys
+    sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
+    import util.common
     from optparse import OptionParser, Option
 
     parser=OptionParser(usage="usage: %prog [options] args")

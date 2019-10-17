@@ -1,14 +1,12 @@
-import sys
 import os
-if os.environ.has_key('REPack'):
-    sys.path.append(os.environ['REPack'])
-else:
-    sys.path.append(r'D:\Analysis\REPack\Src')
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
 import sqlite3
 import pprint
 import json
 import base64
-import Util.Common
+import util.common
 
 class DB:
     def __init__(self,filename,module_name='',prototype_filename=''):

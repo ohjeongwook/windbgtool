@@ -1,18 +1,16 @@
 import os
 import sys
-if os.environ.has_key('REPACK'):
-    sys.path.append(os.environ['REPACK'])
-else:
-    sys.path.append(r'D:\Analysis\REPack\Src')
+sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+
 import re
 import pprint
 import logging
+import util.common
 
 try:
-    import Disasm.Vex
+    import vex.windbg
 except:
     pass
-import Util.Common
 
 class Parser:
     CmdPattern=re.compile("^[0-9]:[0-9][0-9][0-9]> (.*)")
@@ -38,7 +36,7 @@ class Parser:
 
     def __init__(self,filename='',use_vex=False):
         self.logger=logging.getLogger(__name__)
-        if "Disasm.Vex" not in sys.modules:
+        if "vex.windbg" not in sys.modules:
             self.UseVex=False
         self.UseVex=use_vex
         
@@ -292,7 +290,7 @@ class Parser:
                     print '>> Disasm: %.8x %s %s' % (addr, op, ','.join(operands))
                     print '\t', Util.Common.BytesToHexStr(bytes)
                     if self.UseVex:
-                        parser=Disasm.Vex.Parser(bytes,addr,'x64')
+                        parser=vex.windbg.Parser(bytes,addr,'x64')
                         (read_commands,write_commands)=parser.GetWinDBGDumpCommands()
                         
                         print '>> Commands: ', read_commands,write_commands
