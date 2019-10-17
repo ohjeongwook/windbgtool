@@ -2,6 +2,7 @@ import debugger
 
 if __name__ == '__main__':
     dbg_engine = debugger.DbgEngine()
+    dbg_engine.Run(executable_path = 'notepad.exe')
     dbg_engine.SetSymbolPath()
     dbg_engine.EnumerateModules()
     dbg_engine.LoadSymbols(['kernel32'])
