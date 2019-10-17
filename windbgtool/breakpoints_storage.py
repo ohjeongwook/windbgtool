@@ -449,7 +449,7 @@ if __name__ == '__main__':
 
     
     if options.breakpoint_db:
-        db = DB(options.breakpoint_db,
+        db = Storage(options.breakpoint_db,
               prototype_filename = options.prototype_filename
             )
         #db.Load()

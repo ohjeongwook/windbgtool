@@ -47,7 +47,7 @@ class PyKdDebugger(pykd.eventHandler):
     def onException(self, exceptInfo):
         return eventResult.Break
 
-    def HandleBreakpoint(self,id):
+    def HandleBreakpoint(self, id):
         self.logger.debug('* HandleBreakpoint: %d' % id)
 
     def Go(self):
@@ -56,3 +56,4 @@ class PyKdDebugger(pykd.eventHandler):
 if __name__ == '__main__':
     pykd_debugger = PyKdDebugger(executable_path = 'notepad.exe')
     pykd_debugger.Go()
+

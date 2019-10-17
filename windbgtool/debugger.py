@@ -207,14 +207,14 @@ class DbgEngine:
         try:
             rsp = pykd.reg("rsp")
             try:
-                return loadQWords(rsp, 1)[0]
+                return pykd.loadQWords(rsp, 1)[0]
             except:
                 self.Logger.info('Accessing memory %x failed', rsp)
             
         except:    
             esp = pykd.reg("esp")
             try:
-                return loadDWords(esp, 1)[0]
+                return pykd.loadDWords(esp, 1)[0]
             except:
                 self.Logger.info('Accessing memory %x failed', esp)
 
@@ -261,7 +261,7 @@ class DbgEngine:
 
     def ShowStack(self):
         print('* Stack----')
-        for dword in loadDWords(pykd.reg("esp"), 5):
+        for dword in pykd.loadDWords(pykd.reg("esp"), 5):
             print('%x' % dword)
             
     def GetBytes(self, address, length):
