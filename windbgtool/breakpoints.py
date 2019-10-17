@@ -56,8 +56,8 @@ class Operations:
             self.BreakpointsMap[address] = {
                                     'Type': 'Module', 
                                     'Module': module_name, 
-                                    'RVA': rva,
-                                    'Symbol': '',
+                                    'RVA': rva, 
+                                    'Symbol': '', 
                                     'DumpTargets': dump_targets
                                 }
             
@@ -75,10 +75,10 @@ class Operations:
             
             self.Logger.info("Setting breakpoint %s (%.8x) - %d\n", symbol_str, address, bp.getId())
             self.BreakpointsMap[address] = {
-                                    'Type': 'Symbol',
-                                    'Module': module_name,
-                                    'RVA': 0,
-                                    'Symbol': symbol,
+                                    'Type': 'Symbol', 
+                                    'Module': module_name, 
+                                    'RVA': 0, 
+                                    'Symbol': symbol, 
                                     'DumpTargets': dump_targets
                                 }
 
@@ -93,17 +93,17 @@ class Operations:
                 bp = self.SetBp(address, self.HandleBreakpoint)
                 
                 self.Logger.info('Setting breakpoint on %s (%.8x) - %d' % (
-                                                module,
-                                                address,
+                                                module, 
+                                                address, 
                                                 bp.getId()
                                             )
                                         )
 
                 self.BreakpointsMap[address] = {
-                                    'Type': 'Address',
-                                    'Module': module,
-                                    'RVA': 0,
-                                    'Symbol': '',
+                                    'Type': 'Address', 
+                                    'Module': module, 
+                                    'RVA': 0, 
+                                    'Symbol': '', 
                                     'DumpTargets': dump_targets
                                 }
             
@@ -324,9 +324,9 @@ class Operations:
 
             if record['Symbol']:
                 self.Logger.info('> %s!%s (+%.8x) (%.8x)' % (
-                                                record['Module'],
-                                                record['Symbol'],
-                                                record['RVA'],
+                                                record['Module'], 
+                                                record['Symbol'], 
+                                                record['RVA'], 
                                                 record['Address']
                                             )
                                         )
@@ -355,10 +355,10 @@ class Operations:
                             parameter_length = 0
 
                         self.ReturnBreakpointsMap[return_address] = {
-                                                        'Type': 'ReturnParameter',
-                                                        'EIP': eip,
-                                                        'DumpInstruction': dump_instruction,
-                                                        'Pointer': parameter_map[parameter_name],
+                                                        'Type': 'ReturnParameter', 
+                                                        'EIP': eip, 
+                                                        'DumpInstruction': dump_instruction, 
+                                                        'Pointer': parameter_map[parameter_name], 
                                                         'Length': parameter_length
                                                     }
 
@@ -409,16 +409,16 @@ class Operations:
             record['ThreadContext'] = self.Debugger.GetThreadContext()
             record['StackPointer'] = self.Debugger.GetESP()
             record['DumpTargets'] = [{
-                                    'Target': return_bp_info,
+                                    'Target': return_bp_info, 
                                     'Value': base64.b64encode(bytes)
                                    }
                                   ]
                                   
             if record['Symbol']:
                 self.Logger.info('> %s!%s (+%.8x) (%.8x) Return' % (
-                                                record['Module'],
-                                                record['Symbol'],
-                                                record['RVA'],
+                                                record['Module'], 
+                                                record['Symbol'], 
+                                                record['RVA'], 
                                                 record['Address']
                                             )
                                         )

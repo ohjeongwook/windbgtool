@@ -58,11 +58,11 @@ class Parser:
         cmd_output_lines = []
         for line in self.Data.splitlines():
             cmd_line_match = self.CmdPattern.match(line)
-            if cmd_line_match!=None:
+            if cmd_line_match != None:
                 parsed_cmd_lines = self.ParseCmdOutputLines(cmd_line, cmd_output_lines)
                 self.CmdResults.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
 
-                seq+=1
+                seq += 1
                 cmd_line = cmd_line_match.group(1)
                 cmd_output_lines = []
             else:
@@ -90,7 +90,7 @@ class Parser:
     def ParseRegisterLine(self, line):
         registers = {}
         m = self.RegisterLinePattern.match(line)
-        if m!=None:
+        if m != None:
             for reg_line in line.split():
                 toks = reg_line.split(' = ')                
                 
@@ -104,12 +104,12 @@ class Parser:
         parsed_results = []
         for line in result_lines:
             m = self.LMLine.match(line)
-            if m!=None:
+            if m != None:
                 parsed_results.append({
-                    'Start': m.group(1),
-                    'End': m.group(2),
-                    'Module Name': m.group(3),
-                    'Symbol Status': m.group(4),
+                    'Start': m.group(1), 
+                    'End': m.group(2), 
+                    'Module Name': m.group(3), 
+                    'Symbol Status': m.group(4), 
                     'Symbol Path': m.group(5)
                 })
         return parsed_results
@@ -120,12 +120,12 @@ class Parser:
         current_location = []
         for line in result_lines:
             m = self.Instruction64LinePattern.match(line)
-            if m!=None:
+            if m != None:
                 parsed_results.append(
                     {
                         'Address': util.common.Int(m.group(1)), 
-                        'Bytes': util.common.HexStrToBytes(m.group(2)),
-                        'Op': m.group(3),
+                        'Bytes': util.common.HexStrToBytes(m.group(2)), 
+                        'Op': m.group(3), 
                         'Operands': self.ParseOperandLine(m.group(4)), 
                         'Registers': registers, 
                         'Location': current_location
@@ -136,12 +136,12 @@ class Parser:
                 continue
 
             m = self.InstructionLinePattern.match(line)
-            if m!=None:
+            if m != None:
                 parsed_results.append(
                     {
                         'Address': util.common.Int(m.group(1)), 
-                        'Bytes': util.common.HexStrToBytes(m.group(2)),
-                        'Op': m.group(3),
+                        'Bytes': util.common.HexStrToBytes(m.group(2)), 
+                        'Op': m.group(3), 
                         'Operands': self.ParseOperandLine(m.group(4)), 
                         'Registers': registers, 
                         'Location': current_location
@@ -156,22 +156,22 @@ class Parser:
                 continue
 
             m = self.CurrentLocationPattern.match(line)
-            if m!=None:
+            if m != None:
                 current_location = ((m.group(1), m.group(2), util.common.Int(m.group(3))))
                 continue
 
             m = self.CurrentLocationWithSourcePattern.match(line)
-            if m!=None:
+            if m != None:
                 current_location = ((m.group(1), m.group(2), util.common.Int(m.group(3))))
                 continue
 
             m = self.CurrentLocationShortPattern.match(line)
-            if m!=None:
+            if m != None:
                 current_location = ((m.group(1), m.group(2), 0))
                 continue
 
             m = self.CurrentLocationShortWithSourcePattern.match(line)
-            if m!=None:
+            if m != None:
                 current_location = ((m.group(1), m.group(2), 0))
                 continue
             
@@ -184,21 +184,21 @@ class Parser:
         operand = operand_line
         pointer_line = ''
         m = self.Pointer64DumpPattern.match(operand_line)
-        if m!=None:
+        if m != None:
             operand = m.group(1)
             pointer_line = m.group(2)
         else:
             m = self.PointerDumpPattern.match(operand_line)
-            if m!=None:
+            if m != None:
                 operand = m.group(1)
                 pointer_line = m.group(2)
             else:
                 m = self.JmpLinePattern.match(operand_line)
-                if m!=None:
+                if m != None:
                     operand = m.group(1)
                 else:
                     m = self.JmpLinePattern2.match(operand_line)
-                    if m!=None:
+                    if m != None:
                         operand = m.group(1)            
 
         operands = operand.split(', ')    
@@ -240,13 +240,13 @@ class Parser:
             m = self.AddressesPattern.match(line)
             if m:
                 mem_info = {
-                    'BaseAddr': util.common.Int(m.groups()[0]),
-                    'EndAddr': util.common.Int(m.groups()[1]),
-                    'RgnSize': util.common.Int(m.groups()[2]),
-                    'Type': m.groups()[3],
-                    'State': m.groups()[4],
-                    'Protect': m.groups()[5],
-                    'Usage': m.groups()[6],
+                    'BaseAddr': util.common.Int(m.groups()[0]), 
+                    'EndAddr': util.common.Int(m.groups()[1]), 
+                    'RgnSize': util.common.Int(m.groups()[2]), 
+                    'Type': m.groups()[3], 
+                    'State': m.groups()[4], 
+                    'Protect': m.groups()[5], 
+                    'Usage': m.groups()[6], 
                     'Comment': m.groups()[7]
                 }
                 pass
@@ -254,12 +254,12 @@ class Parser:
                 m = self.Addresses2Pattern.match(line)
                 if m:
                     mem_info = {
-                        'BaseAddr': util.common.Int(m.groups()[0]),
-                        'EndAddr': util.common.Int(m.groups()[1]),
-                        'RgnSize': util.common.Int(m.groups()[2]),
-                        'Type': m.groups()[3],
-                        'State': m.groups()[4],
-                        'Usage': m.groups()[5],
+                        'BaseAddr': util.common.Int(m.groups()[0]), 
+                        'EndAddr': util.common.Int(m.groups()[1]), 
+                        'RgnSize': util.common.Int(m.groups()[2]), 
+                        'Type': m.groups()[3], 
+                        'State': m.groups()[4], 
+                        'Usage': m.groups()[5], 
                         'Comment': m.groups()[6]
                     }
 
@@ -278,7 +278,7 @@ class Parser:
         for (seq, cmd_line, parsed_results, result_lines) in self.CmdResults:
             print('* %.4d: %s' % (seq , cmd_line))
             
-            if parsed_results!=None:
+            if parsed_results != None:
                 for parsed_result in parsed_results:
                     if not parsed_result.has_key('Address'):
                         continue
@@ -328,7 +328,7 @@ class Parser:
             if not m:
                 break
 
-            insn_bytes+=chr(int(line[:m.end()], 0x10))
+            insn_bytes += chr(int(line[:m.end()], 0x10))
             line = line[m.end():]
 
         parsed_disasm_line['Bytes'] = insn_bytes
@@ -385,7 +385,7 @@ class Parser:
                 
             parsed_disasm_line = self.ParseDisasmLine(line)
             
-            if parsed_disasm_line!=None:
+            if parsed_disasm_line != None:
                 if not bp_point.has_key('DisasmLines'):
                     bp_point['DisasmLines'] = []
                 bp_point['DisasmLines'].append(parsed_disasm_line)
@@ -418,9 +418,9 @@ class Parser:
             
             function = ''
             if log_output.has_key('Target Module'):
-                function+=log_output['Target Module']
+                function += log_output['Target Module']
             if log_output.has_key('Target Function'):
-                function+='!' + log_output['Target Function']
+                function += '!' + log_output['Target Function']
             lines.append(function)
                 
             for disasm_line in log_output['DisasmLines']:
