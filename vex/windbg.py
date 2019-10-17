@@ -522,8 +522,8 @@ class Parser:
 					print(prefix+'st.data.op: ', st.data.op)
 					print(prefix+'st.data.args: ', st.data.args)
 				
-				arg 1= self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
-				arg 2= self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
+				arg1 = self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
+				arg2 = self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
 
 				if data_type != 'Memory':
 					dump_list.append(arg1)
@@ -642,8 +642,8 @@ class Parser:
 						print(prefix+'st.data.op: ', st.data.op)
 						print(prefix+'st.data.args: ', st.data.args)
 					
-					arg 1= self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
-					arg 2= self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
+					arg1 = self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
+					arg2 = self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
 
 					if data_type != 'Memory':
 						dump_list.append(arg1)

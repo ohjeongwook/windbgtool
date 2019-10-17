@@ -33,9 +33,9 @@ class Disassembler:
                 elif inst.type == X86_OP_MEM:
                     operand['TypeStr'] = 'Mem'
                     operand['Value'] = ''
-                    if inst.value.mem.base! = 0:
+                    if inst.value.mem.base != 0:
                         operand['Value'] += 'base: '+insn.reg_name(inst.value.mem.base)
-                    if inst.value.mem.index! = 0:
+                    if inst.value.mem.index != 0:
                         operand['Value'] += ' index: '+insn.reg_name(inst.value.mem.index)
                     operand['Value'] += ' scale: %.8x' % inst.value.mem.scale
                     operand['Value'] += ' disp: %.8x' % inst.value.mem.disp

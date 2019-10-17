@@ -1,7 +1,8 @@
 import sys
 import os
 import logging
-import windbgtool
+
+import windbgtool.debugger
 
 from optparse import OptionParser, Option
 

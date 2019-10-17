@@ -1,5 +1,5 @@
-import debugger
-import breakpoints
+import windbgtool.debugger
+import windbgtool.breakpoints
 
 if __name__ == '__main__':
     dbg_engine = debugger.DbgEngine()
@@ -8,7 +8,7 @@ if __name__ == '__main__':
     dbg_engine.EnumerateModules()
     dbg_engine.LoadSymbols(['kernel32'])
 
-    breakpointsOperations = breakpoints.Operations(dbg_engine)
+    breakpointsOperations = windbgtool.breakpoints.Operations(dbg_engine)
     breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileA', [])
     breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileW', [])
 

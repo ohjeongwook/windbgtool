@@ -11,8 +11,7 @@ import base64
 
 import pykd
 import util.common
-import log
-import breakpoints_storage
+import windbgtool.breakpoints_storage
         
 class Operations:
     def __init__(self, debugger):
@@ -83,9 +82,9 @@ class Operations:
                                 }
 
     def LoadBreakPoints(self, breakpoint_db, record_db = ''):
-        self.BreakPointsDB = breakpoints_storage.Storage(breakpoint_db)
+        self.BreakPointsDB = windbgtool.breakpoints_storage.Storage(breakpoint_db)
         self.BreakPointsDB.Load()
-        self.RecordsDB = breakpoints_storage.Record(record_db)
+        self.RecordsDB = windbgtool.breakpoints_storage.Record(record_db)
         self.BreakpointsMap = {}
 
         for (module, rules) in self.BreakPointsDB.AddressBreakpoints.items():
