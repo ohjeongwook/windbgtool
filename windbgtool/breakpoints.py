@@ -2,471 +2,431 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
-import sqlite3
-import pprint
+import re
+import time
 import json
+import pprint
+import logging
 import base64
+
+import pykd
 import util.common
-
-class DB:
-    def __init__(self,filename,module_name = '',prototype_filename = ''):
-        self.ModuleName = module_name
+import log
+import breakpoints_storage
         
-        if prototype_filename:
-            self.LoadPrototype(prototype_filename)
+class Operations:
+    def __init__(self, debugger):
+        self.Logger = logging.getLogger(__name__)
+        out_hdlr = logging.StreamHandler(sys.stdout)
+        out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
+        out_hdlr.setLevel(logging.INFO)
+        self.Logger.addHandler(out_hdlr)
+        self.Logger.setLevel(logging.INFO)
 
-        if filename.lower().endswith('.db'):
-            try:
-                self.Conn = sqlite3.connect(filename)
-            except:
-                pass
-            self.Cursor = self.Conn.cursor()
-            self.CreateTables()
+        self.Debugger = debugger
+        self.AddressToBreakPoints = {}
+        self.BreakpointsMap = {}
+        self.RecordsDB = None
+        
+    def SetBp(self, addr, handler):
+        if addr in self.AddressToBreakPoints:
+            self.AddressToBreakPoints[addr].remove()
+            del self.AddressToBreakPoints[addr]
+
+        bp = pykd.setBp(int(addr), handler)
+        self.AddressToBreakPoints[addr] = bp
+        return bp
+
+    def ClearBP(self):
+        for (addr, bp) in self.AddressToBreakPoints.items():
+            bp.remove()
+            del self.AddressToBreakPoints[addr]
+
+    def AddModuleBP(self, module_name, module_bps, handler):
+        module_base = self.Debugger.GetModuleBase(module_name)
+        self.Logger.info('AddModuleBP: %s (%x)', module_name, module_base)
+        
+        addresses = []
+        for (rva, dump_targets) in module_bps.items():
+            address = module_base+rva
+            self.Logger.info('\tSet bp: %x (%x+%x)) %s', address, module_base, rva, str(dump_targets))
+
+            self.SetBp(address, handler)
+            addresses.append(address)
+            self.BreakpointsMap[address] = {
+                                    'Type': 'Module', 
+                                    'Module': module_name, 
+                                    'RVA': rva,
+                                    'Symbol': '',
+                                    'DumpTargets': dump_targets
+                                }
             
-            self.JSONData = ''
-        else:
-            self.Cursor = None
-            fd = open(filename,'r')
-            self.JSONData = fd.read()
-            fd.close()
+        return addresses
+            
+    def AddSymbolBP(self, module_name, symbol, dump_targets, handler = None):
+        if not handler:
+            handler = self.HandleBreakpoint
 
-    def CreateTables(self):
-        create_table_sql = """CREATE TABLE
-                            IF NOT EXISTS Breakpoints (
-                                id integer PRIMARY KEY,
-                                Address integer,
-                                ModuleName text,
-                                RVA integer,
-                                Symbol text,
-                                DumpTargets text,
-                                Type text,
-                                unique (Address, ModuleName, RVA, Symbol, DumpTargets, Type)
-                            );"""
-        self.Cursor.execute(create_table_sql)
+        symbol_str = module_name+'!'+symbol
+        address = self.Debugger.ResolveAddress(symbol_str)
+        
+        if address>0:
+            bp = self.SetBp(address, handler)
+            
+            self.Logger.info("Setting breakpoint %s (%.8x) - %d\n", symbol_str, address, bp.getId())
+            self.BreakpointsMap[address] = {
+                                    'Type': 'Symbol',
+                                    'Module': module_name,
+                                    'RVA': 0,
+                                    'Symbol': symbol,
+                                    'DumpTargets': dump_targets
+                                }
 
-    def Save(self,breakpoints):
-        for entry in breakpoints:
-            if entry['Type'] == 'Instruction':
-                try:
-                    operands = self.GetDumpTargets(entry['Operands'])
-                    self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Address, RVA, DumpTargets, Type) VALUES (?,?,?,?,?)',
-                        (self.ModuleName, entry['Address'], entry['RVA'], json.dumps(operands), entry['Type']))
-                except:
-                    pass
-            elif entry['Type'] == 'Function':
-                try:
-                    self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Address, RVA,  DumpTargets, Type) VALUES (?,?,?,?,?)',
-                        (self.ModuleName, entry['Address'], entry['RVA'], json.dumps([entry]), entry['Type']))
-                except:
-                    pass
+    def LoadBreakPoints(self, breakpoint_db, record_db = ''):
+        self.BreakPointsDB = breakpoints_storage.Storage(breakpoint_db)
+        self.BreakPointsDB.Load()
+        self.RecordsDB = breakpoints_storage.Record(record_db)
+        self.BreakpointsMap = {}
 
-        self.Conn.commit()
+        for (module, rules) in self.BreakPointsDB.AddressBreakpoints.items():
+            for (address, dump_targets) in rules.items():
+                bp = self.SetBp(address, self.HandleBreakpoint)
+                
+                self.Logger.info('Setting breakpoint on %s (%.8x) - %d' % (
+                                                module,
+                                                address,
+                                                bp.getId()
+                                            )
+                                        )
 
-    def LoadPrototype(self,filename):
-        print('Loading prototype file:', filename)
-        if os.path.isfile(filename):
-            fd = open(filename,'r')
-            self.PrototypeMap = json.load(fd)
-            fd.close()
-        else:
-            self.PrototypeMap = {}
+                self.BreakpointsMap[address] = {
+                                    'Type': 'Address',
+                                    'Module': module,
+                                    'RVA': 0,
+                                    'Symbol': '',
+                                    'DumpTargets': dump_targets
+                                }
+            
+        for (module_name, module_bps) in self.BreakPointsDB.ModuleBreakpoints.items():
+            self.AddModuleBP(module_name, module_bps, self.HandleBreakpoint)
 
-    def FindAPIParameters(self,function_name):
-        if self.PrototypeMap.has_key(function_name) and self.PrototypeMap[function_name].has_key('Parameters'):
-            return self.PrototypeMap[function_name]['Parameters']
-        return []
+        for (module_name, module_bps) in self.BreakPointsDB.SymbolBreakpoints.items():
+            for (symbol, dump_targets) in module_bps.items():
+                self.AddSymbolBP(module_name, symbol, dump_targets, self.HandleBreakpoint)
+                
+        self.ReturnBreakpointsMap = {}
 
-    def FindAPIReturnParameters(self,function_name):
-        if self.PrototypeMap.has_key(function_name) and self.PrototypeMap[function_name].has_key('ReturnParameters'):
-            return self.PrototypeMap[function_name]['ReturnParameters']
-        return {}
-
-    def AddAPI(self,module_name,function_name):
-        parameters = self.FindAPIParameters(function_name)
-        return_parameters = self.FindAPIReturnParameters(function_name)
-        pp = pprint.PrettyPrinter(indent = 4)
-        try:
-            if len(parameters)>0:
-                dump_targets = [{
-                                'Type': 'Parameters',
-                                'Value': parameters
-                              },
-                              {
-                                'Type': 'ReturnParameters',
-                                'Value': return_parameters
-                              }
-                             ]
-            else:   
-                dump_targets = []
-            print('Adding API: %s!%s' % (module_name, function_name))
-            self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Symbol, DumpTargets, Type) VALUES (?,?,?,?)',
-                (module_name, function_name, json.dumps(dump_targets), 'Function'))
-        except:
-            pass
-
-        self.Conn.commit()
-
-    def GetDumpTargets(self,operands):
-        dump_targets = []
-        for operand in operands:
-            if operand.has_key('Use') and operand['Use']:
-                dump_targets.append({'Type': 'Operand', 'DataType':'DWORD', 'Value': operand})
-        return dump_targets
-
-    def Load(self):
-        self.AddressBreakpoints = {}
-        self.ModuleBreakpoints = {}
-        self.SymbolBreakpoints = {}
-        if self.Cursor!=None:
-            for (module, address, rva, symbol, dump_targets_json, type) in \
-                    self.Cursor.execute('SELECT ModuleName, Address, RVA, Symbol, DumpTargets, Type FROM Breakpoints'):
+    def DumpModuleParams(self, bp_type, module_base, dump_targets):
+        dump_outputs = []
+        if bp_type == 'Function':
+            dump_targets_values = pykd.loadDWords(pykd.reg("esp")+4, len(dump_targets))
+            arg_i = 0
+            for (arg_type, dump_target_name) in dump_targets:
+                dump_output = ''
+                if arg_type == "LPCWSTR":
+                    dump_output = self.Debugger.RunCmd("du %.8x" % dump_targets_values[arg_i])
                     
-                dump_targets = []
-                if dump_targets_json!=None:
-                    dump_targets = json.loads(dump_targets_json)
+                elif arg_type == "DWORD" or "HANDLE":
+                    dump_output = "%.8x" % dump_targets_values[arg_i]
+                    
+                else:
+                    dump_output = "%.8x" % dump_targets_values[arg_i]
 
-                if address == None:
-                    if symbol:
-                        if not self.SymbolBreakpoints.has_key(module):
-                            self.SymbolBreakpoints[module] = {}
-                        self.SymbolBreakpoints[module][symbol] = dump_targets
+                dump_output_item = {}
+                dump_output_item['DumpTargetName'] = dump_target_name
+                dump_output_item['ArgPosition'] = i
+                dump_output_item['DumpOutput'] = dump_output
+                dump_outputs.append(dump_output_item)
 
+                self.loggger.debug("%s (%s):\n%s" % (dump_target_name, arg_type, dump_output))
+                arg_i += 1
+
+        elif bp_type == 'Instruction':
+            for dump_target in dump_targets:
+                arg_type = dump_target['Type']
+                data_type = dump_target['DataType']
+
+                dump_target_name = ''
+                dump_output = ''
+                if arg_type == "Register":
+                    dump_target_name = dump_target['Value']
+                    dump_output = "%.8x" % pykd.reg(str(dump_target_name))
+
+                elif arg_type == "Memory" or arg_type == "Displacement" or arg_type == "Phrase":
+                    memory_str = dump_target['Base']
+                    if dump_target['Index']:
+                        memory_str += '+%s*%x' % (dump_target['Index'], dump_target['Scale'])
+                        
+                    if arg_type == "Memory":
+                        memory_str += '+%x' % (module_base+dump_target['Address'])
+                    elif arg_type == "Displacement":
+                        memory_str += '+%x' % dump_target['Offset']
+
+                    dump_target_name = memory_str
+                    
+                    if data_type == 'Byte':
+                        d_cmd = 'db'
+                        d_length = 10
+                    elif data_type == 'Word':
+                        d_cmd = 'dw'
+                        d_length = 10
+                    elif data_type == 'DWORD':
+                        d_cmd = 'dd'
+                        d_length = 10
+
+                    dump_output = self.Debugger.RunCmd("%s %s L%x" % (d_cmd, memory_str, d_length))
+
+                if dump_target_name:
+                    dump_output_item = {}
+                    dump_output_item['DumpTargetName'] = dump_target_name
+                    dump_output_item['Position'] = dump_target['Position']
+                    dump_output_item['DumpOutput'] = dump_output
+                    dump_outputs.append(dump_output_item)
+
+                    if dump_output.find('\n'):
+                        self.loggger.debug("%s (%s):" % (dump_target_name, arg_type))
+                        for line in dump_output.splitlines():
+                            self.loggger.debug("\t%s" % (line))
                     else:
-                        if not self.ModuleBreakpoints.has_key(module):
-                            self.ModuleBreakpoints[module] = {}
-                        self.ModuleBreakpoints[module][rva] = dump_targets
-                else:
-                    if not self.AddressBreakpoints.has_key(module):
-                        self.AddressBreakpoints[module] = {}
-                    self.AddressBreakpoints[module][address] = dump_targets
+                        self.loggger.debug("%s (%s): %s" % (dump_target_name, arg_type, dump_output))
 
-        elif self.JSONData:
-            for item in json.loads(self.JSONData):
-                if not item.has_key('RVA'):
-                    continue
+        return dump_outputs
 
-                address = item['RVA']
-                type = item['Type']
-                module = 'image'
+    def DumpOperand(self, operand):
+        operand_type = operand['Type']
+        value = ''
+        pointer = 0
+        if operand_type == 'Displacement':
+            base = pykd.reg(operand['Base'])
+            if operand['Index']:
+                index = pykd.reg(operand['Index'])
+            else:
+                index = 0
+            offset = operand['Offset']
+            if offset:
+                if operand['Offset'] & 0x80000000:
+                    offset = (0x100000000-offset)*-1
 
-                if item.has_key("Module"):
-                    module = item["Module"]
-                    if module.find('.')>0:
-                        module = module.split('.')[0]
+            pointer = base+index+offset
 
-                if type == 'Instruction':
-                    name = item['Disasm']
-                    dump_targets = self.GetDumpTargets(item['Operands'])
+        elif operand_type == 'Register':
+            value = pykd.reg(operand['Value'])
+        elif operand_type == 'Memory':
+            pointer = operand['Value']
+        elif operand_type == 'Near':
+            pass
+        else:
+            pass
+            
+        if pointer>0:
+            (value, )= pykd.loadDWords(pointer, 1)
 
-                else:
-                    name = item['Name']
-                    dump_targets = item['DumpTargets']
+        return value
 
-                if not self.ModuleBreakpoints.has_key(module):
-                    self.ModuleBreakpoints[module] = {}
-                self.ModuleBreakpoints[module][address] = dump_targets
-
-    def LoadDumpTargets(self):
-        breakpoints_map = {}
-        for (address, dump_targets, type) in self.Cursor.execute('SELECT Address, DumpTargets, Type FROM Breakpoints'):
-            if dump_targets!=None:
-                breakpoints_map[address] = json.loads(dump_targets)
-        return breakpoints_map
-
-class Record:
-    def __init__(self,filename):
-        self.Filename = filename
-        
-        print('Opening',self.Filename)
-        if self.Filename.lower().endswith('.db'):
+    def GetCallParameters(self, count, is_syscall = False):
+        if is_syscall:
+            bits = 64 #TODO: support 32 bit
+            parameter_values = pykd.loadQWords(pykd.reg("r10"), len(parameter_definition))
+        else:
+            parameters = []
             try:
-                self.Conn = sqlite3.connect(self.Filename)
+                bits = 64
+                parameters = []
+                
+                if count>0:
+                    parameters.append(pykd.reg("rcx"))
+                    if count>1:
+                        parameters.append(pykd.reg("rdx"))
+                        if count>2:
+                            parameters.append(pykd.reg("r8"))
+                            if count>3:
+                                parameters.append(pykd.reg("r9"))
+                                if count>4:
+                                    try:
+                                        rsp = pykd.reg("rsp")
+                                        parameters+= pykd.loadQWords(rsp+8, count-4)
+                                    except:
+                                        self.Logger.info('Accessing memory %x failed', rsp+8)
+
             except:
-                pass
-            self.Cursor = self.Conn.cursor()           
-            self.CreateTables()
-            self.JSONData = ''
-        else:
-            self.Cursor = None
-            fd = open(self.Filename,'r')
-            self.JSONData = fd.read()
-            fd.close()
+                bits = 32
+                esp = pykd.reg("esp")        
+                try:                
+                    parameters = pykd.loadDWords(esp+4, count)
+                except:
+                    self.Logger.info('Accessing memory %x failed', esp)
 
-    def CreateTables(self):
-        create_table_sql = """CREATE TABLE
-                            IF NOT EXISTS Records (
-                                id integer PRIMARY KEY,
-                                Type text,
-                                Address integer,
-                                Module text,
-                                RVA integer,
-                                Symbol text,
-                                ThreadContext integer,
-                                StackPointer integer,
-                                DumpTargets text
-                            );"""
+        return (bits, parameters)
+        
+    def DumpParameters(self, parameter_definition, is_syscall = False):
+        (bits, parameter_values) = self.Debugger.GetCallParameters(len(parameter_definition), is_syscall)
 
-        self.Cursor.execute(create_table_sql)
+        parameter_map = {}
+        for index in range(0, len(parameter_definition), 1):
+            parameter = parameter_definition[index]            
+            parameter_map[parameter['Name']] = parameter_values[index]
 
-    def WriteRecord(self,record):
-        if record.has_key('DumpTargets'):
-            dump_targets_text = json.dumps(record['DumpTargets'])
-        else:
-            dump_targets_text = ''
-
-        self.Cursor.execute('INSERT INTO Records (Type, Address, Module, RVA, Symbol, ThreadContext, StackPointer, DumpTargets) VALUES (?,?,?,?,?,?,?,?)',
-                (
-                    record['Type'],
-                    record['Address'],
-                    record['Module'],
-                    record['RVA'],
-                    record['Symbol'],
-                    record['ThreadContext'],
-                    record['StackPointer'],
-                    dump_targets_text
-                )
-            )
-        self.Conn.commit()
-
-    def LoadRecords(self,dump_targets_map = {}):
-        threads = {}
-        for (record_type, address, module, symbol, thread_context, stack_pointer, dump_targets_text) in self.Cursor.execute('SELECT Type, Address, Module, Symbol, ThreadContext, StackPointer, DumpTargets FROM Records'):
-            if not threads.has_key(thread_context):
-                threads[thread_context] = []
-                
-            if dump_targets_text:
-                dump_targets = json.loads(dump_targets_text)
-            else:
-                dump_targets = []
-
-            threads[thread_context].append((record_type, address, module, symbol, stack_pointer, dump_targets))
+        results = []
+        for index in range(0, len(parameter_definition), 1):
+            result = {}
+            parameter = parameter_definition[index]
             
-        for (thread_context,records) in threads.items():
-            stack_pointers = {}
-            for (record_type, address, module, symbol, stack_pointer, dump_targets) in records:
-                stack_pointers[stack_pointer] = 1
+            result['Parameter'] = parameter
+            parameter_value = parameter_values[index]
+            result['Value'] = parameter_value
 
-            stack_pointers_list = stack_pointers.keys()
-            stack_pointers_list.sort(reverse = True)
-            stack_pointer_offsets = {}
-            offset = 0
-            for stack_pointer in stack_pointers_list:
-                stack_pointer_offsets[stack_pointer] = offset
-                offset+=1
+            if 'Dump' in parameter:
+                if parameter['Dump']['Type'] == 'Bytes':
+                    if parameter['Dump']['Length']['Type'] == 'Parameter':
+                        parameter_length = parameter_map[parameter['Dump']['Length']['Value']]
+                    elif parameter['Dump']['Length']['Type'] == 'Value':
+                        parameter_length = parameter['Dump']['Length']['Value']
+                    else:
+                        parameter_length = 0x100
 
-            offsets = []
-            for (record_type, address, module, symbol, stack_pointer, dump_targets) in records:
-                offsets.append(stack_pointer_offsets[stack_pointer])
-            
-            def FindMinOffset(offsets):
-                min_offset = 0xffffffff
-                for offset in offsets:
-                    if offset<min_offset:
-                        min_offset = offset                     
-                return min_offset
+                    try:
+                        bytes = self.Debugger.GetBytes(parameter_value, parameter_length)
+                        result['Bytes'] = base64.b64encode(bytes)
+                    except:
+                        pass
 
-            def FindLEOffsetIndexForward(offsets,start,offset):
-                for index in range(start,len(offsets),1):
-                    if offsets[index]<=offset:
-                        return index
-                return len(offsets)
+            elif parameter['Type'] == 'LPCSTR':
+                string_val = self.Debugger.GetString(parameter_value)
+                result['String'] = string_val
 
-            def FindLEOffsetIndexBackward(offsets,end,offset):
-                for index in range(end,-1,-1):
-                    if offsets[index]<=offset:
-                        return index
-                return -1
-
-            def FindGEOffsetIndex(offsets,start,offset):
-                for index in range(start,len(offsets),1):
-                    if offsets[index]>=offset:
-                        return index
-                return -1
-
-            def OptimizeTree(offsets = [],start_index = 0,end_index = 0):
-                min_offset = FindMinOffset(offsets[start_index+1:end_index])              
+            elif parameter['Type'] in ('LPWSTR', 'LPCWSTR'):
+                wstring_val = self.Debugger.GetWString(parameter_value)
+                result['WString'] = wstring_val
                 
-                if min_offset!=0xffffffff:
-                    offset_decrease = min_offset-offset-1                        
-                    if offset_decrease>0:
-                        for index3 in range(start_index+1, end_index, 1):
-                            offsets[index3] -= offset_decrease
-            
-            start_index = 0
-            for offset in offsets:
-                end_index = FindLEOffsetIndexForward(offsets,start_index+1,offset)
-                if end_index>=0:
-                    OptimizeTree(offsets, start_index, end_index)
-                start_index+=1
-                
-            end_index = 1
-            for offset in offsets[1:]:
-                start_index = FindLEOffsetIndexBackward(offsets,end_index-1,offset)
-                if start_index>=0:
-                    OptimizeTree(offsets, start_index, end_index)
-                end_index+=1
-            
-            index = 0
-            for (record_type, address, module, symbol, stack_pointer, dump_targets) in records:
-                offset = offsets[index]     
-                index+=1
-                
-            seq = 0
-            filename_base = os.path.basename(self.Filename).split('.')[0]
-            filename = '%s-%.8x-%.3d.log' % (filename_base,thread_context, seq)
+            elif parameter['Pointer'] or parameter['Type'].startswith('LP'):
+                try:
+                    bytes = self.Debugger.GetBytes(parameter_value, 0x20)
+                    result['Bytes'] = base64.b64encode(bytes)
+                except:
+                    pass
 
-            fd = open(filename,'w')
-            index = 0
-            for (record_type, address, module, symbol, stack_pointer, dump_targets) in records:
-                offset = offsets[index]
-                prefix = ' ' * offset
-                name = ''
-                target_str = ''
+            results.append(result)
+        return (parameter_map, results)
 
-                if dump_targets_map.has_key(address):
-                    for dump_target in dump_targets_map[address]:                    
-                        if dump_target.has_key('Name'):
-                            name = dump_target['Name']
-                            break
+    def HandleBreakpoint(self):
+        eip = self.Debugger.GetEIP()
 
-                target_str = ''
-                parameter_lines = []
-                for dump_target in dump_targets:
-                    if dump_target['Target'].has_key('Type'):
-                        type = dump_target['Target']['Type']
-                    elif dump_target['Target'].has_key('DumpInstruction'):                   
-                        for line in util.common.DumpHex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
-                            parameter_lines.append(line)
-                        continue
+        if eip in self.BreakpointsMap:
+            record = {'Address': eip}
+            record['Type'] = 'Enter'
+            record['Module'] = self.BreakpointsMap[eip]['Module']
+            record['RVA'] = self.BreakpointsMap[eip]['RVA']
+            record['Symbol'] = self.BreakpointsMap[eip]['Symbol']
+            record['ThreadContext'] = self.Debugger.GetThreadContext()
+            esp = self.Debugger.GetESP()
+            record['StackPointer'] = esp
+            record['DumpTargets'] = []
 
-                    if dump_target['Target'].has_key('Name'):
-                        name = dump_target['Target']['Name']
+            if record['Symbol']:
+                self.Logger.info('> %s!%s (+%.8x) (%.8x)' % (
+                                                record['Module'],
+                                                record['Symbol'],
+                                                record['RVA'],
+                                                record['Address']
+                                            )
+                                        )
 
-                    value = dump_target['Value']
-
-                    if type == 'Operand':
-                        if isinstance(value['Operand'],(int,long)):
-                            target_str = ' (%.8x)' % value['Operand']
-                    elif type == 'Parameters':
-                        for parameter in value:
-                            parametr_name = parameter['Parameter']['Name']
-                            parametr_value = parameter['Value']
-                            parameter_lines.append('%s: %.8x' % (parametr_name, parametr_value))
-                            if parameter.has_key('WString'):
-                                parameter_lines.append('\t'+parameter['WString'].decode('utf-16'))
-                            elif parameter.has_key('String'):
-                                parameter_lines.append('\t'+parameter['String'])
-                            elif parameter.has_key('Bytes'):
-                                for line in util.common.DumpHex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
-                                    parameter_lines.append(line)
-
-                    elif type == 'Function':
-                        for arg in value:
-                            parameter_lines.append('\t%s: %.8x' % (arg['Name'], arg['Value']))
-                            if arg['Bytes']:
-                                for line in util.common.DumpHex(base64.b64decode(arg['Bytes']),prefix = '\t\t').splitlines():
-                                    parameter_lines.append(line)
+            for dump_target in self.BreakpointsMap[eip]['DumpTargets']:
+                if dump_target['Type'] == 'Operand':
+                    dump_result = {}
+                    dump_result['Operand'] = self.DumpOperand(dump_target['Value'])
                     
-                if symbol:
-                    name = symbol
+                    if dump_target['DataType'] == 'Pointer':
+                        try:
+                            bytes = self.Debugger.GetBytes(parameter_values[index], 0x100)
+                            dump_result['Bytes'] = base64.b64encode(bytes)
+                        except:
+                            pass
 
-                if module:
-                    name = module+'!'+name
+                elif dump_target['Type'] == 'Parameters':
+                    (parameter_map, dump_result) = self.DumpParameters(dump_target['Value'])
+                    
+                elif dump_target['Type'] == 'ReturnParameters' and len(dump_target['Value'])>0:
+                    return_address = self.Debugger.GetReturnAddress()
+                    for (parameter_name, dump_instruction) in dump_target['Value'].items():                    
+                        if dump_instruction['Length']['Type'] == 'Parameter':
+                            parameter_length = parameter_map[dump_instruction['Length']['Value']]
+                        else:
+                            parameter_length = 0
 
-                fd.write('%s%s %.8x %.8x %s %s\n' % (prefix, record_type, address, stack_pointer, name, target_str))
-                for parameter_line in parameter_lines:
-                    fd.write('%s\t%s\n' % (prefix, parameter_line))
+                        self.ReturnBreakpointsMap[return_address] = {
+                                                        'Type': 'ReturnParameter',
+                                                        'EIP': eip,
+                                                        'DumpInstruction': dump_instruction,
+                                                        'Pointer': parameter_map[parameter_name],
+                                                        'Length': parameter_length
+                                                    }
 
-                index+=1
-            fd.close()
+                    bp = self.SetBp(return_address, self.HandleReturnBreakpoint)
+                    self.Logger.info('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
 
-    def GetLogEntries(self):
-        return self.LogEntries
+                elif dump_target['Type'] == 'Function':
+                    dump_result = []
+                    for (arg_name, arg_offset) in dump_target['Args']:
+                        arg_addr = esp+arg_offset
+                        (arg_value, )= pykd.loadDWords(arg_addr, 1)
+                        try:
+                            bytes = self.Debugger.GetBytes(arg_value, 0x100)
+                            base64_bytes = base64.b64encode(bytes)
+                        except:
+                            base64_bytes = ''
 
-    def BuildHitMap(self):
-        self.HitMap = {}
-        for entry in self.LogEntries:
-            if not entry.has_key('Module'):
-                continue
+                        dump_result.append({'Name': arg_name, 'Value': arg_value, 'Bytes': base64_bytes})
 
-            #key = '%s!%x' % (entry['Module'],entry['RVA'])
-            key = entry['RVA']
-            
-            if not self.HitMap.has_key(key):
-                self.HitMap[key] = 0
-            self.HitMap[key]+=1
-        
-    def PrintHitMap(self):
-        for (rva,count) in sorted(self.HitMap.items(),key = operator.itemgetter(1)):
-            print("%x %d" % (rva,count))
-        
-    def RemoveHits(self,breakpoint_filename,output_breakpoint_filename,threshold):
-        fd = open(breakpoint_filename,'r')
-        data = fd.read()
-        fd.close()
-        
-        new_breakpoints = []
-        breakpoints = json.loads(data)
-        for breakpoint in breakpoints:
-            rva = breakpoint['RVA']
-            if self.HitMap.has_key(rva) and self.HitMap[rva]>threshold:
-                print('Removing %x (%d hits)' % (rva,self.HitMap[rva]))
+                else:
+                    dump_result = []
+
+                record['DumpTargets'].append({'Target': dump_target, 'Value': dump_result})
+
+            if self.RecordsDB:
+                self.RecordsDB.WriteRecord(record)
             else:
-                new_breakpoints.append(breakpoint)
-        
-        fd = open(output_breakpoint_filename,'w')
-        fd.write(json.dumps(new_breakpoints))
-        fd.close()
-
-if __name__ == '__main__':
-    import sys
-    import os
-    import logging
-
-    root_dir = os.path.dirname(sys.argv[0])
-
-    from optparse import OptionParser, Option
-
-    parser = OptionParser(usage = "usage: %prog [options] args")
-    parser.add_option("-b","--breakpoint_db",dest = "breakpoint_db",type = "string",default = "",metavar = "BREAKPOINT_DB",help = "Breakpoint DB filename")
-    parser.add_option("-r","--record_db",dest = "record_db",type = "string",default = "",metavar = "RECORD",help = "Record db filename")
-    parser.add_option("-a","--api_filename",dest = "api_filename",type = "string",default = "",metavar = "API_FILENAME",help = "API filename")
-    parser.add_option("-p","--prototype_filename",dest = "prototype_filename",type = "string",default = os.path.join(root_dir, 'Prototype.json'),metavar = "LOG",help = "Log filename")
-
-    (options,args) = parser.parse_args(sys.argv)
-
-    logging.basicConfig(level = logging.DEBUG)
-    root = logging.getLogger()
-    
-    ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(logging.DEBUG)
-    formatter = logging.Formatter('%(message)s')
-    ch.setFormatter(formatter)
-    root.addHandler(ch)
-
-    
-    if options.breakpoint_db:
-        db = DB(options.breakpoint_db,
-              prototype_filename = options.prototype_filename
-            )
-        #db.Load()
-
-    else:
-        db = None
-        
-    if options.api_filename:
-        fd = open(options.api_filename)
-        for line in fd.read().splitlines():
-            (module_name,function_name) = line.split('!')
-            db.AddAPI(module_name,function_name)
-        fd.close()
-    
-    if options.record_db:
-        if db!=None:
-            dump_targets_map = db.LoadDumpTargets()
+                self.Logger.info(pprint.pformat(record))
         else:
-            dump_targets_map = {}
-        record = Record(options.record_db)
-        record.LoadRecords(dump_targets_map)
+            self.Logger.info('> BP @%.8x' % eip)
+
+    def HandleReturnBreakpoint(self):
+        eip = self.Debugger.GetEIP()
+        if eip in self.ReturnBreakpointsMap:
+            return_bp_info = self.ReturnBreakpointsMap[eip]
+
+            try:
+                bytes = self.Debugger.GetBytes(return_bp_info['Pointer'], return_bp_info['Length'])
+            except:
+                bytes = ''
+
+            original_eip = return_bp_info['EIP']
+            record = {'Address': original_eip}
+            record['Type'] = 'Return'
+            record['Module'] = self.BreakpointsMap[original_eip]['Module']
+            record['RVA'] = self.BreakpointsMap[original_eip]['RVA']
+            record['Symbol'] = self.BreakpointsMap[original_eip]['Symbol']
+            record['ThreadContext'] = self.Debugger.GetThreadContext()
+            record['StackPointer'] = self.Debugger.GetESP()
+            record['DumpTargets'] = [{
+                                    'Target': return_bp_info,
+                                    'Value': base64.b64encode(bytes)
+                                   }
+                                  ]
+                                  
+            if record['Symbol']:
+                self.Logger.info('> %s!%s (+%.8x) (%.8x) Return' % (
+                                                record['Module'],
+                                                record['Symbol'],
+                                                record['RVA'],
+                                                record['Address']
+                                            )
+                                        )
+
+            if self.RecordsDB:
+                self.RecordsDB.WriteRecord(record)
+            else:
+                self.Logger.info(pprint.pformat(record))
+
 
 
