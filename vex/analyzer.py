@@ -33,12 +33,12 @@ class Disassembler:
                 elif inst.type == X86_OP_MEM:
                     operand['TypeStr'] = 'Mem'
                     operand['Value'] = ''
-                    if inst.value.mem.base!=0:
-                        operand['Value']+='base: '+insn.reg_name(inst.value.mem.base)
-                    if inst.value.mem.index!=0:
-                        operand['Value']+=' index: '+insn.reg_name(inst.value.mem.index)
-                    operand['Value']+=' scale: %.8x' % inst.value.mem.scale
-                    operand['Value']+=' disp: %.8x' % inst.value.mem.disp
+                    if inst.value.mem.base! = 0:
+                        operand['Value'] += 'base: '+insn.reg_name(inst.value.mem.base)
+                    if inst.value.mem.index! = 0:
+                        operand['Value'] += ' index: '+insn.reg_name(inst.value.mem.index)
+                    operand['Value'] += ' scale: %.8x' % inst.value.mem.scale
+                    operand['Value'] += ' disp: %.8x' % inst.value.mem.disp
                 elif inst.type == X86_OP_FP:
                     operand['TypeStr'] = 'Fp'
                     operand['Value'] = inst.value.fp
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     parser.add_option("-b", "--bytes", dest = "bytes", type = "string", default = "", metavar = "BYTES", help = "Set bytes")
     parser.add_option("-a", "--address", dest = "address", type = "string", default = "0", metavar = "ADDRESS", help = "Set address")
 
-    (options, args)=parser.parse_args(sys.argv)
+    (options, args) = parser.parse_args(sys.argv)
 
     disasm = Analyzer()
     bytes = Util.Common.HexStrToBytes(options.bytes)

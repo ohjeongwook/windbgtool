@@ -9,13 +9,13 @@ class Generator:
         self.SrcBaseAddress = src_base_address
         self.ImageBaseDiff = self.TargetBaseAddress-self.SrcBaseAddress
 
-        if exclusions!=None:
+        if exclusions != None:
             self.Exclusions = exclusions
         else:
             self.Exclusions = {
-                'cs:HeapAlloc':1,
-                'cs:HeapCreate':1,
-                'cs:DecodePointer':1,
+                'cs:HeapAlloc':1, 
+                'cs:HeapCreate':1, 
+                'cs:DecodePointer':1, 
                 'cs:EncodePointer':1
             }
 
@@ -58,9 +58,9 @@ class Generator:
             operand_type = operand['Type']
             if not self.Exclusions.has_key(operand_str):
                 if operand_type == 'Register':
-                    disasm_cmd+='u @%s L5; ' % (operand_str)
+                    disasm_cmd += 'u @%s L5; ' % (operand_str)
                 elif operand_type == 'Memory' or operand_type == 'Displacement':
-                    disasm_cmd+='u poi(%s) L5; ' % (operand_str)
+                    disasm_cmd += 'u poi(%s) L5; ' % (operand_str)
                 elif operand_type == 'Near':
                     pass
                 else:
@@ -69,17 +69,17 @@ class Generator:
         rebased_address = self.ImageBaseDiff+current
         dmp_command = 'bp %.8x ".echo * %s:%.8x %s %s; %s;' % (
                                             rebased_address, 
-                                            func_name,
+                                            func_name, 
                                             rebased_address, 
                                             op, 
-                                            ', '.join(operand_dump_commands),
+                                            ', '.join(operand_dump_commands), 
                                             disasm_cmd
                                         )
 
         if self.Arch == 'x86':
-            dmp_command+='dps @esp L10'
+            dmp_command += 'dps @esp L10'
         else:
-            dmp_command+='r @rcx, @rdx, @r8, @r9'
+            dmp_command += 'r @rcx, @rdx, @r8, @r9'
 
         dmp_command += '; .echo; g"'
         windbg_commands.append(dmp_command)
@@ -105,7 +105,7 @@ class Generator:
     def GenerateCommandsForInstructions(self, instructions, func_name = ''):
         windbg_commands = []        
         for instruction in instructions:
-            windbg_commands+=self.GenerateCommandsForInstruction(instruction, func_name = func_name)
+            windbg_commands += self.GenerateCommandsForInstruction(instruction, func_name = func_name)
         return windbg_commands
 
     def SaveBreakpoints(self, filename, breakpoints):
@@ -114,11 +114,11 @@ class Generator:
         for breakpoint in breakpoints:
             lines = []
             if breakpoint['Type'] == 'Instruction':
-                lines+=self.GenerateCommandsForInstruction(breakpoint)
+                lines += self.GenerateCommandsForInstruction(breakpoint)
             elif breakpoint['Type'] == 'Function':
                 lines.append('bp %.8x ".echo * %s (%.8x); ~#; kp 5; .echo ; g"' % (
-                                                breakpoint['Address'],
-                                                name,
+                                                breakpoint['Address'], 
+                                                name, 
                                                 breakpoint['Address']
                                             )
                                         )
