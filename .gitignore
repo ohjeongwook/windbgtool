@@ -2,3 +2,6 @@ util/__pycache__/
 vex/__pycache__/
 windbgtool/__pycache__/
 .idea/
+windbgtool/Tmp/api.py
+windbgtool/Tmp/test_exploit.py
+windbgtool/Tmp/WinDBG.py
