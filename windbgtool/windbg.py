@@ -14,61 +14,37 @@ import util.common
 import log
 import breakpoints
 
-class BreakpointExceptionHandler(eventHandler):
-    def __init__(self,breakpoint_db):
-        eventHandler.__init__(self)
-
-        self.logger=logging.getLogger(__name__)
-        
-        breakpoints_db=breakpoints.DB(breakpoint_db)
-        breakpoints_db.Load()
-        self.BreakpointsMap={}
-        self.SetBP(breakpoints_db.Breakpoints)
-
-    def SetBP(self, breakpoints):
-        for breakpoint in breakpoints:
-            #bp=self.SetBp(breakpoint['Address'],self.HandleBreakpoint)
-            if breakpoint['Type']=='Function':
-                bp=setBp(breakpoint['Address'],self.HandleBreakpoint)
-                self.logger.debug('Seting breakpoint on %.8x - %d %s' % (breakpoint['Address'], bp.getId(), breakpoint['Name']))
-
-    def onBreakpoint(self, bp_id):
-        self.logger.debug('onBreakpoint: %d' % bp_id)
-        return eventResult.Break
-
-    def onException(self, exceptInfo):
-        return eventResult.Break
-
-    def HandleBreakpoint(self,id):
-        self.logger.debug('* HandleBreakpoint: %d' % id)
-
-class PyKDTool:
-    Debug=0
+class DbgEngine:
     SymPath='srv*https://msdl.microsoft.com/download/symbols'
 
-    def __init__(self,dump_file=''):
+    def __init__(self, dump_file=''):
         self.logger=logging.getLogger(__name__)
-        
+
+        out_hdlr = logging.StreamHandler(sys.stdout)
+        out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
+        out_hdlr.setLevel(logging.INFO)
+        self.logger.addHandler(out_hdlr)
+        self.logger.setLevel(logging.INFO)
+
+        self.Modules={}
         self.SymbolMap={}
         self.SymbolToAddress={}
 
         if dump_file:
             loadDump(dump_file)
-                        
+        else:
+            startProcess('notepad.exe')
+
         self.WindbgLogParser=log.Parser()
         self.InitBreakpoints()
 
     def RunCmd(self,cmd):
-        if self.Debug>0:
-            self.logger.debug('* RunCmd: %s', cmd)
-
+        self.logger.info('* RunCmd: %s', cmd)
         ret=dbgCommand(cmd)
         if ret==None:
             ret=""
 
-        if self.Debug>1:
-            self.logger.debug('\tResult: %s', ret)
-
+        self.logger.info('\tResult: %s', ret)
         return ret
 
     def GetMachine(self):
@@ -82,13 +58,12 @@ class PyKDTool:
 
         return output
 
-    def LoadSymbols(self,modules=[]):
+    def LoadSymbols(self, modules=[]):
         self.SymbolMap=self.EnumerateModuleSymbols(modules)
-        
-        if self.Debug>2:
-            self.logger.debug('* SymbolMap:')
-            for (k,v) in self.SymbolMap.items():
-                self.logger.debug('\t%x: %s' % (k,v))
+       
+        self.logger.info('* SymbolMap:')
+        for (k,v) in self.SymbolMap.items():
+            self.logger.info('\t%x: %s' % (k,v))
 
         self.SymbolToAddress={}
         for (k,v) in self.SymbolMap.items():
@@ -145,24 +120,24 @@ class PyKDTool:
             toks=line.split()[0:4]
             
             if len(toks)>=4:
-                (start,end,module,full_path)=(Util.Common.Int(toks[0]), Util.Common.Int(toks[1]), toks[2], toks[3])
+                (start,end,module,full_path)=(util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
             
-                self.logger.debug('Adding %x - %x (%s - %s)',start,end,module,full_path)
+                self.logger.info('Adding %x - %x (%s - %s)',start,end,module,full_path)
                 self.Modules[module]=(start,end,full_path)
             else:
-                self.logger.debug('Broken lm line: %s', ''.join(toks))
+                self.logger.info('Broken lm line: %s', ''.join(toks))
 
     def AddModule(self,module):
         lines=self.RunCmd("lmfm %s" % module).splitlines()
         if len(lines)<3:
-            self.logger.debug('Resolving %s information failed:', module)
-            self.logger.debug('\n'.join(lines))
+            self.logger.info('Resolving %s information failed:', module)
+            self.logger.info('\n'.join(lines))
         else:
             line=lines[2]
             toks=line.split()[0:4]
-            (start,end,module,full_path)=(Util.Common.Int(toks[0]), Util.Common.Int(toks[1]), toks[2], toks[3])
+            (start,end,module,full_path)=(util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
         
-            self.logger.debug('Adding %x - %x (%s - %s)',start,end,module,full_path)
+            self.logger.info('Adding %x - %x (%s - %s)',start,end,module,full_path)
             self.Modules[module]=(start,end,full_path)
 
     def GetAddresses(self,name):
@@ -232,14 +207,14 @@ class PyKDTool:
             try:
                 return loadQWords(rsp,1)[0]
             except:
-                self.logger.debug('Accessing memory %x failed',rsp)
+                self.logger.info('Accessing memory %x failed',rsp)
             
         except:    
             esp=reg("esp")
             try:
                 return loadDWords(esp,1)[0]
             except:
-                self.logger.debug('Accessing memory %x failed',esp)
+                self.logger.info('Accessing memory %x failed',esp)
 
         return 0
 
@@ -260,7 +235,7 @@ class PyKDTool:
         
         if len(addr_toks)>1:
             addr_str=addr_toks[0]
-            offset=Util.Common.Int(addr_toks[1],16)
+            offset=util.common.Int(addr_toks[1],16)
         else:
             offset=0
 
@@ -268,7 +243,7 @@ class PyKDTool:
         
         res_lines=res.splitlines()
         if len(res_lines)>0:
-            return Util.Common.Int(res_lines[-1].split()[0])+offset
+            return util.common.Int(res_lines[-1].split()[0])+offset
         else:
             [module,symbol]=addr_str.split("!")
             for line in self.RunCmd("x %s!" % (module)).splitlines():
@@ -278,14 +253,14 @@ class PyKDTool:
                     xaddress_str=toks[1]
                     
                     if xaddress_str==addr_str:
-                        return Util.Common.Int(xaddress)+offset
+                        return util.common.Int(xaddress)+offset
 
             return 0+offset
 
     def ShowStack(self):
-        print '* Stack----'
+        print('* Stack----')
         for dword in loadDWords(reg("esp"),5):
-            print '%x' % dword
+            print('%x' % dword)
             
     def GetBytes(self,address,length):
         bytes=loadBytes(address,length)
@@ -349,12 +324,12 @@ class PyKDTool:
 
     def AddModuleBP(self,module_name,module_bps,handler):
         module_base=self.GetModuleBase(module_name)
-        self.logger.debug('AddModuleBP: %s (%x)',module_name,module_base)
+        self.logger.info('AddModuleBP: %s (%x)',module_name,module_base)
         
         addresses=[]
         for (rva,dump_targets) in module_bps.items():
             address=module_base+rva
-            self.logger.debug('\tSet bp: %x (%x+%x)) %s',address,module_base,rva,str(dump_targets))
+            self.logger.info('\tSet bp: %x (%x+%x)) %s',address,module_base,rva,str(dump_targets))
 
             self.SetBp(address,handler)
             addresses.append(address)
@@ -375,7 +350,7 @@ class PyKDTool:
         if address>0:
             bp=self.SetBp(address,handler)
             
-            self.logger.debug("Setting breakpoint %s (%.8x) - %d\n",addr_str,address,bp.getId())
+            self.logger.info("Setting breakpoint %s (%.8x) - %d\n",addr_str,address,bp.getId())
             self.BreakpointsMap[address]={
                                     'Type': 'Symbol',
                                     'Module': module_name,
@@ -393,7 +368,7 @@ class PyKDTool:
             for (address, dump_targets) in rules.items():
                 bp=self.SetBp(address,self.HandleBreakpoint)
                 
-                self.logger.debug('Setting breakpoint on %s (%.8x) - %d' % (
+                self.logger.info('Setting breakpoint on %s (%.8x) - %d' % (
                                                 module,
                                                 address,
                                                 bp.getId()
@@ -546,7 +521,7 @@ class PyKDTool:
                                         rsp=reg("rsp")
                                         parameters+=loadQWords(rsp+8,count-4)
                                     except:
-                                        self.logger.debug('Accessing memory %x failed',rsp+8)
+                                        self.logger.info('Accessing memory %x failed',rsp+8)
 
             except:
                 bits=32
@@ -554,7 +529,7 @@ class PyKDTool:
                 try:                
                     parameters=loadDWords(esp+4,count)
                 except:
-                    self.logger.debug('Accessing memory %x failed', esp)
+                    self.logger.info('Accessing memory %x failed', esp)
 
         return (bits,parameters)
         
@@ -627,7 +602,7 @@ class PyKDTool:
             record['DumpTargets']=[]
 
             if record['Symbol']:
-                self.logger.debug('> %s!%s (+%.8x) (%.8x)' % (
+                self.logger.info('> %s!%s (+%.8x) (%.8x)' % (
                                                 record['Module'],
                                                 record['Symbol'],
                                                 record['RVA'],
@@ -667,7 +642,7 @@ class PyKDTool:
                                                     }
 
                     bp=self.SetBp(return_address,self.HandleReturnBreakpoint)
-                    self.logger.debug('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
+                    self.logger.info('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
 
                 elif dump_target['Type']=='Function':
                     dump_result=[]
@@ -689,7 +664,7 @@ class PyKDTool:
 
             self.RecordsDB.WriteRecord(record)
         else:
-            self.logger.debug('> BP @%.8x' % eip)
+            self.logger.info('> BP @%.8x' % eip)
 
     def HandleReturnBreakpoint(self):
         eip=self.GetEIP()
@@ -716,7 +691,7 @@ class PyKDTool:
                                   ]
                                   
             if record['Symbol']:
-                self.logger.debug('> %s!%s (+%.8x) (%.8x) Return' % (
+                self.logger.info('> %s!%s (+%.8x) (%.8x) Return' % (
                                                 record['Module'],
                                                 record['Symbol'],
                                                 record['RVA'],
@@ -730,32 +705,8 @@ class PyKDTool:
         go()
 
 if __name__=='__main__':
-    import sys
-    import os
-    import logging
-    
-    from optparse import OptionParser, Option
-
-    parser=OptionParser(usage="usage: %prog [options] args")
-    parser.add_option("-b","--breakpoint_db",dest="breakpoint_db",type="string",default="",metavar="BREAKPOINT_DB",help="Breakpoint DB filename")
-    parser.add_option("-l","--log",dest="log",type="string",default="",metavar="LOG",help="Log filename")
-    
-    (options,args)=parser.parse_args(sys.argv)
-
-    root_dir=os.path.dirname(sys.argv[0])
-
-    if options.breakpoint_db=='':
-        options.breakpoint_db=os.path.join(root_dir, 'bp.db')
-
-    if options.log=='':
-        options.log=os.path.join(root_dir, time.strftime("Record-%Y%m%d-%H%M%S.db"))
-
-    logging.basicConfig(level=logging.DEBUG)
-    root = logging.getLogger()
-
-    pyKDTool=PyKDTool()
-    #pyKDTool.SetSymbolPath()
-
-    if options.breakpoint_db:
-        pyKDTool.LoadBreakPoints(options.breakpoint_db,options.log)
-        pyKDTool.Continue()
+    dbg_engine = DbgEngine()
+    dbg_engine.SetSymbolPath()
+    dbg_engine.EnumerateModules()
+    dbg_engine.LoadSymbols()
+    dbg_engine.Continue()

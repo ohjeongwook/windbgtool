@@ -97,7 +97,7 @@ class Parser:
                 if len(toks)==1:
                     registers[toks[0]]=1
                 elif len(toks)==2:
-                    registers[toks[0]]=Util.Common.Int(toks[1])
+                    registers[toks[0]]=util.common.Int(toks[1])
         return registers
 
     def ParseLM(self,result_lines):
@@ -123,8 +123,8 @@ class Parser:
             if m!=None:
                 parsed_results.append(
                     {
-                        'Address': Util.Common.Int(m.group(1)), 
-                        'Bytes': Util.Common.HexStrToBytes(m.group(2)),
+                        'Address': util.common.Int(m.group(1)), 
+                        'Bytes': util.common.HexStrToBytes(m.group(2)),
                         'Op': m.group(3),
                         'Operands': self.ParseOperandLine(m.group(4)), 
                         'Registers': registers, 
@@ -139,8 +139,8 @@ class Parser:
             if m!=None:
                 parsed_results.append(
                     {
-                        'Address': Util.Common.Int(m.group(1)), 
-                        'Bytes': Util.Common.HexStrToBytes(m.group(2)),
+                        'Address': util.common.Int(m.group(1)), 
+                        'Bytes': util.common.HexStrToBytes(m.group(2)),
                         'Op': m.group(3),
                         'Operands': self.ParseOperandLine(m.group(4)), 
                         'Registers': registers, 
@@ -157,12 +157,12 @@ class Parser:
 
             m=self.CurrentLocationPattern.match(line)
             if m!=None:
-                current_location=((m.group(1), m.group(2), Util.Common.Int(m.group(3))))
+                current_location=((m.group(1), m.group(2), util.common.Int(m.group(3))))
                 continue
 
             m=self.CurrentLocationWithSourcePattern.match(line)
             if m!=None:
-                current_location=((m.group(1), m.group(2), Util.Common.Int(m.group(3))))
+                current_location=((m.group(1), m.group(2), util.common.Int(m.group(3))))
                 continue
 
             m=self.CurrentLocationShortPattern.match(line)
@@ -212,7 +212,7 @@ class Parser:
                 for pattern in self.XPatterns:
                     m=pattern.match(line)
                     if m:
-                        address=Util.Common.Int(m.group(1),0x10)
+                        address=util.common.Int(m.group(1),0x10)
                         name=m.group(2)
                         map[address]=name
                         break
@@ -240,9 +240,9 @@ class Parser:
             m=self.AddressesPattern.match(line)
             if m:
                 mem_info={
-                    'BaseAddr': Util.Common.Int(m.groups()[0]),
-                    'EndAddr': Util.Common.Int(m.groups()[1]),
-                    'RgnSize': Util.Common.Int(m.groups()[2]),
+                    'BaseAddr': util.common.Int(m.groups()[0]),
+                    'EndAddr': util.common.Int(m.groups()[1]),
+                    'RgnSize': util.common.Int(m.groups()[2]),
                     'Type': m.groups()[3],
                     'State': m.groups()[4],
                     'Protect': m.groups()[5],
@@ -254,9 +254,9 @@ class Parser:
                 m=self.Addresses2Pattern.match(line)
                 if m:
                     mem_info={
-                        'BaseAddr': Util.Common.Int(m.groups()[0]),
-                        'EndAddr': Util.Common.Int(m.groups()[1]),
-                        'RgnSize': Util.Common.Int(m.groups()[2]),
+                        'BaseAddr': util.common.Int(m.groups()[0]),
+                        'EndAddr': util.common.Int(m.groups()[1]),
+                        'RgnSize': util.common.Int(m.groups()[2]),
                         'Type': m.groups()[3],
                         'State': m.groups()[4],
                         'Usage': m.groups()[5],
@@ -266,17 +266,17 @@ class Parser:
             if len(mem_info)>0:
                 if debug>0:
                     pprint.pprint(mem_info)
-                    print ''
+                    print('')
                 address_list.append(mem_info)
             else:
                 if debug>0:
-                    print line
+                    print(line)
 
         return address_list
 
     def Dump(self,level=0):
         for (seq, cmd_line, parsed_results, result_lines) in self.CmdResults:
-            print '* %.4d: %s' % (seq , cmd_line)
+            print('* %.4d: %s' % (seq , cmd_line))
             
             if parsed_results!=None:
                 for parsed_result in parsed_results:
@@ -287,19 +287,19 @@ class Parser:
                     operands=parsed_result['Operands'][0]
                     bytes=parsed_result['Bytes']
 
-                    print '>> Disasm: %.8x %s %s' % (addr, op, ','.join(operands))
-                    print '\t', Util.Common.BytesToHexStr(bytes)
+                    print('>> Disasm: %.8x %s %s' % (addr, op, ','.join(operands)))
+                    print('\t', util.common.BytesToHexStr(bytes))
                     if self.UseVex:
                         parser=vex.windbg.Parser(bytes,addr,'x64')
                         (read_commands,write_commands)=parser.GetWinDBGDumpCommands()
                         
-                        print '>> Commands: ', read_commands,write_commands
-                    print ''
-                print ''
+                        print('>> Commands: ', read_commands,write_commands)
+                    print('')
+                print('')
                 
             if level>0:
                 pprint.pprint(result_lines)
-                print ''
+                print('')
                 
 
     def SkipSpaces(self,line):
@@ -404,8 +404,8 @@ class Parser:
         keys.sort()
         for key in keys:
             for (bp_cmd,addr,cmd) in echo_cmd_maps[key]:
-                print bp_cmd,addr,cmd
-                print '%s %.16X %s' % (bp_cmd,int(addr,16)+(new_addr-orig_addr),cmd)
+                print(bp_cmd,addr,cmd)
+                print('%s %.16X %s' % (bp_cmd,int(addr,16)+(new_addr-orig_addr),cmd))
                 
     def DumpRunLogOutput(self):
         for log_output in self.RunLogOutputLines:
@@ -426,10 +426,10 @@ class Parser:
             for disasm_line in log_output['DisasmLines']:
                 lines.append(disasm_line['Line'])
 
-            print '%.8x: ' % address
+            print('%.8x: ' % address)
             prefix='\t'
             for line in lines:
-                print prefix+line
+                print(prefix+line)
 
 if __name__=='__main__':
     import sys
