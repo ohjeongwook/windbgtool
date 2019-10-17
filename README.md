@@ -70,7 +70,13 @@ copy "%ProgramFiles%\Debugging Tools for Windows (x86)\winext" %LOCALAPPDATA%\Pr
 ```
 
 3. Run following command to verify pykd
-    0:000> .load pykd
+
+```
+0:000> .load pykd
+```
 
 4. Intall PyKD, if ".load pykd" command fails
-    0:000> !pykd.install
+
+```
+0:000> !pykd.install
+```
