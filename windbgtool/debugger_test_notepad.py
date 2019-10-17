@@ -9,7 +9,8 @@ if __name__ == '__main__':
     dbg_engine.LoadSymbols(['kernel32'])
 
     breakpointsOperations = breakpoints.Operations(dbg_engine)
-    breakpointsOperations.AddSymbolBP('kernel32','CreateFileA',[])
-    breakpointsOperations.AddSymbolBP('kernel32','CreateFileW',[])
+    breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileA', [])
+    breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileW', [])
 
     dbg_engine.Go()
+

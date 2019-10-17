@@ -3,7 +3,7 @@ import pprint
 import re
 
 class Generator:
-    def __init__(self,target_base_address = 0,src_base_address = 0,arch = 'x86',exclusions = None):
+    def __init__(self, target_base_address = 0, src_base_address = 0, arch = 'x86', exclusions = None):
         self.Arch = arch       
         self.TargetBaseAddress = target_base_address
         self.SrcBaseAddress = src_base_address
@@ -19,7 +19,7 @@ class Generator:
                 'cs:EncodePointer':1
             }
 
-    def GetOperandStr(self,operand):
+    def GetOperandStr(self, operand):
         operand_type = operand['Type']
         operand_str = ''
         if operand.has_key('Value'):
@@ -43,7 +43,7 @@ class Generator:
         
         return operand_str
 
-    def GenerateCommandsForInstruction(self,instruction,func_name = ''):
+    def GenerateCommandsForInstruction(self, instruction, func_name = ''):
         windbg_commands = []
         current = instruction['Address']
         op = instruction['Op']
@@ -72,7 +72,7 @@ class Generator:
                                             func_name,
                                             rebased_address, 
                                             op, 
-                                            ','.join(operand_dump_commands),
+                                            ', '.join(operand_dump_commands),
                                             disasm_cmd
                                         )
 
@@ -90,7 +90,7 @@ class Generator:
                                                 next_address+self.ImageBaseDiff, 
                                                 rebased_address, 
                                                 op, 
-                                                ','.join(operand_str_list)
+                                                ', '.join(operand_str_list)
                                             )
             if self.Arch == 'x86':
                 ret_command += "r @eax;"
@@ -102,14 +102,14 @@ class Generator:
 
         return windbg_commands
 
-    def GenerateCommandsForInstructions(self,instructions,func_name = ''):
+    def GenerateCommandsForInstructions(self, instructions, func_name = ''):
         windbg_commands = []        
         for instruction in instructions:
-            windbg_commands+=self.GenerateCommandsForInstruction(instruction,func_name = func_name)
+            windbg_commands+=self.GenerateCommandsForInstruction(instruction, func_name = func_name)
         return windbg_commands
 
-    def SaveBreakpoints(self,filename,breakpoints):
-        fd = open(filename,'w')
+    def SaveBreakpoints(self, filename, breakpoints):
+        fd = open(filename, 'w')
 
         for breakpoint in breakpoints:
             lines = []
@@ -132,4 +132,5 @@ class Generator:
 
 if __name__ == '__main__':
     pass
+
 
