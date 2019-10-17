@@ -5,3 +5,6 @@ windbgtool/__pycache__/
 windbgtool/Tmp/api.py
 windbgtool/Tmp/test_exploit.py
 windbgtool/Tmp/WinDBG.py
+build/
+dist/
+windbgtool_ohjeongwook.egg-info/
