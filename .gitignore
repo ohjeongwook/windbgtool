@@ -1,1 +1,4 @@
-vex/__pycache__/analyzer.cpython-37.pyc
+util/__pycache__/
+vex/__pycache__/
+windbgtool/__pycache__/
+.idea/
