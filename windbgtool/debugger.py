@@ -14,38 +14,10 @@ import util.common
 import log
 import breakpoints
 
-class BreakpointExceptionHandler(pykd.eventHandler):
-    def __init__(self, breakpoint_db):
-        eventHandler.__init__(self)
-
-        self.logger = logging.getLogger(__name__)
-
-        breakpoints_db = breakpoints.DB(breakpoint_db)
-        breakpoints_db.Load()
-        self.BreakpointsMap = {}
-        self.SetBP(breakpoints_db.Breakpoints)
-
-    def SetBP(self, breakpoints):
-        for breakpoint in breakpoints:
-            #bp = self.SetBp(breakpoint['Address'],self.HandleBreakpoint)
-            if breakpoint['Type'] == 'Function':
-                bp = pykd.setBp(breakpoint['Address'],self.HandleBreakpoint)
-                self.logger.debug('Seting breakpoint on %.8x - %d %s' % (breakpoint['Address'], bp.getId(), breakpoint['Name']))
-
-    def onBreakpoint(self, bp_id):
-        self.logger.debug('onBreakpoint: %d' % bp_id)
-        return eventResult.Break
-
-    def onException(self, exceptInfo):
-        return eventResult.Break
-
-    def HandleBreakpoint(self,id):
-        self.logger.debug('* HandleBreakpoint: %d' % id)
-        
 class DbgEngine:
     SymPath = 'srv*https://msdl.microsoft.com/download/symbols'
 
-    def __init__(self, dump_file = ''):
+    def __init__(self):
         self.logger = logging.getLogger(__name__)
 
         out_hdlr = logging.StreamHandler(sys.stdout)
@@ -60,13 +32,14 @@ class DbgEngine:
         self.BreakpointsMap = {}
         self.RecordsDB = None
 
-        if dump_file:
-            pykd.loadDump(dump_file)
-        else:
-            pykd.startProcess('notepad.exe')
-
         self.WindbgLogParser = log.Parser()
-        self.InitBreakpoints()
+        self.AddressToBreakPoints = {}
+
+    def LoadDump(self, dump_filename):
+        pykd.loadDump(dump_file)
+
+    def Run(self, executable_path):
+        pykd.startProcess(executable_path)
 
     def RunCmd(self,cmd):
         self.logger.info('* RunCmd: %s', cmd)
@@ -337,9 +310,7 @@ class DbgEngine:
     def GetEntryPoint(self):
         return int(pykd.dbgCommand("r $exentry").split(' = ')[1],0x10)
 
-    """ Breakpoint """
-    def InitBreakpoints(self):
-        self.AddressToBreakPoints = {}
+    """ Breakpoint """   
     
     def SetBp(self,addr,handler):
         if addr in self.AddressToBreakPoints:
