@@ -103,7 +103,7 @@ Version:        Status:     Image:
 Copy ext dlls to C:\Python27\Lib\site-packages\pykd
 
 ```
-copy "%ProgramFiles%\Debugging Tools for Windows (x64)\winext" C:\Python27\Lib\site-packages\pykd
+copy "%ProgramFiles%\Debugging Tools for Windows (x64)\winext" %LOCALAPPDATA%\Programs\Python\Python37\Lib\site-packages\pykd
 ```
 
 ```
