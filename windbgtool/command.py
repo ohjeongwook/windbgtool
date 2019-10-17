@@ -126,7 +126,7 @@ class Generator:
                 line = ''
 
             for line in lines:
-                print line
+                print(line)
                 fd.write(line+'\n')
         fd.close()
 

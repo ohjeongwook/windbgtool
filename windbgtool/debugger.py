@@ -10,9 +10,10 @@ import logging
 import base64
 
 import pykd
+
 import util.common
-import log
-import breakpoints
+import windbgtool.log
+import windbgtool.breakpoints
 
 class DbgEngine:
     SymPath = 'srv*https://msdl.microsoft.com/download/symbols'
@@ -29,7 +30,7 @@ class DbgEngine:
         self.SymbolMap = {}
         self.SymbolToAddress = {}
 
-        self.WindbgLogParser = log.Parser()
+        self.WindbgLogParser = windbgtool.log.Parser()
 
     def LoadDump(self, dump_filename):
         pykd.loadDump(dump_file)

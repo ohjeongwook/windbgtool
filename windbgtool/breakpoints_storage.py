@@ -6,9 +6,8 @@ import sqlite3
 import pprint
 import json
 import base64
-import util.common
 
-import pykd
+import util.common
 
 class Storage:
     def __init__(self,filename,module_name = '',prototype_filename = ''):
