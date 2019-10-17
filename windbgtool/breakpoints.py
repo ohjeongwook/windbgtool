@@ -63,7 +63,7 @@ class DB:
         self.Conn.commit()
 
     def LoadPrototype(self,filename):
-        print 'Loading prototype file:', filename
+        print('Loading prototype file:', filename)
         if os.path.isfile(filename):
             fd=open(filename,'r')
             self.PrototypeMap=json.load(fd)
@@ -98,7 +98,7 @@ class DB:
                              ]
             else:   
                 dump_targets=[]
-            print 'Adding API: %s!%s' % (module_name, function_name)
+            print('Adding API: %s!%s' % (module_name, function_name))
             self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Symbol, DumpTargets, Type) VALUES (?,?,?,?)',
                 (module_name, function_name, json.dumps(dump_targets), 'Function'))
         except:
@@ -177,7 +177,7 @@ class Record:
     def __init__(self,filename):
         self.Filename=filename
         
-        print 'Opening',self.Filename
+        print('Opening',self.Filename)
         if self.Filename.lower().endswith('.db'):
             try:
                 self.Conn = sqlite3.connect(self.Filename)
@@ -335,7 +335,7 @@ class Record:
                     if dump_target['Target'].has_key('Type'):
                         type=dump_target['Target']['Type']
                     elif dump_target['Target'].has_key('DumpInstruction'):                   
-                        for line in Util.Common.DumpHex(base64.b64decode(dump_target['Value']),prefix='\t\t').splitlines():
+                        for line in util.common.DumpHex(base64.b64decode(dump_target['Value']),prefix='\t\t').splitlines():
                             parameter_lines.append(line)
                         continue
 
@@ -357,14 +357,14 @@ class Record:
                             elif parameter.has_key('String'):
                                 parameter_lines.append('\t'+parameter['String'])
                             elif parameter.has_key('Bytes'):
-                                for line in Util.Common.DumpHex(base64.b64decode(parameter['Bytes']),prefix='\t\t').splitlines():
+                                for line in util.common.DumpHex(base64.b64decode(parameter['Bytes']),prefix='\t\t').splitlines():
                                     parameter_lines.append(line)
 
                     elif type=='Function':
                         for arg in value:
                             parameter_lines.append('\t%s: %.8x' % (arg['Name'], arg['Value']))
                             if arg['Bytes']:
-                                for line in Util.Common.DumpHex(base64.b64decode(arg['Bytes']),prefix='\t\t').splitlines():
+                                for line in util.common.DumpHex(base64.b64decode(arg['Bytes']),prefix='\t\t').splitlines():
                                     parameter_lines.append(line)
                     
                 if symbol:
@@ -380,43 +380,43 @@ class Record:
                 index+=1
             fd.close()
 
-	def GetLogEntries(self):
-		return self.LogEntries
+    def GetLogEntries(self):
+        return self.LogEntries
 
-	def BuildHitMap(self):
-		self.HitMap={}
-		for entry in self.LogEntries:
-			if not entry.has_key('Module'):
-				continue
+    def BuildHitMap(self):
+        self.HitMap={}
+        for entry in self.LogEntries:
+            if not entry.has_key('Module'):
+                continue
 
-			#key='%s!%x' % (entry['Module'],entry['RVA'])
-			key=entry['RVA']
-			
-			if not self.HitMap.has_key(key):
-				self.HitMap[key]=0
-			self.HitMap[key]+=1
-		
-	def PrintHitMap(self):
-		for (rva,count) in sorted(self.HitMap.items(),key=operator.itemgetter(1)):
-			print "%x %d" % (rva,count)
-		
-	def RemoveHits(self,breakpoint_filename,output_breakpoint_filename,threshold):
-		fd=open(breakpoint_filename,'r')
-		data=fd.read()
-		fd.close()
-		
-		new_breakpoints=[]
-		breakpoints=json.loads(data)
-		for breakpoint in breakpoints:
-			rva=breakpoint['RVA']
-			if self.HitMap.has_key(rva) and self.HitMap[rva]>threshold:
-				print 'Removing %x (%d hits)' % (rva,self.HitMap[rva])
-			else:
-				new_breakpoints.append(breakpoint)
-		
-		fd=open(output_breakpoint_filename,'w')
-		fd.write(json.dumps(new_breakpoints))
-		fd.close()
+            #key='%s!%x' % (entry['Module'],entry['RVA'])
+            key=entry['RVA']
+            
+            if not self.HitMap.has_key(key):
+                self.HitMap[key]=0
+            self.HitMap[key]+=1
+        
+    def PrintHitMap(self):
+        for (rva,count) in sorted(self.HitMap.items(),key=operator.itemgetter(1)):
+            print("%x %d" % (rva,count))
+        
+    def RemoveHits(self,breakpoint_filename,output_breakpoint_filename,threshold):
+        fd=open(breakpoint_filename,'r')
+        data=fd.read()
+        fd.close()
+        
+        new_breakpoints=[]
+        breakpoints=json.loads(data)
+        for breakpoint in breakpoints:
+            rva=breakpoint['RVA']
+            if self.HitMap.has_key(rva) and self.HitMap[rva]>threshold:
+                print('Removing %x (%d hits)' % (rva,self.HitMap[rva]))
+            else:
+                new_breakpoints.append(breakpoint)
+        
+        fd=open(output_breakpoint_filename,'w')
+        fd.write(json.dumps(new_breakpoints))
+        fd.close()
 
 if __name__=='__main__':
     import sys
@@ -468,3 +468,4 @@ if __name__=='__main__':
             dump_targets_map={}
         record=Record(options.record_db)
         record.LoadRecords(dump_targets_map)
+
