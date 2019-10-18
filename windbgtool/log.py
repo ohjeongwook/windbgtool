@@ -93,7 +93,7 @@ class Parser:
         m = self.RegisterLinePattern.match(line)
         if m != None:
             for reg_line in line.split():
-                toks = reg_line.split(' = ')                
+                toks = reg_line.split('=')                
                 
                 if len(toks) == 1:
                     registers[toks[0]] = 1
