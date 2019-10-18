@@ -13,4 +13,3 @@ if __name__ == '__main__':
     breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileW', [])
 
     dbg_engine.Go()
-
