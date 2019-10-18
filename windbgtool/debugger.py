@@ -53,7 +53,7 @@ class DbgEngine:
 
     def SetSymbolPath(self):
         output = ''
-        output = self.RunCmd(".MSDLSymPath %s" % self.MSDLSymPath)
+        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
         output += self.RunCmd(".reload")
 
         return output
