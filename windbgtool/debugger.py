@@ -33,7 +33,7 @@ class DbgEngine:
         self.WindbgLogParser = windbgtool.log.Parser()
 
     def LoadDump(self, dump_filename):
-        pykd.loadDump(dump_file)
+        pykd.loadDump(dump_filename)
 
     def Run(self, executable_path):
         pykd.startProcess(executable_path)
