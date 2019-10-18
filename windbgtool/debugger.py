@@ -50,13 +50,13 @@ class DbgEngine:
         pykd.startProcess(executable_path)
 
     def RunCmd(self, cmd):
-        self.Logger.debug('> RunCmd: %s', cmd)
+        self.Logger.debug('> RunCmd: [%s]', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
 
-        self.Logger.debug('> RunCmd Result: %s', ret)
+        self.Logger.debug('> RunCmd Result: [%s]', ret)
         return ret
 
     def GetMachine(self):
@@ -64,7 +64,7 @@ class DbgEngine:
         return ret.split(': ')[1].split(' ')
 
     def SetSymbolPath(self):
-        output = self.RunCmd(".sympath+ %s" % self.MSDLSymPath)
+        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
         output += self.RunCmd(".reload")
 
         return output
