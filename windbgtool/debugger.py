@@ -305,7 +305,7 @@ class DbgEngine:
         return bytes
 
     def GetEntryPoint(self):
-        return int(pykd.dbgCommand("r $exentry").split(' = ')[1], 0x10)
+        return int(pykd.dbgCommand("r $exentry").split('=')[1], 0x10)
 
     def GetThreadContext(self):
         return int(pykd.dbgCommand('.thread').split()[-1], 0x10)
