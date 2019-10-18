@@ -310,7 +310,7 @@ class Parser:
 				continue
 				
 			if self.DebugLevel>0:
-				print(' = '*80)
+				print('='*80)
 				self.PrintStatement(st)
 			(read_list, write_list) = self.DumpStatement(st)
 
