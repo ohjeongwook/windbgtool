@@ -16,12 +16,12 @@ import windbgtool.log
 import windbgtool.breakpoints
 
 class DbgEngine:
-    SymPath = 'srv*https://msdl.microsoft.com/download/symbols'
+    MSDLSymPath = 'srv*https://msdl.microsoft.com/download/symbols'
 
     def __init__(self):
         self.Logger = logging.getLogger(__name__)
         out_hdlr = logging.StreamHandler(sys.stdout)
-        out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
+        #out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
         out_hdlr.setLevel(logging.INFO)
         self.Logger.addHandler(out_hdlr)
         self.Logger.setLevel(logging.INFO)
@@ -39,13 +39,12 @@ class DbgEngine:
         pykd.startProcess(executable_path)
 
     def RunCmd(self, cmd):
-        self.Logger.info('* RunCmd: %s', cmd)
+        self.Logger.debug('> RunCmd: %s', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
-
-        self.Logger.info('\tResult: %s', ret)
+        self.Logger.debug('\tResult: %s', ret)
         return ret
 
     def GetMachine(self):
@@ -54,7 +53,7 @@ class DbgEngine:
 
     def SetSymbolPath(self):
         output = ''
-        output = self.RunCmd(".sympath %s" % self.SymPath)
+        output = self.RunCmd(".MSDLSymPath %s" % self.MSDLSymPath)
         output += self.RunCmd(".reload")
 
         return output
