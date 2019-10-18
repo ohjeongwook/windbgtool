@@ -21,7 +21,6 @@ class DbgEngine:
     def __init__(self):
         self.Logger = logging.getLogger(__name__)
         out_hdlr = logging.StreamHandler(sys.stdout)
-        #out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
         out_hdlr.setLevel(logging.INFO)
         self.Logger.addHandler(out_hdlr)
         self.Logger.setLevel(logging.INFO)
@@ -38,13 +37,20 @@ class DbgEngine:
     def Run(self, executable_path):
         pykd.startProcess(executable_path)
 
-    def RunCmd(self, cmd):
-        self.Logger.debug('> RunCmd: %s', cmd)
+    def RunCmd(self, cmd, print_info = False):
+        if print_info:
+            self.Logger.info('> RunCmd: %s', cmd)
+        else:
+            self.Logger.debug('> RunCmd: %s', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
-        self.Logger.debug('\tResult: %s', ret)
+
+        if print_info:
+            self.Logger.info('\tResult: %s', ret)
+        else:
+            self.Logger.debug('\tResult: %s', ret)
         return ret
 
     def GetMachine(self):
@@ -61,9 +67,9 @@ class DbgEngine:
     def LoadSymbols(self, modules = []):
         self.SymbolMap = self.EnumerateModuleSymbols(modules)
        
-        self.Logger.info('* SymbolMap:')
+        self.Logger.debug('* SymbolMap:')
         for (k, v) in self.SymbolMap.items():
-            self.Logger.info('\t%x: %s' % (k, v))
+            self.Logger.debug('\t%x: %s' % (k, v))
 
         self.SymbolToAddress = {}
         for (k, v) in self.SymbolMap.items():
@@ -96,8 +102,8 @@ class DbgEngine:
             return True
         return False
 
-    def GetAddressList(self, debug = 0):
-        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address"))
+    def GetAddressList(self, print_info = False):
+        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address"), print_info = print_info)
 
     def GetAddressDetails(self, type):
         results = []
