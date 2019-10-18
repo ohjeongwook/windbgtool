@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.insert(0,os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 
 import re
 import time
@@ -33,8 +33,14 @@ class DbgEngine:
         
     def SetLogLevel(self, debug = True):
         if debug:
+            out_hdlr = logging.StreamHandler(sys.stdout)
+            out_hdlr.setLevel(logging.DEBUG)
+            self.Logger.addHandler(out_hdlr)
             self.Logger.setLevel(logging.DEBUG)
         else:
+            out_hdlr = logging.StreamHandler(sys.stdout)
+            out_hdlr.setLevel(logging.INFO)
+            self.Logger.addHandler(out_hdlr)
             self.Logger.setLevel(logging.INFO)
        
     def LoadDump(self, dump_filename):
@@ -50,7 +56,7 @@ class DbgEngine:
         if ret == None:
             ret = ""
 
-        self.Logger.debug('\tResult: %s', ret)
+        self.Logger.debug('> RunCmd Result: %s', ret)
         return ret
 
     def GetMachine(self):
@@ -58,8 +64,7 @@ class DbgEngine:
         return ret.split(': ')[1].split(' ')
 
     def SetSymbolPath(self):
-        output = ''
-        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
+        output = self.RunCmd(".sympath+ %s" % self.MSDLSymPath)
         output += self.RunCmd(".reload")
 
         return output
