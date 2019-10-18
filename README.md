@@ -98,18 +98,34 @@ Version:        Status:     Image:
 
 ### PyKD
 
-Copy ext dlls to C:\Python27\Lib\site-packages\pykd
+* Source folder:
+64 bits:
+"%ProgramFiles%\Windows Kits\10\Debuggers\x64"
+"%ProgramFiles%\Debugging Tools for Windows (x64)"
 
-```
-copy "%ProgramFiles%\Debugging Tools for Windows (x64)\winext" %LOCALAPPDATA%\Programs\Python\Python37\Lib\site-packages\pykd
-```
+32 bits:
+"%ProgramFiles(x86)%\Windows Kits\10\Debuggers\x86"
+"%ProgramFiles%\Debugging Tools for Windows (x64)\Wow64"
 
-```
-copy "%ProgramFiles%\Debugging Tools for Windows (x64)\Wow64\exts" %LOCALAPPDATA%\Programs\Python\Python37-32\Lib\site-packages\pykd
-```
+* Target folders:
 
+64 bits:
+C:\python27-x64\Lib\site-packages\pykd
+%LOCALAPPDATA%\Programs\Python\Python37\Lib\site-packages\pykd
 
-```
-copy "%ProgramFiles%\Debugging Tools for Windows (x86)\winext" %LOCALAPPDATA%\Programs\Python\Python37-32\Lib\site-packages\pykd
-```
+32 bits:
+C:\Python27\Lib\site-packages\pykd
+%LOCALAPPDATA%\Programs\Python\Python37-32\Lib\site-packages\pykd
+
+* Files
+dbgeng.dll
+dbghelp.dll
+DbgModel.dll
+msdia140.dll 
+srcsrv.dll
+symsrv.dll
+winext\*.dll
+
+* Use [install_windbg_files.py](windbgtool\install_windbg_files.py) to copy dependencies.
+
 
