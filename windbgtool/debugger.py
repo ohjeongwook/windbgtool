@@ -30,37 +30,37 @@ class DbgEngine:
         self.SymbolToAddress = {}
 
         self.WindbgLogParser = windbgtool.log.Parser()
-
+        
+    def SetLogLevel(self, debug = True):
+        if debug:
+            self.Logger.setLevel(logging.DEBUG)
+        else:
+            self.Logger.setLevel(logging.INFO)
+       
     def LoadDump(self, dump_filename):
         pykd.loadDump(dump_filename)
 
     def Run(self, executable_path):
         pykd.startProcess(executable_path)
 
-    def RunCmd(self, cmd, print_info = False):
-        if print_info:
-            self.Logger.info('> RunCmd: %s', cmd)
-        else:
-            self.Logger.debug('> RunCmd: %s', cmd)
+    def RunCmd(self, cmd):
+        self.Logger.debug('> RunCmd: %s', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
 
-        if print_info:
-            self.Logger.info('\tResult: %s', ret)
-        else:
-            self.Logger.debug('\tResult: %s', ret)
+        self.Logger.debug('\tResult: %s', ret)
         return ret
 
     def GetMachine(self):
         ret = self.RunCmd(".effmach")
         return ret.split(': ')[1].split(' ')
 
-    def SetSymbolPath(self, print_info = False):
+    def SetSymbolPath(self):
         output = ''
-        output = self.RunCmd(".sympath %s" % self.MSDLSymPath, print_info = print_info)
-        output += self.RunCmd(".reload", print_info = print_info)
+        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
+        output += self.RunCmd(".reload")
 
         return output
 
@@ -102,8 +102,8 @@ class DbgEngine:
             return True
         return False
 
-    def GetAddressList(self, print_info = False):
-        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address", print_info = print_info))
+    def GetAddressList(self):
+        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address"))
 
     def GetAddressDetails(self, type):
         results = []
