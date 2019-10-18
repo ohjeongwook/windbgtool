@@ -18,15 +18,13 @@ python get-pip.py
 * Install dependencies:
 
 ```
+pip install pykd
+pip install capstone
 pip install pyvex
 pip install archinfo
-pip install capstone
-pip install pykd
-```
-
-##
 pip install cffi
-
+pip install git+https://github.com/ohjeongwook/idatool
+```
 
 ## PyKD + WinDbg Integration
 
