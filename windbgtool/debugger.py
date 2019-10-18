@@ -57,10 +57,10 @@ class DbgEngine:
         ret = self.RunCmd(".effmach")
         return ret.split(': ')[1].split(' ')
 
-    def SetSymbolPath(self):
+    def SetSymbolPath(self, print_info = False):
         output = ''
-        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
-        output += self.RunCmd(".reload")
+        output = self.RunCmd(".sympath %s" % self.MSDLSymPath, print_info = print_info)
+        output += self.RunCmd(".reload", print_info = print_info)
 
         return output
 
