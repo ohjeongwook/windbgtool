@@ -2,7 +2,7 @@ import windbgtool.debugger
 import windbgtool.breakpoints
 
 if __name__ == '__main__':
-    dbg_engine = debugger.DbgEngine()
+    dbg_engine = windbgtool.debugger.DbgEngine()
     dbg_engine.Run(executable_path = 'notepad.exe')
     dbg_engine.SetSymbolPath()
     dbg_engine.EnumerateModules()
