@@ -73,12 +73,12 @@ class Storage:
             self.PrototypeMap = {}
 
     def FindAPIParameters(self,function_name):
-        if self.PrototypeMap.has_key(function_name) and self.PrototypeMap[function_name].has_key('Parameters'):
+        if function_name in self.PrototypeMap and 'Parameters' in self.PrototypeMap[function_name]:
             return self.PrototypeMap[function_name]['Parameters']
         return []
 
     def FindAPIReturnParameters(self,function_name):
-        if self.PrototypeMap.has_key(function_name) and self.PrototypeMap[function_name].has_key('ReturnParameters'):
+        if function_name in self.PrototypeMap and 'ReturnParameters' in self.PrototypeMap[function_name]:
             return self.PrototypeMap[function_name]['ReturnParameters']
         return {}
 
@@ -110,7 +110,7 @@ class Storage:
     def GetDumpTargets(self,operands):
         dump_targets = []
         for operand in operands:
-            if operand.has_key('Use') and operand['Use']:
+            if 'Use' in operand and 'Use' in operand:
                 dump_targets.append({'Type': 'Operand', 'DataType':'DWORD', 'Value': operand})
         return dump_targets
 
@@ -128,29 +128,29 @@ class Storage:
 
                 if address == None:
                     if symbol:
-                        if not self.SymbolBreakpoints.has_key(module):
+                        if not module in self.SymbolBreakpoints:
                             self.SymbolBreakpoints[module] = {}
                         self.SymbolBreakpoints[module][symbol] = dump_targets
 
                     else:
-                        if not self.ModuleBreakpoints.has_key(module):
+                        if not module in self.ModuleBreakpoints:
                             self.ModuleBreakpoints[module] = {}
                         self.ModuleBreakpoints[module][rva] = dump_targets
                 else:
-                    if not self.AddressBreakpoints.has_key(module):
+                    if not module in self.AddressBreakpoints:
                         self.AddressBreakpoints[module] = {}
                     self.AddressBreakpoints[module][address] = dump_targets
 
         elif self.JSONData:
             for item in json.loads(self.JSONData):
-                if not item.has_key('RVA'):
+                if not 'RVA' in item:
                     continue
 
                 address = item['RVA']
                 type = item['Type']
                 module = 'image'
 
-                if item.has_key("Module"):
+                if "Module" in item:
                     module = item["Module"]
                     if module.find('.')>0:
                         module = module.split('.')[0]
@@ -163,7 +163,7 @@ class Storage:
                     name = item['Name']
                     dump_targets = item['DumpTargets']
 
-                if not self.ModuleBreakpoints.has_key(module):
+                if not module in self.ModuleBreakpoints:
                     self.ModuleBreakpoints[module] = {}
                 self.ModuleBreakpoints[module][address] = dump_targets
 
@@ -210,7 +210,7 @@ class Record:
         self.Cursor.execute(create_table_sql)
 
     def WriteRecord(self,record):
-        if record.has_key('DumpTargets'):
+        if 'DumpTargets' in record:
             dump_targets_text = json.dumps(record['DumpTargets'])
         else:
             dump_targets_text = ''
@@ -232,7 +232,7 @@ class Record:
     def LoadRecords(self,dump_targets_map = {}):
         threads = {}
         for (record_type, address, module, symbol, thread_context, stack_pointer, dump_targets_text) in self.Cursor.execute('SELECT Type, Address, Module, Symbol, ThreadContext, StackPointer, DumpTargets FROM Records'):
-            if not threads.has_key(thread_context):
+            if not thread_context in threads:
                 threads[thread_context] = []
                 
             if dump_targets_text:
@@ -324,23 +324,23 @@ class Record:
                 name = ''
                 target_str = ''
 
-                if dump_targets_map.has_key(address):
+                if address in dump_targets_map:
                     for dump_target in dump_targets_map[address]:                    
-                        if dump_target.has_key('Name'):
+                        if 'Name' in dump_target:
                             name = dump_target['Name']
                             break
 
                 target_str = ''
                 parameter_lines = []
                 for dump_target in dump_targets:
-                    if dump_target['Target'].has_key('Type'):
+                    if 'Type' in dump_target['Target']:
                         type = dump_target['Target']['Type']
-                    elif dump_target['Target'].has_key('DumpInstruction'):                   
+                    elif 'DumpInstruction' in dump_target['Target']:
                         for line in util.common.DumpHex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
                             parameter_lines.append(line)
                         continue
 
-                    if dump_target['Target'].has_key('Name'):
+                    if 'Name' in dump_target['Target']:
                         name = dump_target['Target']['Name']
 
                     value = dump_target['Value']
@@ -353,11 +353,11 @@ class Record:
                             parametr_name = parameter['Parameter']['Name']
                             parametr_value = parameter['Value']
                             parameter_lines.append('%s: %.8x' % (parametr_name, parametr_value))
-                            if parameter.has_key('WString'):
+                            if 'WString' in parameter:
                                 parameter_lines.append('\t'+parameter['WString'].decode('utf-16'))
-                            elif parameter.has_key('String'):
+                            elif 'String' in parameter:
                                 parameter_lines.append('\t'+parameter['String'])
-                            elif parameter.has_key('Bytes'):
+                            elif 'Bytes' in parameter:
                                 for line in util.common.DumpHex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
                                     parameter_lines.append(line)
 
@@ -387,13 +387,13 @@ class Record:
     def BuildHitMap(self):
         self.HitMap = {}
         for entry in self.LogEntries:
-            if not entry.has_key('Module'):
+            if not 'Module' in entry:
                 continue
 
             #key = '%s!%x' % (entry['Module'],entry['RVA'])
             key = entry['RVA']
             
-            if not self.HitMap.has_key(key):
+            if not key in self.HitMap:
                 self.HitMap[key] = 0
             self.HitMap[key]+=1
         
@@ -410,7 +410,7 @@ class Record:
         breakpoints = json.loads(data)
         for breakpoint in breakpoints:
             rva = breakpoint['RVA']
-            if self.HitMap.has_key(rva) and self.HitMap[rva]>threshold:
+            if rva in self.HitMap and self.HitMap[rva]>threshold:
                 print('Removing %x (%d hits)' % (rva,self.HitMap[rva]))
             else:
                 new_breakpoints.append(breakpoint)

@@ -22,9 +22,9 @@ class Generator:
     def GetOperandStr(self, operand):
         operand_type = operand['Type']
         operand_str = ''
-        if operand.has_key('Value'):
+        if 'Value' in operand:
             operand_str = str(operand['Value'])
-        elif operand.has_key('Address'):
+        elif 'Address' in operand:
             operand_str = '%.8x' % (operand['Address'])
         elif operand_type == 'Displacement':        
             if operand['Index']:
@@ -56,7 +56,7 @@ class Generator:
             operand_str_list.append(operand_str)
 
             operand_type = operand['Type']
-            if not self.Exclusions.has_key(operand_str):
+            if not operand_str in self.Exclusions:
                 if operand_type == 'Register':
                     disasm_cmd += 'u @%s L5; ' % (operand_str)
                 elif operand_type == 'Memory' or operand_type == 'Displacement':
