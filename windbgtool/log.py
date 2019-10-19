@@ -281,7 +281,7 @@ class Parser:
             
             if parsed_results != None:
                 for parsed_result in parsed_results:
-                    if not parsed_result.has_key('Address'):
+                    if not 'Address' in parsed_result:
                         continue
                     addr = parsed_result['Address']
                     op = parsed_result['Op']
@@ -379,7 +379,7 @@ class Parser:
             m = re.match('^([0-9a-fA-F]{8})  ([0-9a-fA-F]{8})', line)
             if m:
                 (address, value) = (int(m.group(1), 16), int(m.group(2), 16))
-                if not bp_point.has_key('Memory'):
+                if not 'Memory' in bp_point:
                     bp_point['Memory'] = []
                 bp_point['Memory'].append((address, value))
                 continue
@@ -387,7 +387,7 @@ class Parser:
             parsed_disasm_line = self.ParseDisasmLine(line)
             
             if parsed_disasm_line != None:
-                if not bp_point.has_key('DisasmLines'):
+                if not 'DisasmLines' in bp_point:
                     bp_point['DisasmLines'] = []
                 bp_point['DisasmLines'].append(parsed_disasm_line)
                 continue
@@ -410,7 +410,7 @@ class Parser:
                 
     def DumpRunLogOutput(self):
         for log_output in self.RunLogOutputLines:
-            if not log_output.has_key('Address'):
+            if not 'Address' in log_output:
                 continue
 
             address = log_output['Address']
@@ -418,9 +418,9 @@ class Parser:
             lines = []
             
             function = ''
-            if log_output.has_key('Target Module'):
+            if 'Target Module' in log_output:
                 function += log_output['Target Module']
-            if log_output.has_key('Target Function'):
+            if 'Target Function' in log_output:
                 function += '!' + log_output['Target Function']
             lines.append(function)
                 

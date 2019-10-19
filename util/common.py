@@ -68,7 +68,7 @@ def GetOSInfo():
     build_number_str = "%d.%d.%d" % (wv.major, wv.minor, wv.build)
     os_str = ''
     sp_str = ''
-    if OSMap.has_key(wv.major) and OSMap[wv.major].has_key(wv.minor) and OSMap[wv.major][wv.minor].has_key(wv.build):
+    if wv.major in OSMap and wv.minor in OSMap[wv.major] and wv.build in OSMap[wv.major][wv.minor]:
         (os_str, sp_str) = OSMap[wv.major][wv.minor][wv.build]
     return {'Arch': arch, 'OS': os_str, 'SP': sp_str, 'Build': build_number_str}
 

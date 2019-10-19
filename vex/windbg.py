@@ -315,7 +315,7 @@ class Parser:
 			(read_list, write_list) = self.DumpStatement(st)
 
 			for dump_info in read_list:
-				if read_list_map.has_key(dump_info['Value']):
+				if dump_info['Value'] in read_list_map:
 					continue
 				read_list_map[dump_info['Value']] = dump_info
 
@@ -323,7 +323,7 @@ class Parser:
 					print('\t\t\t>> Read:', dump_info['Type'], dump_info['Value'])
 
 			for dump_info in write_list:
-				if write_list_map.has_key(dump_info['Value']):
+				if dump_info['Value'] in write_list_map:
 					continue
 				write_list_map[dump_info['Value']] = dump_info
 				
@@ -359,7 +359,7 @@ class Parser:
 				commands.append('r %s' % dump_info['Value'])
 			elif dump_info['Type'] == 'Memory':
 				cmd = 'db'
-				if dump_info.has_key('ValueType'):
+				if 'ValueType' in dump_info:
 					if dump_info['ValueType'] == 'Ity_I64':
 						cmd = 'dq'
 					elif dump_info['ValueType'] == 'Ity_I32':
@@ -481,7 +481,7 @@ class Parser:
 		else:
 			reg = data
 
-		if not self.TmpRegisters.has_key(reg):
+		if not reg in self.TmpRegisters:
 			return []
 
 		if self.DebugLevel>0:
