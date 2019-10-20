@@ -134,7 +134,7 @@ class DbgEngine:
             if len(toks) >= 4:
                 (start, end, module, full_path) = (util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
             
-                self.Logger.info('Adding %x - %x (%s - %s)', start, end, module, full_path)
+                self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
                 self.Modules[module] = (start, end, full_path)
             else:
                 self.Logger.info('Broken lm line: %s', ''.join(toks))
@@ -150,7 +150,7 @@ class DbgEngine:
             toks = line.split()[0:4]
             (start, end, module, full_path) = (util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
         
-            self.Logger.info('Adding %x - %x (%s - %s)', start, end, module, full_path)
+            self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
             self.Modules[module] = (start, end, full_path)
 
     def GetAddresses(self, name):
