@@ -12,3 +12,6 @@ windbgtool/pykd_ext_2.0.0.22.zip
 windbgtool/pykd_ext_2.0.0.22/x64/pykd.dll
 windbgtool/pykd_ext_2.0.0.22/x86/pykd.dll
 *.pyc
+installation/pykd_ext_2.0.0.22.zip
+installation/pykd_ext_2.0.0.22/x64/pykd.dll
+installation/pykd_ext_2.0.0.22/x86/pykd.dll
