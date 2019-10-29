@@ -107,6 +107,9 @@ class DbgEngine:
             return True
         return False
 
+    def GetAddressInfo(self, address):
+        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address %x" % address))
+
     def GetAddressList(self):
         return self.WindbgLogParser.ParseAddress(self.RunCmd("!address"))
 
