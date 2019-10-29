@@ -275,6 +275,21 @@ class Parser:
 
         return address_list
 
+    def ParseAddressDetails(self, data, debug = 0):
+        lines = data.splitlines()
+        address_details = {}
+        for line in lines:
+            pattern = re.compile("([A-Za-z ]+):[ \t]+([^ \t]+)(.*)")
+
+            m = pattern.match(line)
+            if m:
+                groups = m.groups()
+                value = groups[1].replace('`','')
+                address_details[groups[0]] = value
+            else:
+                pass
+        return address_details
+
     def Dump(self, level = 0):
         for (seq, cmd_line, parsed_results, result_lines) in self.CmdResults:
             print('* %.4d: %s' % (seq , cmd_line))
@@ -379,7 +394,7 @@ class Parser:
             m = re.match('^([0-9a-fA-F]{8})  ([0-9a-fA-F]{8})', line)
             if m:
                 (address, value) = (int(m.group(1), 16), int(m.group(2), 16))
-                if not 'Memory' in bp_point:
+                if not bp_point.has_key('Memory'):
                     bp_point['Memory'] = []
                 bp_point['Memory'].append((address, value))
                 continue
@@ -387,7 +402,7 @@ class Parser:
             parsed_disasm_line = self.ParseDisasmLine(line)
             
             if parsed_disasm_line != None:
-                if not 'DisasmLines' in bp_point:
+                if not bp_point.has_key('DisasmLines'):
                     bp_point['DisasmLines'] = []
                 bp_point['DisasmLines'].append(parsed_disasm_line)
                 continue
@@ -410,7 +425,7 @@ class Parser:
                 
     def DumpRunLogOutput(self):
         for log_output in self.RunLogOutputLines:
-            if not 'Address' in log_output:
+            if not log_output.has_key('Address'):
                 continue
 
             address = log_output['Address']
@@ -418,9 +433,9 @@ class Parser:
             lines = []
             
             function = ''
-            if 'Target Module' in log_output:
+            if log_output.has_key('Target Module'):
                 function += log_output['Target Module']
-            if 'Target Function' in log_output:
+            if log_output.has_key('Target Function'):
                 function += '!' + log_output['Target Function']
             lines.append(function)
                 
