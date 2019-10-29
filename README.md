@@ -136,3 +136,9 @@ Run pip to install windbgtool from this repository:
 ```
 pip install git+https://github.com/ohjeongwook/windbgtool
 ```
+
+For upgrading existing modules.
+
+```
+pip install git+https://github.com/ohjeongwook/windbgtool --upgrade
+```
