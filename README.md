@@ -129,3 +129,10 @@ winext\*.dll
 * Use [install_windbg_files.py](windbgtool\install_windbg_files.py) to copy dependencies.
 
 
+## Installing windbgtool
+
+Run pip to install windbgtool from this repository:
+
+```
+pip install git+https://github.com/ohjeongwook/windbgtool
+```
