@@ -101,6 +101,7 @@ Version:        Status:     Image:
 * Source folder:
 64 bits:
 "%ProgramFiles(x86)%\Windows Kits\10\Debuggers\x64"
+"%ProgramFiles%\Windows Kits\10\Debuggers\x64"
 "%ProgramFiles%\Debugging Tools for Windows (x64)"
 
 32 bits:

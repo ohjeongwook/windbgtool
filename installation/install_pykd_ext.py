@@ -22,6 +22,7 @@ windbg_folders32 = []
 pykd_folder = r'\Lib\site-packages\pykd'
 if bits == '64bit':
     windbg_folders64.append(os.environ["ProgramW6432"] + r'\Windows Kits\10\Debuggers\x64')
+    windbg_folders64.append(os.environ["ProgramFiles(x86)"] + r'\Windows Kits\10\Debuggers\x64')
     windbg_folders64.append(os.environ["ProgramW6432"] + r'\Debugging Tools for Windows (x64)')
 
     windbg_folders32.append(os.environ["ProgramFiles(x86)"] + r'\Windows Kits\10\Debuggers\x86')
