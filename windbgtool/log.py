@@ -285,7 +285,11 @@ class Parser:
             if m:
                 groups = m.groups()
                 value = groups[1].replace('`','')
-                address_details[groups[0]] = value
+
+                name = groups[0]
+                if name == 'Module name':
+                    name = 'Module Name'
+                address_details[name] = value
             else:
                 pass
         return address_details
