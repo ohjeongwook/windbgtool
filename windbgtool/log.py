@@ -276,6 +276,10 @@ class Parser:
         return address_list
 
     def ParseAddressDetails(self, data, debug = 0):
+        name_convert_map = {
+            'Module name': 'Module Name'
+        }
+
         lines = data.splitlines()
         address_details = {}
         for line in lines:
@@ -287,8 +291,8 @@ class Parser:
                 value = groups[1].replace('`','')
 
                 name = groups[0]
-                if name == 'Module name':
-                    name = 'Module Name'
+                if name in name_convert_map:
+                    name = name_convert_map[name]
                 address_details[name] = value
             else:
                 pass
