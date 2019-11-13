@@ -30,6 +30,9 @@ class DbgEngine:
         self.SymbolToAddress = {}
 
         self.WindbgLogParser = windbgtool.log.Parser()
+
+    def __del__(self):
+        self.CloseDump()
         
     def SetLogLevel(self, debug = True):
         if debug:
@@ -45,6 +48,9 @@ class DbgEngine:
        
     def LoadDump(self, dump_filename):
         pykd.loadDump(dump_filename)
+
+    def CloseDump(self):
+        pykd.closeDump()
 
     def Run(self, executable_path):
         pykd.startProcess(executable_path)
