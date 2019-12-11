@@ -24,9 +24,9 @@ if options.log == '':
 logging.basicConfig(level = logging.DEBUG)
 root = logging.getLogger()
 
-windbgtoolRun = windbgtool.Run()
-# windbgtoolRun.SetSymbolPath()
+windbgtoolRun = windbgtool.run()
+# windbgtoolRun.set_symbol_path()
 
 if options.breakpoint_db:
-    windbgtoolRun.LoadBreakPoints(options.breakpoint_db, options.log)
-    windbgtoolRun.Continue()
+    windbgtoolRun.load_breakpoints(options.breakpoint_db, options.log)
+    windbgtoolRun.go()

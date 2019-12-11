@@ -12,11 +12,11 @@ if __name__ == '__main__':
 
     dbg_engine = windbgtool.debugger.DbgEngine()
 
-    #dbg_engine.SetLogLevel(debug = True)
-    dbg_engine.LoadDump(dump_filename)
-    dbg_engine.SetSymbolPath()
-    dbg_engine.EnumerateModules()
-    dbg_engine.LoadSymbols(['kernel32', 'ntdll'])
+    #dbg_engine.set_log_level(debug = True)
+    dbg_engine.load_dump(dump_filename)
+    dbg_engine.set_symbol_path()
+    dbg_engine.enumerate_modules()
+    dbg_engine.load_symbols(['kernel32', 'ntdll'])
 
-    for address in dbg_engine.GetAddressList():
+    for address in dbg_engine.get_address_list():
         print(address['Comment'] + ': ' + hex(address['BaseAddr']))

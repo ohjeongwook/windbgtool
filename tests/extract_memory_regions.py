@@ -12,13 +12,13 @@ if __name__ == '__main__':
 
     debugger = windbgtool.debugger.DbgEngine()
 
-    #debugger.SetLogLevel(debug = True)
-    debugger.LoadDump(dump_filename)
-    debugger.SetSymbolPath()
-    debugger.EnumerateModules()
-    # debugger.LoadSymbols(['kernel32', 'ntdll'])
+    #debugger.set_log_level(debug = True)
+    debugger.load_dump(dump_filename)
+    debugger.set_symbol_path()
+    debugger.enumerate_modules()
+    # debugger.load_symbols(['kernel32', 'ntdll'])
     
-    for address in debugger.GetAddressList():
+    for address in debugger.get_address_list():
         if address['State'] in ('MEM_FREE', 'MEM_RESERVE') or address['Usage'] == 'Free':
             continue
 
@@ -40,7 +40,7 @@ if __name__ == '__main__':
         if debugger:
             dmp_filename = '%x.dmp' % (address['BaseAddr'])
             try:
-                debugger.RunCmd(".writemem %s %x L?%x" % (dmp_filename, address['BaseAddr'], address['RgnSize']))
+                debugger.run_command(".writemem %s %x L?%x" % (dmp_filename, address['BaseAddr'], address['RgnSize']))
             except:
                 printf("* Writemem failed")
                 traceback.print_exc(file = sys.stdout)

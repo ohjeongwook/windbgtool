@@ -15,7 +15,7 @@ class Disassembler:
         self.capstone = Cs(arch_value, mode_value)
         self.capstone.detail = True
 
-    def Disasm(self, bytes, address):
+    def disassemble(self, bytes, address):
         instructions = []
         for insn in self.capstone.disasm(bytes, address):
             if self.DebugLevel>0:
@@ -50,7 +50,7 @@ class Disassembler:
             instructions.append({'Opcode': insn.mnemonic, 'Operands': operands})
         return instructions
 
-    def GetJumpAddress(self, bytes, address):
+    def get_jump_address(self, bytes, address):
         crefs = []
         for insn in self.capstone.disasm(bytes, address):
             #print("0x%x:\t%s\t%s" %(insn.address, insn.mnemonic, insn.op_str))
@@ -76,13 +76,13 @@ if __name__ == '__main__':
     (options, args) = parser.parse_args(sys.argv)
 
     disasm = Analyzer()
-    bytes = Util.Common.HexStrToBytes(options.bytes)
+    bytes = Util.Common.hex_string_to_bytes(options.bytes)
     address = int(options.address, 16)
     
-    for instruction in disasm.Disasm(bytes, address):
+    for instruction in disasm.disassemble(bytes, address):
         print(instruction['Opcode'])
         for operand in instruction['Operands']:
             print(operand['Value'])
 
-    for cref in disasm.GetJumpAddress(bytes, address):
+    for cref in disasm.get_jump_address(bytes, address):
         print('cref: %.8x' % cref)

@@ -23,4 +23,4 @@ for instruction_info in ida_util.DumpInstructions():
 
 	print('>> Disasm: %.8x %s' % (addr, instruction_info['Disasm']))
 	parser = PyVexAnalyzer.Parser(bytes, addr, 'x64')
-	parser.Print(False)
+	parser.print(False)

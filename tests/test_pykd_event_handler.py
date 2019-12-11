@@ -31,29 +31,29 @@ class PyKdDebugger(pykd.eventHandler):
 
         if breakpoint_db:
             breakpoints_db = breakpoints.DB(breakpoint_db)
-            breakpoints_db.Load()
-            self.SetBP(breakpoints_db.Breakpoints)
+            breakpoints_db.load()
+            self.set_bp(breakpoints_db.Breakpoints)
 
-    def SetBP(self, breakpoints):
+    def set_bp(self, breakpoints):
         for breakpoint in breakpoints:
             if breakpoint['Type'] == 'Function':
-                bp = pykd.setBp(breakpoint['Address'], self.HandleBreakpoint)
+                bp = pykd.setBp(breakpoint['Address'], self.handle_breakpoint)
                 self.logger.debug('Seting breakpoint on %.8x - %d %s' % (breakpoint['Address'], bp.getId(), breakpoint['Name']))
 
-    def onBreakpoint(self, bp_id):
-        self.logger.debug('onBreakpoint: %d' % bp_id)
+    def on_breakpoint_hit(self, bp_id):
+        self.logger.debug('on_breakpoint_hit: %d' % bp_id)
         return eventResult.Break
 
-    def onException(self, exceptInfo):
+    def on_exception(self, exceptInfo):
         return eventResult.Break
 
-    def HandleBreakpoint(self, id):
-        self.logger.debug('* HandleBreakpoint: %d' % id)
+    def handle_breakpoint(self, id):
+        self.logger.debug('* handle_breakpoint: %d' % id)
 
-    def Go(self):
+    def go(self):
         pykd.go()
 
 if __name__ == '__main__':
     pykd_debugger = PyKdDebugger(executable_path = 'notepad.exe')
-    pykd_debugger.Go()
+    pykd_debugger.go()
 

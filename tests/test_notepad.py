@@ -3,13 +3,13 @@ import windbgtool.breakpoints
 
 if __name__ == '__main__':
     dbg_engine = windbgtool.debugger.DbgEngine()
-    dbg_engine.Run(executable_path = 'notepad.exe')
-    dbg_engine.SetSymbolPath()
-    dbg_engine.EnumerateModules()
-    dbg_engine.LoadSymbols(['kernel32'])
+    dbg_engine.run(executable_path = 'notepad.exe')
+    dbg_engine.set_symbol_path()
+    dbg_engine.enumerate_modules()
+    dbg_engine.load_symbols(['kernel32'])
 
     breakpointsOperations = windbgtool.breakpoints.Operations(dbg_engine)
-    breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileA', [])
-    breakpointsOperations.AddSymbolBP('kernel32', 'CreateFileW', [])
+    breakpointsOperations.add_symbol_bp('kernel32', 'CreateFileA', [])
+    breakpointsOperations.add_symbol_bp('kernel32', 'CreateFileW', [])
 
-    dbg_engine.Go()
+    dbg_engine.go()

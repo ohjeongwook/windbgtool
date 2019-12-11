@@ -14,7 +14,7 @@ class Storage:
         self.ModuleName = module_name
         
         if prototype_filename:
-            self.LoadPrototype(prototype_filename)
+            self.load_prototype(prototype_filename)
 
         if filename.lower().endswith('.db'):
             try:
@@ -22,7 +22,7 @@ class Storage:
             except:
                 pass
             self.Cursor = self.Conn.cursor()
-            self.CreateTables()
+            self.create_tables()
             
             self.JSONData = ''
         else:
@@ -31,7 +31,7 @@ class Storage:
             self.JSONData = fd.read()
             fd.close()
 
-    def CreateTables(self):
+    def create_tables(self):
         create_table_sql = """CREATE TABLE
                             IF NOT EXISTS Breakpoints (
                                 id integer PRIMARY KEY,
@@ -45,11 +45,11 @@ class Storage:
                             );"""
         self.Cursor.execute(create_table_sql)
 
-    def Save(self,breakpoints):
+    def save(self,breakpoints):
         for entry in breakpoints:
             if entry['Type'] == 'Instruction':
                 try:
-                    operands = self.GetDumpTargets(entry['Operands'])
+                    operands = self.get_dump_targets(entry['Operands'])
                     self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Address, RVA, DumpTargets, Type) VALUES (?,?,?,?,?)',
                         (self.ModuleName, entry['Address'], entry['RVA'], json.dumps(operands), entry['Type']))
                 except:
@@ -63,7 +63,7 @@ class Storage:
 
         self.Conn.commit()
 
-    def LoadPrototype(self,filename):
+    def load_prototype(self,filename):
         print('Loading prototype file:', filename)
         if os.path.isfile(filename):
             fd = open(filename,'r')
@@ -72,19 +72,19 @@ class Storage:
         else:
             self.PrototypeMap = {}
 
-    def FindAPIParameters(self,function_name):
+    def find_api_parameters(self,function_name):
         if function_name in self.PrototypeMap and 'Parameters' in self.PrototypeMap[function_name]:
             return self.PrototypeMap[function_name]['Parameters']
         return []
 
-    def FindAPIReturnParameters(self,function_name):
+    def find_api_return_parameters(self,function_name):
         if function_name in self.PrototypeMap and 'ReturnParameters' in self.PrototypeMap[function_name]:
             return self.PrototypeMap[function_name]['ReturnParameters']
         return {}
 
-    def AddAPI(self,module_name,function_name):
-        parameters = self.FindAPIParameters(function_name)
-        return_parameters = self.FindAPIReturnParameters(function_name)
+    def add_api(self,module_name,function_name):
+        parameters = self.find_api_parameters(function_name)
+        return_parameters = self.find_api_return_parameters(function_name)
         pp = pprint.PrettyPrinter(indent = 4)
         try:
             if len(parameters)>0:
@@ -107,14 +107,14 @@ class Storage:
 
         self.Conn.commit()
 
-    def GetDumpTargets(self,operands):
+    def get_dump_targets(self,operands):
         dump_targets = []
         for operand in operands:
             if 'Use' in operand and 'Use' in operand:
                 dump_targets.append({'Type': 'Operand', 'DataType':'DWORD', 'Value': operand})
         return dump_targets
 
-    def Load(self):
+    def load(self):
         self.AddressBreakpoints = {}
         self.ModuleBreakpoints = {}
         self.SymbolBreakpoints = {}
@@ -157,7 +157,7 @@ class Storage:
 
                 if type == 'Instruction':
                     name = item['Disasm']
-                    dump_targets = self.GetDumpTargets(item['Operands'])
+                    dump_targets = self.get_dump_targets(item['Operands'])
 
                 else:
                     name = item['Name']
@@ -167,7 +167,7 @@ class Storage:
                     self.ModuleBreakpoints[module] = {}
                 self.ModuleBreakpoints[module][address] = dump_targets
 
-    def LoadDumpTargets(self):
+    def load_dump_targets(self):
         breakpoints_map = {}
         for (address, dump_targets, type) in self.Cursor.execute('SELECT Address, DumpTargets, Type FROM Breakpoints'):
             if dump_targets!=None:
@@ -185,7 +185,7 @@ class Record:
             except:
                 pass
             self.Cursor = self.Conn.cursor()           
-            self.CreateTables()
+            self.create_tables()
             self.JSONData = ''
         else:
             self.Cursor = None
@@ -193,7 +193,7 @@ class Record:
             self.JSONData = fd.read()
             fd.close()
 
-    def CreateTables(self):
+    def create_tables(self):
         create_table_sql = """CREATE TABLE
                             IF NOT EXISTS Records (
                                 id integer PRIMARY KEY,
@@ -209,7 +209,7 @@ class Record:
 
         self.Cursor.execute(create_table_sql)
 
-    def WriteRecord(self,record):
+    def write_record(self,record):
         if 'DumpTargets' in record:
             dump_targets_text = json.dumps(record['DumpTargets'])
         else:
@@ -229,7 +229,7 @@ class Record:
             )
         self.Conn.commit()
 
-    def LoadRecords(self,dump_targets_map = {}):
+    def load_records(self,dump_targets_map = {}):
         threads = {}
         for (record_type, address, module, symbol, thread_context, stack_pointer, dump_targets_text) in self.Cursor.execute('SELECT Type, Address, Module, Symbol, ThreadContext, StackPointer, DumpTargets FROM Records'):
             if not thread_context in threads:
@@ -259,33 +259,33 @@ class Record:
             for (record_type, address, module, symbol, stack_pointer, dump_targets) in records:
                 offsets.append(stack_pointer_offsets[stack_pointer])
             
-            def FindMinOffset(offsets):
+            def find_min_offset(offsets):
                 min_offset = 0xffffffff
                 for offset in offsets:
                     if offset<min_offset:
                         min_offset = offset                     
                 return min_offset
 
-            def FindLEOffsetIndexForward(offsets,start,offset):
+            def find_le_offset_index_forward(offsets,start,offset):
                 for index in range(start,len(offsets),1):
                     if offsets[index]<=offset:
                         return index
                 return len(offsets)
 
-            def FindLEOffsetIndexBackward(offsets,end,offset):
+            def find_le_offset_index_backward(offsets,end,offset):
                 for index in range(end,-1,-1):
                     if offsets[index]<=offset:
                         return index
                 return -1
 
-            def FindGEOffsetIndex(offsets,start,offset):
+            def find_ge_offset_index(offsets,start,offset):
                 for index in range(start,len(offsets),1):
                     if offsets[index]>=offset:
                         return index
                 return -1
 
-            def OptimizeTree(offsets = [],start_index = 0,end_index = 0):
-                min_offset = FindMinOffset(offsets[start_index+1:end_index])              
+            def optimize_tree(offsets = [],start_index = 0,end_index = 0):
+                min_offset = find_min_offset(offsets[start_index+1:end_index])              
                 
                 if min_offset!=0xffffffff:
                     offset_decrease = min_offset-offset-1                        
@@ -295,16 +295,16 @@ class Record:
             
             start_index = 0
             for offset in offsets:
-                end_index = FindLEOffsetIndexForward(offsets,start_index+1,offset)
+                end_index = find_le_offset_index_forward(offsets,start_index+1,offset)
                 if end_index>=0:
-                    OptimizeTree(offsets, start_index, end_index)
+                    optimize_tree(offsets, start_index, end_index)
                 start_index+=1
                 
             end_index = 1
             for offset in offsets[1:]:
-                start_index = FindLEOffsetIndexBackward(offsets,end_index-1,offset)
+                start_index = find_le_offset_index_backward(offsets,end_index-1,offset)
                 if start_index>=0:
-                    OptimizeTree(offsets, start_index, end_index)
+                    optimize_tree(offsets, start_index, end_index)
                 end_index+=1
             
             index = 0
@@ -336,7 +336,7 @@ class Record:
                     if 'Type' in dump_target['Target']:
                         type = dump_target['Target']['Type']
                     elif 'DumpInstruction' in dump_target['Target']:
-                        for line in util.common.DumpHex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
+                        for line in util.common.dump_hex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
                             parameter_lines.append(line)
                         continue
 
@@ -358,14 +358,14 @@ class Record:
                             elif 'String' in parameter:
                                 parameter_lines.append('\t'+parameter['String'])
                             elif 'Bytes' in parameter:
-                                for line in util.common.DumpHex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
+                                for line in util.common.dump_hex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
                                     parameter_lines.append(line)
 
                     elif type == 'Function':
                         for arg in value:
                             parameter_lines.append('\t%s: %.8x' % (arg['Name'], arg['Value']))
                             if arg['Bytes']:
-                                for line in util.common.DumpHex(base64.b64decode(arg['Bytes']),prefix = '\t\t').splitlines():
+                                for line in util.common.dump_hex(base64.b64decode(arg['Bytes']),prefix = '\t\t').splitlines():
                                     parameter_lines.append(line)
                     
                 if symbol:
@@ -381,10 +381,10 @@ class Record:
                 index+=1
             fd.close()
 
-    def GetLogEntries(self):
+    def get_log_entries(self):
         return self.LogEntries
 
-    def BuildHitMap(self):
+    def build_hit_map(self):
         self.HitMap = {}
         for entry in self.LogEntries:
             if not 'Module' in entry:
@@ -397,11 +397,11 @@ class Record:
                 self.HitMap[key] = 0
             self.HitMap[key]+=1
         
-    def PrintHitMap(self):
+    def print_hit_map(self):
         for (rva,count) in sorted(self.HitMap.items(),key = operator.itemgetter(1)):
             print("%x %d" % (rva,count))
         
-    def RemoveHits(self,breakpoint_filename,output_breakpoint_filename,threshold):
+    def remove_hits(self,breakpoint_filename,output_breakpoint_filename,threshold):
         fd = open(breakpoint_filename,'r')
         data = fd.read()
         fd.close()
@@ -451,7 +451,7 @@ if __name__ == '__main__':
         db = Storage(options.breakpoint_db,
               prototype_filename = options.prototype_filename
             )
-        #db.Load()
+        #db.load()
 
     else:
         db = None
@@ -460,13 +460,13 @@ if __name__ == '__main__':
         fd = open(options.api_filename)
         for line in fd.read().splitlines():
             (module_name, function_name) = line.split('!')
-            db.AddAPI(module_name, function_name)
+            db.add_api(module_name, function_name)
         fd.close()
     
     if options.record_db:
         if db!=None:
-            dump_targets_map = db.LoadDumpTargets()
+            dump_targets_map = db.load_dump_targets()
         else:
             dump_targets_map = {}
         record = Record(options.record_db)
-        record.LoadRecords(dump_targets_map)
+        record.load_records(dump_targets_map)

@@ -13,13 +13,13 @@ class Parser:
 		self.Address = address
 		self.irsb = pyvex.IRSB(bytes, address, arch)
 		
-	def SetDebugLevel(self, level = 0):
+	def set_debug_level(self, level = 0):
 		self.DebugLevel = level
 
-	def GetStatements(self):
+	def get_statements(self):
 		return self.irsb.statements
 		
-	def Trace(self, vars, traces, prefix = '', verbose = 0):
+	def trace(self, vars, traces, prefix = '', verbose = 0):
 		if verbose>1:
 			print(prefix+'Trace:', vars)
 		i = len(self.irsb.statements)-1
@@ -27,7 +27,7 @@ class Parser:
 		while i >= 0:
 			st = self.irsb.statements[i]
 			if not isinstance(st, pyvex.IRStmt.NoOp):
-				vars = self.Match(st, vars, traces, prefix = prefix, verbose = verbose)
+				vars = self.match(st, vars, traces, prefix = prefix, verbose = verbose)
 				
 				if len(vars) == 0:
 					break
@@ -35,7 +35,7 @@ class Parser:
 			
 		return vars
 
-	def IsSame(self, data1, data2):
+	def equal(self, data1, data2):
 		if isinstance(data1, pyvex.expr.Get):
 			pass
 		elif isinstance(data1, pyvex.expr.Binop):
@@ -58,13 +58,13 @@ class Parser:
 			pass
 		return False
 		
-	def Match(self, st, vars, traces, prefix = '', verbose = 0):
+	def match(self, st, vars, traces, prefix = '', verbose = 0):
 		new_vars = []
 		for var in vars:
 			matched_vars = []
 			matched = False
 			if isinstance(st, pyvex.IRStmt.Put):
-				reg_name = self.GetRegName(st.offset, st)
+				reg_name = self.get_register_name(st.offset, st)
 
 				if var['Type'] == 'Register' and var['Value'] == reg_name:
 					if verbose>0:
@@ -76,10 +76,10 @@ class Parser:
 				pass
 
 			elif isinstance(st, pyvex.IRStmt.WrTmp):
-				if var['Type'] == 'Tmp' and self.IsSame(var['Value'], st.tmp):
+				if var['Type'] == 'Tmp' and self.equal(var['Value'], st.tmp):
 					if isinstance(st.data, pyvex.expr.Get):
 						# >> Stmt: t1 = GET:I64(rax)
-						reg_name = self.GetRegName(st.data.offset, st)
+						reg_name = self.get_register_name(st.data.offset, st)
 						
 						if verbose>0:
 							print(prefix+'> Match: ', var, reg_name, st.data.offset)
@@ -142,24 +142,24 @@ class Parser:
 				
 				if verbose>0:
 					print(prefix+'\t%x' % self.Address)
-					self.PrintStatement(st, prefix+'\t')
+					self.print_statement(st, prefix+'\t')
 			else:
 				new_vars.append(var)
 
 				if verbose>1:
 					print(prefix+'\t%x' % self.Address)
-					self.PrintStatement(st, prefix+'\t')
+					self.print_statement(st, prefix+'\t')
 
 		if verbose>0 and new_vars != vars:
 			print(prefix+'\tNew Variables:', new_vars)
 
 		return new_vars
 
-	def DumpStData(self, st_data, st, prefix = ''):
+	def dump_st_data(self, st_data, st, prefix = ''):
 		data = {}
 		if isinstance(st_data, pyvex.expr.Get):
 			data['Type'] = 'Get'
-			data['Value'] = self.GetRegName(st_data.offset, st)
+			data['Value'] = self.get_register_name(st_data.offset, st)
 
 		elif isinstance(st_data, pyvex.expr.Binop):
 			data['Type'] = 'Binop'
@@ -167,7 +167,7 @@ class Parser:
 			data['Value']['Op'] = st_data.op
 			data['Value']['Args'] = []
 			for arg in st_data.args:
-				data['Value']['Args'].append(self.DumpStData(arg, st))
+				data['Value']['Args'].append(self.dump_st_data(arg, st))
 
 		elif isinstance(st_data, pyvex.expr.RdTmp):
 			data['Type'] = 'Tmp'
@@ -191,16 +191,16 @@ class Parser:
 			
 		return data
 
-	def Dump(self, st, prefix = ''):
+	def dump(self, st, prefix = ''):
 		statement = {}
 		if isinstance(st, pyvex.IRStmt.Put):
-			statement['Target'] = {'Type': 'Register', 'Value': self.GetRegName(st.offset, st)}
-			statement['Data'] = self.DumpStData(st.data, st)
+			statement['Target'] = {'Type': 'Register', 'Value': self.get_register_name(st.offset, st)}
+			statement['Data'] = self.dump_st_data(st.data, st)
 		elif isinstance(st, pyvex.IRStmt.PutI):
 			pass
 		elif isinstance(st, pyvex.IRStmt.WrTmp):
 			statement['Target'] = {'Type': 'Tmp', 'Value': st.tmp}
-			statement['Data'] = self.DumpStData(st.data, st)	
+			statement['Data'] = self.dump_st_data(st.data, st)	
 		elif isinstance(st, pyvex.IRStmt.Store):
 			pass
 		elif isinstance(st, pyvex.IRStmt.StoreG):
@@ -227,32 +227,32 @@ class Parser:
 		statement['Address'] = self.Address
 		return statement
 
-	def Print(self, forward = True, prefix = ''):
+	def print(self, forward = True, prefix = ''):
 		print(prefix+'> %x' % self.Address)
 		if forward:
 			for st in self.irsb.statements:
 				if isinstance(st, pyvex.IRStmt.NoOp):
 					continue
 
-				self.PrintStatement(st, prefix = prefix)
+				self.print_statement(st, prefix = prefix)
 		else:
 			i = len(self.irsb.statements)-1
 			
 			while i >= 0:
 				st = self.irsb.statements[i]
 				if not isinstance(st, pyvex.IRStmt.NoOp):
-					self.PrintStatement(st, prefix = prefix)
+					self.print_statement(st, prefix = prefix)
 				i -= 1
 
-	def PrintStatement(self, st, prefix = ''):
+	def print_statement(self, st, prefix = ''):
 		stmt_str = ''
 		if isinstance(st, pyvex.IRStmt.Put):
-			stmt_str = st.__str__(reg_name = self.GetRegName(st.offset, st))
+			stmt_str = st.__str__(reg_name = self.get_register_name(st.offset, st))
 		elif isinstance(st, pyvex.IRStmt.PutI):
 			pass
 		elif isinstance(st, pyvex.IRStmt.WrTmp):
 			if isinstance(st.data, pyvex.expr.Get):
-				stmt_str = st.__str__(reg_name = self.GetRegName(st.data.offset, st))
+				stmt_str = st.__str__(reg_name = self.get_register_name(st.data.offset, st))
 			elif isinstance(st.data, pyvex.expr.Binop):
 				stmt_str = st.__str__()
 				if self.DebugLevel>0:
@@ -301,7 +301,7 @@ class Parser:
 			print(prefix+'>> Stmt:', )
 			st.pp()
 
-	def GetDumpList(self):
+	def get_dump_list(self):
 		self.TmpRegisters = {}
 		read_list_map = {}
 		write_list_map = {}
@@ -311,8 +311,8 @@ class Parser:
 				
 			if self.DebugLevel>0:
 				print('='*80)
-				self.PrintStatement(st)
-			(read_list, write_list) = self.DumpStatement(st)
+				self.print_statement(st)
+			(read_list, write_list) = self.dump_statement(st)
 
 			for dump_info in read_list:
 				if dump_info['Value'] in read_list_map:
@@ -352,7 +352,7 @@ class Parser:
 
 		return (read_list, write_list)
 
-	def GetCommands(self, element_list):
+	def get_commands(self, element_list):
 		commands = []
 		for (value, dump_info) in element_list:
 			if dump_info['Type'] == 'Register':
@@ -372,17 +372,17 @@ class Parser:
 				commands.append('%s %s L1' % (cmd, dump_info['Value']))
 		return commands
 		
-	def GetWinDBGDumpCommands(self):
-		(read_list, write_list) = self.GetDumpList()
+	def get_windbg_dump_commands(self):
+		(read_list, write_list) = self.get_dump_list()
 
-		read_commands = self.GetCommands(read_list)
-		write_commands = self.GetCommands(write_list)
+		read_commands = self.get_commands(read_list)
+		write_commands = self.get_commands(write_list)
 		
 		return (read_commands, write_commands)
 		
-	def GetRegName(self, reg_offset, st):
+	def get_register_name(self, reg_offset, st):
 		if self.DebugLevel>1:
-			print('* GetRegName: %d' % reg_offset)
+			print('* get_register_name: %d' % reg_offset)
 			print('self.irsb.tyenv:', self.irsb.tyenv)
 			print('st.data.result_size(self.irsb.tyenv):', st.data.result_size(self.irsb.tyenv))
 		reg_name = self.irsb.arch.translate_register_name(reg_offset, st.data.result_size(self.irsb.tyenv))
@@ -391,18 +391,18 @@ class Parser:
 			print('reg_name:', reg_name)
 		return reg_name
 
-	def DumpStatement(self, st):
+	def dump_statement(self, st):
 		read_list = []
 		write_list = []
 		if isinstance(st, pyvex.IRStmt.NoOp):
 			return dump_list
 
 		if self.DebugLevel>0:
-			print('* DumpStatement:')
+			print('* dump_statement:')
 		if isinstance(st, pyvex.IRStmt.Put):
-			reg_name = self.GetRegName(st.offset, st)
+			reg_name = self.get_register_name(st.offset, st)
 			if reg_name != 'pc' and reg_name != 'rip' and reg_name != 'eip':
-				read_list = self.ConvertTmpToExpr(st.data)
+				read_list = self.convert_tmp_to_expression(st.data)
 				
 				if self.DebugLevel>0:
 					print('\t\t>> IRStmt.Put: %s <- %s' % (reg_name, read_list))
@@ -414,7 +414,7 @@ class Parser:
 			pass
 		elif isinstance(st, pyvex.IRStmt.WrTmp):
 			if isinstance(st.data, pyvex.expr.Get):
-				reg_name = self.GetRegName(st.data.offset, st)
+				reg_name = self.get_register_name(st.data.offset, st)
 			elif isinstance(st.data, pyvex.expr.Binop):
 				if self.DebugLevel>0:
 					print('st.data.op:', st.data.op)
@@ -425,8 +425,8 @@ class Parser:
 				pass
 			self.TmpRegisters[st.tmp] = st
 		elif isinstance(st, pyvex.IRStmt.Store):
-			write_list = self.ConvertTmpToExpr(st.addr, data_type = 'Memory')
-			read_list = self.ConvertTmpToExpr(st.data)
+			write_list = self.convert_tmp_to_expression(st.addr, data_type = 'Memory')
+			read_list = self.convert_tmp_to_expression(st.data)
 			if self.DebugLevel>0:
 				print('\t\t>> IRStmt.Store: %s <- %s' % (write_list, read_list))
 		elif isinstance(st, pyvex.IRStmt.StoreG):
@@ -453,12 +453,12 @@ class Parser:
 			
 		return (read_list, write_list)
 
-	def ConvertTmpToExpr(self, data, level = 1, data_type = ''):
+	def convert_tmp_to_expression(self, data, level = 1, data_type = ''):
 		prefix = '\t'*level
 		
 		if self.DebugLevel>0:
 			print(prefix+'-'*80)
-			print(prefix+'* ConvertTmpToExpr:')
+			print(prefix+'* convert_tmp_to_expression:')
 			print(prefix+'type(data): '+str(type(data)))
 			print(prefix+'data_type: '+data_type)
 		
@@ -516,14 +516,14 @@ class Parser:
 					dump_list.append({'Type': 'Memory', 'Value': reg_name, 'StType': 'Get', 'ValueType':'' })
 
 				if reg_name.startswith('cc_'):
-					dump_list += self.ConvertTmpToExpr(st.data.offset, level+1, data_type = data_type)
+					dump_list += self.convert_tmp_to_expression(st.data.offset, level+1, data_type = data_type)
 			elif isinstance(st.data, pyvex.expr.Binop):
 				if self.DebugLevel>0:
 					print(prefix+'st.data.op: ', st.data.op)
 					print(prefix+'st.data.args: ', st.data.args)
 				
-				arg1 = self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
-				arg2 = self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
+				arg1 = self.convert_tmp_to_expression(st.data.args[0], level+1, data_type = data_type)[0]
+				arg2 = self.convert_tmp_to_expression(st.data.args[1], level+1, data_type = data_type)[0]
 
 				if data_type != 'Memory':
 					dump_list.append(arg1)
@@ -560,28 +560,28 @@ class Parser:
 
 			elif isinstance(st.data, pyvex.expr.RdTmp):
 				value_type = st.data.result_type(self.irsb.tyenv)
-				for dump_info in self.ConvertTmpToExpr(st.data, level+1, data_type = data_type):
+				for dump_info in self.convert_tmp_to_expression(st.data, level+1, data_type = data_type):
 					dump_info['ValueType'] = value_type
 					dump_list.append(dump_info)
 				
 			elif isinstance(st.data, pyvex.expr.Load):
-				for dump_info in self.ConvertTmpToExpr(st.data, level+1, data_type = 'Memory'):
+				for dump_info in self.convert_tmp_to_expression(st.data, level+1, data_type = 'Memory'):
 					dump_info['ValueType'] = st.data.ty
 					dump_list.append(dump_info)
 			elif isinstance(st.data, pyvex.expr.Unop):
-				dump_list += self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)
+				dump_list += self.convert_tmp_to_expression(st.data.args[0], level+1, data_type = data_type)
 			elif isinstance(st.data, pyvex.expr.Const):
-				dump_list += self.ConvertTmpToExpr(st.data, level+1, data_type = data_type)
+				dump_list += self.convert_tmp_to_expression(st.data, level+1, data_type = data_type)
 			elif isinstance(st.data, pyvex.expr.CCall):
 				if self.DebugLevel>0:
 					print('* st.data.retty: ', st.data.retty)
 					print('* st.data.cee: ', st.data.cee)
 					print('* st.data.args: ', st.data.args)
 				for arg in st.data.args:
-					dump_list += self.ConvertTmpToExpr(arg, level+1, data_type = data_type)
+					dump_list += self.convert_tmp_to_expression(arg, level+1, data_type = data_type)
 				
 		elif isinstance(st, pyvex.IRStmt.Store):
-			dump_list += self.ConvertTmpToExpr(st.data.tmp, level+1, data_type = data_type)
+			dump_list += self.convert_tmp_to_expression(st.data.tmp, level+1, data_type = data_type)
 		elif isinstance(st, pyvex.IRStmt.StoreG):
 			pass
 		elif isinstance(st, pyvex.IRStmt.LoadG):
@@ -608,7 +608,7 @@ class Parser:
 		
 		return dump_list
 		
-	def FindRegister(self, register):
+	def find_register(self, register):
 		self.TmpRegisters = {}
 		read_list_map = {}
 		write_list_map = {}
@@ -636,14 +636,14 @@ class Parser:
 						dump_list.append({'Type': 'Memory', 'Value': reg_name, 'StType': 'Get', 'ValueType':'' })
 
 					if reg_name.startswith('cc_'):
-						dump_list += self.ConvertTmpToExpr(st.data.offset, level+1, data_type = data_type)
+						dump_list += self.convert_tmp_to_expression(st.data.offset, level+1, data_type = data_type)
 				elif isinstance(st.data, pyvex.expr.Binop):
 					if self.DebugLevel>0:
 						print(prefix+'st.data.op: ', st.data.op)
 						print(prefix+'st.data.args: ', st.data.args)
 					
-					arg1 = self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)[0]
-					arg2 = self.ConvertTmpToExpr(st.data.args[1], level+1, data_type = data_type)[0]
+					arg1 = self.convert_tmp_to_expression(st.data.args[0], level+1, data_type = data_type)[0]
+					arg2 = self.convert_tmp_to_expression(st.data.args[1], level+1, data_type = data_type)[0]
 
 					if data_type != 'Memory':
 						dump_list.append(arg1)
@@ -680,28 +680,28 @@ class Parser:
 
 				elif isinstance(st.data, pyvex.expr.RdTmp):
 					value_type = st.data.result_type(self.irsb.tyenv)
-					for dump_info in self.ConvertTmpToExpr(st.data, level+1, data_type = data_type):
+					for dump_info in self.convert_tmp_to_expression(st.data, level+1, data_type = data_type):
 						dump_info['ValueType'] = value_type
 						dump_list.append(dump_info)
 					
 				elif isinstance(st.data, pyvex.expr.Load):
-					for dump_info in self.ConvertTmpToExpr(st.data, level+1, data_type = 'Memory'):
+					for dump_info in self.convert_tmp_to_expression(st.data, level+1, data_type = 'Memory'):
 						dump_info['ValueType'] = st.data.ty
 						dump_list.append(dump_info)
 				elif isinstance(st.data, pyvex.expr.Unop):
-					dump_list += self.ConvertTmpToExpr(st.data.args[0], level+1, data_type = data_type)
+					dump_list += self.convert_tmp_to_expression(st.data.args[0], level+1, data_type = data_type)
 				elif isinstance(st.data, pyvex.expr.Const):
-					dump_list += self.ConvertTmpToExpr(st.data, level+1, data_type = data_type)
+					dump_list += self.convert_tmp_to_expression(st.data, level+1, data_type = data_type)
 				elif isinstance(st.data, pyvex.expr.CCall):
 					if self.DebugLevel>0:
 						print('* st.data.retty: ', st.data.retty)
 						print('* st.data.cee: ', st.data.cee)
 						print('* st.data.args: ', st.data.args)
 					for arg in st.data.args:
-						dump_list += self.ConvertTmpToExpr(arg, level+1, data_type = data_type)
+						dump_list += self.convert_tmp_to_expression(arg, level+1, data_type = data_type)
 					
 			elif isinstance(st, pyvex.IRStmt.Store):
-				dump_list += self.ConvertTmpToExpr(st.data.tmp, level+1, data_type = data_type)
+				dump_list += self.convert_tmp_to_expression(st.data.tmp, level+1, data_type = data_type)
 			elif isinstance(st, pyvex.IRStmt.StoreG):
 				pass
 			elif isinstance(st, pyvex.IRStmt.LoadG):
@@ -726,27 +726,27 @@ class Tracker:
 	def __init__(self, parser_list):
 		self.ParserList = parser_list
 		
-	def Print(self, forward = True, prefix = ''):
+	def print(self, forward = True, prefix = ''):
 		for parser in self.ParserList:
-			parser.Print(False, prefix = '\t\t')
+			parser.print(False, prefix = '\t\t')
 			
-	def Trace(self, register, verbose = 0):
+	def trace(self, register, verbose = 0):
 		vars = [{'Type': 'Register', 'Value': register}]
 
 		dumps = []
 		for parser in self.ParserList:
 			traces = []		
-			vars = parser.Trace(vars, traces, verbose = 0)
+			vars = parser.trace(vars, traces, verbose = 0)
 			
 			if len(vars) == 0:
 				break
 				
 			for trace in traces:
-				dumps.append(parser.Dump(trace))
+				dumps.append(parser.dump(trace))
 
 		return dumps
 
-	def Save(self, filename):
+	def save(self, filename):
 		#filename
 		pass
 
@@ -760,4 +760,4 @@ if __name__ == '__main__':
 	address = int(sys.argv[2], 16)
 	
 	parser = Parser(bytes, address, 'x64')
-	print(parser.GetDumpList())
+	print(parser.get_dump_list())
