@@ -19,7 +19,7 @@ class Generator:
                 'cs:EncodePointer':1
             }
 
-    def GetOperandStr(self, operand):
+    def get_operand_string(self, operand):
         operand_type = operand['Type']
         operand_str = ''
         if 'Value' in operand:
@@ -43,7 +43,7 @@ class Generator:
         
         return operand_str
 
-    def GenerateCommandsForInstruction(self, instruction, func_name = ''):
+    def generate_commands_for_instruction(self, instruction, func_name = ''):
         windbg_commands = []
         current = instruction['Address']
         op = instruction['Op']
@@ -52,7 +52,7 @@ class Generator:
         operand_dump_commands = []
         operand_str_list = []
         for operand in instruction['Operands']:
-            operand_str = self.GetOperandStr(operand)
+            operand_str = self.get_operand_string(operand)
             operand_str_list.append(operand_str)
 
             operand_type = operand['Type']
@@ -102,19 +102,19 @@ class Generator:
 
         return windbg_commands
 
-    def GenerateCommandsForInstructions(self, instructions, func_name = ''):
+    def generate_commands_for_instructions(self, instructions, func_name = ''):
         windbg_commands = []        
         for instruction in instructions:
-            windbg_commands += self.GenerateCommandsForInstruction(instruction, func_name = func_name)
+            windbg_commands += self.generate_commands_for_instruction(instruction, func_name = func_name)
         return windbg_commands
 
-    def SaveBreakpoints(self, filename, breakpoints):
+    def save_breakpoints(self, filename, breakpoints):
         fd = open(filename, 'w')
 
         for breakpoint in breakpoints:
             lines = []
             if breakpoint['Type'] == 'Instruction':
-                lines += self.GenerateCommandsForInstruction(breakpoint)
+                lines += self.generate_commands_for_instruction(breakpoint)
             elif breakpoint['Type'] == 'Function':
                 lines.append('bp %.8x ".echo * %s (%.8x); ~#; kp 5; .echo ; g"' % (
                                                 breakpoint['Address'], 

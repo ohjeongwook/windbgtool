@@ -27,7 +27,7 @@ class Operations:
         self.BreakpointsMap = {}
         self.RecordsDB = None
         
-    def SetBp(self, addr, handler):
+    def set_bp(self, addr, handler):
         if addr in self.AddressToBreakPoints:
             self.AddressToBreakPoints[addr].remove()
             del self.AddressToBreakPoints[addr]
@@ -36,21 +36,21 @@ class Operations:
         self.AddressToBreakPoints[addr] = bp
         return bp
 
-    def ClearBP(self):
+    def clear_bp(self):
         for (addr, bp) in self.AddressToBreakPoints.items():
             bp.remove()
             del self.AddressToBreakPoints[addr]
 
-    def AddModuleBP(self, module_name, module_bps, handler):
-        module_base = self.Debugger.GetModuleBase(module_name)
-        self.Logger.info('AddModuleBP: %s (%x)', module_name, module_base)
+    def add_module_bp(self, module_name, module_bps, handler):
+        module_base = self.Debugger.get_module_base(module_name)
+        self.Logger.info('add_module_bp: %s (%x)', module_name, module_base)
         
         addresses = []
         for (rva, dump_targets) in module_bps.items():
             address = module_base+rva
             self.Logger.info('\tSet bp: %x (%x+%x)) %s', address, module_base, rva, str(dump_targets))
 
-            self.SetBp(address, handler)
+            self.set_bp(address, handler)
             addresses.append(address)
             self.BreakpointsMap[address] = {
                                     'Type': 'Module', 
@@ -62,15 +62,15 @@ class Operations:
             
         return addresses
             
-    def AddSymbolBP(self, module_name, symbol, dump_targets, handler = None):
+    def add_symbol_bp(self, module_name, symbol, dump_targets, handler = None):
         if not handler:
-            handler = self.HandleBreakpoint
+            handler = self.handle_breakpoint
 
         symbol_str = module_name+'!'+symbol
-        address = self.Debugger.ResolveAddress(symbol_str)
+        address = self.Debugger.resolve_address(symbol_str)
         
         if address>0:
-            bp = self.SetBp(address, handler)
+            bp = self.set_bp(address, handler)
             
             self.Logger.info("Setting breakpoint %s (%.8x) - %d\n", symbol_str, address, bp.getId())
             self.BreakpointsMap[address] = {
@@ -81,15 +81,15 @@ class Operations:
                                     'DumpTargets': dump_targets
                                 }
 
-    def LoadBreakPoints(self, breakpoint_db, record_db = ''):
+    def load_breakpoints(self, breakpoint_db, record_db = ''):
         self.BreakPointsDB = windbgtool.breakpoints_storage.Storage(breakpoint_db)
-        self.BreakPointsDB.Load()
+        self.BreakPointsDB.load()
         self.RecordsDB = windbgtool.breakpoints_storage.Record(record_db)
         self.BreakpointsMap = {}
 
         for (module, rules) in self.BreakPointsDB.AddressBreakpoints.items():
             for (address, dump_targets) in rules.items():
-                bp = self.SetBp(address, self.HandleBreakpoint)
+                bp = self.set_bp(address, self.handle_breakpoint)
                 
                 self.Logger.info('Setting breakpoint on %s (%.8x) - %d' % (
                                                 module, 
@@ -107,15 +107,15 @@ class Operations:
                                 }
             
         for (module_name, module_bps) in self.BreakPointsDB.ModuleBreakpoints.items():
-            self.AddModuleBP(module_name, module_bps, self.HandleBreakpoint)
+            self.add_module_bp(module_name, module_bps, self.handle_breakpoint)
 
         for (module_name, module_bps) in self.BreakPointsDB.SymbolBreakpoints.items():
             for (symbol, dump_targets) in module_bps.items():
-                self.AddSymbolBP(module_name, symbol, dump_targets, self.HandleBreakpoint)
+                self.add_symbol_bp(module_name, symbol, dump_targets, self.handle_breakpoint)
                 
         self.ReturnBreakpointsMap = {}
 
-    def DumpModuleParams(self, bp_type, module_base, dump_targets):
+    def dump_module_parameters(self, bp_type, module_base, dump_targets):
         dump_outputs = []
         if bp_type == 'Function':
             dump_targets_values = pykd.loadDWords(pykd.reg("esp")+4, len(dump_targets))
@@ -123,7 +123,7 @@ class Operations:
             for (arg_type, dump_target_name) in dump_targets:
                 dump_output = ''
                 if arg_type == "LPCWSTR":
-                    dump_output = self.Debugger.RunCmd("du %.8x" % dump_targets_values[arg_i])
+                    dump_output = self.Debugger.run_command("du %.8x" % dump_targets_values[arg_i])
                     
                 elif arg_type == "DWORD" or "HANDLE":
                     dump_output = "%.8x" % dump_targets_values[arg_i]
@@ -173,7 +173,7 @@ class Operations:
                         d_cmd = 'dd'
                         d_length = 10
 
-                    dump_output = self.Debugger.RunCmd("%s %s L%x" % (d_cmd, memory_str, d_length))
+                    dump_output = self.Debugger.run_command("%s %s L%x" % (d_cmd, memory_str, d_length))
 
                 if dump_target_name:
                     dump_output_item = {}
@@ -191,7 +191,7 @@ class Operations:
 
         return dump_outputs
 
-    def DumpOperand(self, operand):
+    def dump_operand(self, operand):
         operand_type = operand['Type']
         value = ''
         pointer = 0
@@ -222,7 +222,7 @@ class Operations:
 
         return value
 
-    def GetCallParameters(self, count, is_syscall = False):
+    def get_call_parameters(self, count, is_syscall = False):
         if is_syscall:
             bits = 64 #TODO: support 32 bit
             parameter_values = pykd.loadQWords(pykd.reg("r10"), len(parameter_definition))
@@ -257,8 +257,8 @@ class Operations:
 
         return (bits, parameters)
         
-    def DumpParameters(self, parameter_definition, is_syscall = False):
-        (bits, parameter_values) = self.Debugger.GetCallParameters(len(parameter_definition), is_syscall)
+    def dump_parameters(self, parameter_definition, is_syscall = False):
+        (bits, parameter_values) = self.Debugger.get_call_parameters(len(parameter_definition), is_syscall)
 
         parameter_map = {}
         for index in range(0, len(parameter_definition), 1):
@@ -284,22 +284,22 @@ class Operations:
                         parameter_length = 0x100
 
                     try:
-                        bytes = self.Debugger.GetBytes(parameter_value, parameter_length)
+                        bytes = self.Debugger.get_bytes(parameter_value, parameter_length)
                         result['Bytes'] = base64.b64encode(bytes)
                     except:
                         pass
 
             elif parameter['Type'] == 'LPCSTR':
-                string_val = self.Debugger.GetString(parameter_value)
+                string_val = self.Debugger.get_string(parameter_value)
                 result['String'] = string_val
 
             elif parameter['Type'] in ('LPWSTR', 'LPCWSTR'):
-                wstring_val = self.Debugger.GetWString(parameter_value)
+                wstring_val = self.Debugger.get_wide_string(parameter_value)
                 result['WString'] = wstring_val
                 
             elif parameter['Pointer'] or parameter['Type'].startswith('LP'):
                 try:
-                    bytes = self.Debugger.GetBytes(parameter_value, 0x20)
+                    bytes = self.Debugger.get_bytes(parameter_value, 0x20)
                     result['Bytes'] = base64.b64encode(bytes)
                 except:
                     pass
@@ -307,8 +307,8 @@ class Operations:
             results.append(result)
         return (parameter_map, results)
 
-    def HandleBreakpoint(self):
-        eip = self.Debugger.GetEIP()
+    def handle_breakpoint(self):
+        eip = self.Debugger.get_instruction_pointer()
 
         if eip in self.BreakpointsMap:
             record = {'Address': eip}
@@ -316,8 +316,8 @@ class Operations:
             record['Module'] = self.BreakpointsMap[eip]['Module']
             record['RVA'] = self.BreakpointsMap[eip]['RVA']
             record['Symbol'] = self.BreakpointsMap[eip]['Symbol']
-            record['ThreadContext'] = self.Debugger.GetThreadContext()
-            esp = self.Debugger.GetESP()
+            record['ThreadContext'] = self.Debugger.get_current_thread_context()
+            esp = self.Debugger.get_stack_pointer()
             record['StackPointer'] = esp
             record['DumpTargets'] = []
 
@@ -333,20 +333,20 @@ class Operations:
             for dump_target in self.BreakpointsMap[eip]['DumpTargets']:
                 if dump_target['Type'] == 'Operand':
                     dump_result = {}
-                    dump_result['Operand'] = self.DumpOperand(dump_target['Value'])
+                    dump_result['Operand'] = self.dump_operand(dump_target['Value'])
                     
                     if dump_target['DataType'] == 'Pointer':
                         try:
-                            bytes = self.Debugger.GetBytes(parameter_values[index], 0x100)
+                            bytes = self.Debugger.get_bytes(parameter_values[index], 0x100)
                             dump_result['Bytes'] = base64.b64encode(bytes)
                         except:
                             pass
 
                 elif dump_target['Type'] == 'Parameters':
-                    (parameter_map, dump_result) = self.DumpParameters(dump_target['Value'])
+                    (parameter_map, dump_result) = self.dump_parameters(dump_target['Value'])
                     
                 elif dump_target['Type'] == 'ReturnParameters' and len(dump_target['Value'])>0:
-                    return_address = self.Debugger.GetReturnAddress()
+                    return_address = self.Debugger.get_return_address()
                     for (parameter_name, dump_instruction) in dump_target['Value'].items():                    
                         if dump_instruction['Length']['Type'] == 'Parameter':
                             parameter_length = parameter_map[dump_instruction['Length']['Value']]
@@ -361,7 +361,7 @@ class Operations:
                                                         'Length': parameter_length
                                                     }
 
-                    bp = self.SetBp(return_address, self.HandleReturnBreakpoint)
+                    bp = self.set_bp(return_address, self.handle_return_breakpoint)
                     self.Logger.info('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
 
                 elif dump_target['Type'] == 'Function':
@@ -370,7 +370,7 @@ class Operations:
                         arg_addr = esp+arg_offset
                         (arg_value, )= pykd.loadDWords(arg_addr, 1)
                         try:
-                            bytes = self.Debugger.GetBytes(arg_value, 0x100)
+                            bytes = self.Debugger.get_bytes(arg_value, 0x100)
                             base64_bytes = base64.b64encode(bytes)
                         except:
                             base64_bytes = ''
@@ -383,19 +383,19 @@ class Operations:
                 record['DumpTargets'].append({'Target': dump_target, 'Value': dump_result})
 
             if self.RecordsDB:
-                self.RecordsDB.WriteRecord(record)
+                self.RecordsDB.write_record(record)
             else:
                 self.Logger.info(pprint.pformat(record))
         else:
             self.Logger.info('> BP @%.8x' % eip)
 
-    def HandleReturnBreakpoint(self):
-        eip = self.Debugger.GetEIP()
+    def handle_return_breakpoint(self):
+        eip = self.Debugger.get_instruction_pointer()
         if eip in self.ReturnBreakpointsMap:
             return_bp_info = self.ReturnBreakpointsMap[eip]
 
             try:
-                bytes = self.Debugger.GetBytes(return_bp_info['Pointer'], return_bp_info['Length'])
+                bytes = self.Debugger.get_bytes(return_bp_info['Pointer'], return_bp_info['Length'])
             except:
                 bytes = ''
 
@@ -405,8 +405,8 @@ class Operations:
             record['Module'] = self.BreakpointsMap[original_eip]['Module']
             record['RVA'] = self.BreakpointsMap[original_eip]['RVA']
             record['Symbol'] = self.BreakpointsMap[original_eip]['Symbol']
-            record['ThreadContext'] = self.Debugger.GetThreadContext()
-            record['StackPointer'] = self.Debugger.GetESP()
+            record['ThreadContext'] = self.Debugger.get_current_thread_context()
+            record['StackPointer'] = self.Debugger.get_stack_pointer()
             record['DumpTargets'] = [{
                                     'Target': return_bp_info, 
                                     'Value': base64.b64encode(bytes)
@@ -423,7 +423,7 @@ class Operations:
                                         )
 
             if self.RecordsDB:
-                self.RecordsDB.WriteRecord(record)
+                self.RecordsDB.write_record(record)
             else:
                 self.Logger.info(pprint.pformat(record))
 

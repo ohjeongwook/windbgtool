@@ -32,9 +32,9 @@ class DbgEngine:
         self.WindbgLogParser = windbgtool.log.Parser()
 
     def __del__(self):
-        self.CloseDump()
+        self.close_dump()
         
-    def SetLogLevel(self, debug = True):
+    def set_log_level(self, debug = True):
         if debug:
             out_hdlr = logging.StreamHandler(sys.stdout)
             out_hdlr.setLevel(logging.DEBUG)
@@ -46,37 +46,37 @@ class DbgEngine:
             self.Logger.addHandler(out_hdlr)
             self.Logger.setLevel(logging.INFO)
        
-    def LoadDump(self, dump_filename):
+    def load_dump(self, dump_filename):
         pykd.loadDump(dump_filename)
 
-    def CloseDump(self):
+    def close_dump(self):
         pykd.closeDump()
 
-    def Run(self, executable_path):
+    def run(self, executable_path):
         pykd.startProcess(executable_path)
 
-    def RunCmd(self, cmd):
-        self.Logger.debug('> RunCmd: [%s]', cmd)
+    def run_command(self, cmd):
+        self.Logger.debug('> run_command: [%s]', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
 
-        self.Logger.debug('> RunCmd Result: [%s]', ret)
+        self.Logger.debug('> run_command Result: [%s]', ret)
         return ret
 
-    def GetMachine(self):
-        ret = self.RunCmd(".effmach")
+    def get_machine(self):
+        ret = self.run_command(".effmach")
         return ret.split(': ')[1].split(' ')
 
-    def SetSymbolPath(self):
-        output = self.RunCmd(".sympath %s" % self.MSDLSymPath)
-        output += self.RunCmd(".reload")
+    def set_symbol_path(self):
+        output = self.run_command(".sympath %s" % self.MSDLSymPath)
+        output += self.run_command(".reload")
 
         return output
 
-    def LoadSymbols(self, modules = []):
-        self.SymbolMap = self.EnumerateModuleSymbols(modules)
+    def load_symbols(self, modules = []):
+        self.SymbolMap = self.enumerate_module_symbols(modules)
        
         self.Logger.debug('* SymbolMap:')
         for (k, v) in self.SymbolMap.items():
@@ -86,7 +86,7 @@ class DbgEngine:
         for (k, v) in self.SymbolMap.items():
             self.SymbolToAddress[v] = k
 
-    def ResolveSymbol(self, address):
+    def resolve_symbol(self, address):
         if address in self.SymbolMap:
             name = self.SymbolMap[address]
         else:
@@ -103,25 +103,25 @@ class DbgEngine:
 
         return name
 
-    def GetSymbolAddress(self, symbol):
+    def get_symbol_address(self, symbol):
         if symbol in self.SymbolToAddress:
             return self.SymbolToAddress[symbol]
         return 0
 
-    def MatchName(self, name, pattern):
+    def match_name(self, name, pattern):
         if name.lower().find(pattern.lower()) >= 0:
             return True
         return False
 
-    def GetAddressInfo(self, address):
-        return self.WindbgLogParser.ParseAddressDetails(self.RunCmd("!address %x" % address))
+    def get_address_info(self, address):
+        return self.WindbgLogParser.parse_address_details(self.run_command("!address %x" % address))
 
-    def GetAddressList(self):
-        return self.WindbgLogParser.ParseAddress(self.RunCmd("!address"))
+    def get_address_list(self):
+        return self.WindbgLogParser.parse_address(self.run_command("!address"))
 
-    def GetAddressDetails(self, type):
+    def get_address_details(self, type):
         results = []
-        for addr_info in self.GetAddressList():
+        for addr_info in self.get_address_list():
             if 'Protect' in addr_info:
                if type == 'NonImageRW' and \
                   addr['Protect'] == 'PAGE_READWRITE' and \
@@ -132,24 +132,24 @@ class DbgEngine:
 
         return results
                 
-    def GetModuleList(self):
-        return self.RunCmd("lm1m").splitlines()
+    def get_module_list(self):
+        return self.run_command("lm1m").splitlines()
 
-    def EnumerateModules(self):
+    def enumerate_modules(self):
         self.Modules = {}
-        for line in self.RunCmd("lmf").splitlines()[1:]:
+        for line in self.run_command("lmf").splitlines()[1:]:
             toks = line.split()[0:4]
             
             if len(toks) >= 4:
-                (start, end, module, full_path) = (util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
+                (start, end, module, full_path) = (util.common.convert_to_int(toks[0]), util.common.convert_to_int(toks[1]), toks[2], toks[3])
             
                 self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
                 self.Modules[module] = (start, end, full_path)
             else:
                 self.Logger.info('Broken lm line: %s', ''.join(toks))
 
-    def AddModule(self, module):
-        lines = self.RunCmd("lmfm %s" % module).splitlines()
+    def add_module(self, module):
+        lines = self.run_command("lmfm %s" % module).splitlines()
 
         if len(lines)<3:
             self.Logger.info('Resolving %s information failed:', module)
@@ -157,15 +157,15 @@ class DbgEngine:
         else:
             line = lines[2]
             toks = line.split()[0:4]
-            (start, end, module, full_path) = (util.common.Int(toks[0]), util.common.Int(toks[1]), toks[2], toks[3])
+            (start, end, module, full_path) = (util.common.convert_to_int(toks[0]), util.common.convert_to_int(toks[1]), toks[2], toks[3])
         
             self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
             self.Modules[module] = (start, end, full_path)
 
-    def GetAddresses(self, name):
-        return self.WindbgLogParser.ParseX(self.RunCmd("x %s" % name))        
+    def get_addresses(self, name):
+        return self.WindbgLogParser.parse_x(self.run_command("x %s" % name))        
 
-    def EnumerateModuleSymbols(self, module_name_patterns = []):
+    def enumerate_module_symbols(self, module_name_patterns = []):
         map = {}
         for name in self.Modules.keys():
             found = False
@@ -173,41 +173,41 @@ class DbgEngine:
                 found = True
 
             for module_name_pattern in module_name_patterns:
-                if self.MatchName(name, module_name_pattern):
+                if self.match_name(name, module_name_pattern):
                     found = True
 
             if not found:
                 continue
 
-            for (k, v) in self.GetAddresses("%s!*" % name).items():
+            for (k, v) in self.get_addresses("%s!*" % name).items():
                 map[k] = v
         return map
 
-    def ResolveModuleName(self, module_name_pattern):
+    def resolve_module_name(self, module_name_pattern):
         for name in self.Modules.keys():
-            if self.MatchName(name, module_name_pattern):
+            if self.match_name(name, module_name_pattern):
                 return name
         return ''
         
-    def GetModuleBase(self, module_name_pattern):
+    def get_module_base(self, module_name_pattern):
         for name in self.Modules.keys():
-            if self.MatchName(name, module_name_pattern):
+            if self.match_name(name, module_name_pattern):
                 return self.Modules[name][0]
         return ''
         
-    def GetModuleRange(self, module_name_pattern):
+    def get_module_range(self, module_name_pattern):
         for name in self.Modules.keys():
-            if self.MatchName(name, module_name_pattern):
+            if self.match_name(name, module_name_pattern):
                 return self.Modules[name][0:2]
         return (0, 0)
 
-    def GetModuleNameFromBase(self, base):
+    def get_module_name_from_base(self, base):
         for (k, v) in self.Modules.items():
             if v[0] == base:
                 return k
         return ''
 
-    def GetEIP(self):
+    def get_instruction_pointer(self):
         try:
             return pykd.reg("rip")
         except:    
@@ -215,7 +215,7 @@ class DbgEngine:
 
         return 0
 
-    def GetESP(self):
+    def get_stack_pointer(self):
         try:
             return pykd.reg("rsp")
         except:    
@@ -223,7 +223,7 @@ class DbgEngine:
 
         return 0
 
-    def GetReturnAddress(self):
+    def get_return_address(self):
         try:
             rsp = pykd.reg("rsp")
             try:
@@ -240,8 +240,8 @@ class DbgEngine:
 
         return 0
 
-    def GetReturnModuleName(self):
-        (sp, return_address) = self.GetReturnAddress()
+    def get_return_module_name(self):
+        (sp, return_address) = self.get_return_address()
         for (module, (start, end, full_path)) in self.Modules.items():
             (start, end, full_path) = self.Modules[module]
             if return_address >= start and return_address <= end:
@@ -249,42 +249,42 @@ class DbgEngine:
 
         return ''
 
-    def GetModuleInfo(self, module):
-        return self.WindbgLogParser.ParseLMVM(self.RunCmd("lmvm "+module))        
+    def get_module_info(self, module):
+        return self.WindbgLogParser.parse_lmvm(self.run_command("lmvm "+module))        
 
-    def ResolveAddress(self, addr_str):
+    def resolve_address(self, addr_str):
         addr_toks = addr_str.split("+")
         
         if len(addr_toks)>1:
             addr_str = addr_toks[0]
-            offset = util.common.Int(addr_toks[1], 16)
+            offset = util.common.convert_to_int(addr_toks[1], 16)
         else:
             offset = 0
 
-        res = self.RunCmd("x "+addr_str)
+        res = self.run_command("x "+addr_str)
         
         res_lines = res.splitlines()
         if len(res_lines)>0:
-            return util.common.Int(res_lines[-1].split()[0])+offset
+            return util.common.convert_to_int(res_lines[-1].split()[0])+offset
         else:
             [module, symbol] = addr_str.split("!")
-            for line in self.RunCmd("x %s!" % (module)).splitlines():
+            for line in self.run_command("x %s!" % (module)).splitlines():
                 toks = line.split(' ', 1)
                 if len(toks)>1:
                     xaddress = toks[0]
                     xaddress_str = toks[1]
                     
                     if xaddress_str == addr_str:
-                        return util.common.Int(xaddress)+offset
+                        return util.common.convert_to_int(xaddress)+offset
 
             return 0+offset
 
-    def ShowStack(self):
+    def show_stack(self):
         print('* Stack----')
         for dword in pykd.loadDWords(pykd.reg("esp"), 5):
             print('%x' % dword)
             
-    def GetBytes(self, address, length):
+    def get_bytes(self, address, length):
         bytes = pykd.loadBytes(address, length)
 
         byte_str = ''
@@ -292,7 +292,7 @@ class DbgEngine:
             byte_str += chr(byte)
         return byte_str
         
-    def GetString(self, addr):
+    def get_string(self, addr):
         bytes = ''
         found_null = False
         while 1:
@@ -307,7 +307,7 @@ class DbgEngine:
             addr += 0x10
         return bytes
 
-    def GetWString(self, addr):
+    def get_wide_string(self, addr):
         bytes = ''
         found_null = False
         while 1:
@@ -323,11 +323,11 @@ class DbgEngine:
             addr += 0x10
         return bytes
 
-    def GetEntryPoint(self):
+    def get_entry_point_address(self):
         return int(pykd.dbgCommand("r $exentry").split('=')[1], 0x10)
 
-    def GetThreadContext(self):
+    def get_current_thread_context(self):
         return int(pykd.dbgCommand('.thread').split()[-1], 0x10)
 
-    def Go(self):
+    def go(self):
         pykd.go()

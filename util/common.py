@@ -8,20 +8,20 @@ except:
     pass
 import re
 
-def HexStrToBytes(hex_str):
+def hex_string_to_bytes(hex_str):
     hex_str = re.sub('[ \t\r\n]+', '', hex_str)
     bytes = ''
     for i in range(0, len(hex_str), 2):
         bytes += chr(int(hex_str[i:i+2], 16))
     return bytes
 
-def BytesToHexStr(bytes):
+def bytes_to_hex_string(bytes):
     hex_str = ''
     for ch in bytes:
         hex_str += '%.2x' % ord(ch)
     return hex_str
     
-def Int(addr_str, base = 0x10):
+def convert_to_int(addr_str, base = 0x10):
     if addr_str.find("`")>0:
         addr_str = addr_str.replace("`", "")
     return int(addr_str, base)
@@ -46,7 +46,7 @@ OSMap = {
         }
 }
 
-def GetOSInfo():
+def get_os_information():
     processor_architecture = os.environ['PROCESSOR_ARCHITECTURE']
 
     if processor_architecture == 'AMD64':
@@ -72,12 +72,12 @@ def GetOSInfo():
         (os_str, sp_str) = OSMap[wv.major][wv.minor][wv.build]
     return {'Arch': arch, 'OS': os_str, 'SP': sp_str, 'Build': build_number_str}
 
-def GetOffsetStr(i, show_offset):
+def get_offset_string(i, show_offset):
     if show_offset:
         return '%.4x  ' % i
     return ''
 
-def DumpHex(data, style = None, prefix = '', 
+def dump_hex(data, style = None, prefix = '', 
             show_offset = False, put_space = True, upper_case = False, show_ascii = True):
     if not data:
         return ''
@@ -97,9 +97,9 @@ def DumpHex(data, style = None, prefix = '',
 
     i = 0
     if style == 'string':
-        dump_str += prefix + GetOffsetStr(i, show_offset) + "'"
+        dump_str += prefix + get_offset_string(i, show_offset) + "'"
     else:
-        dump_str += prefix + GetOffsetStr(i, show_offset) + ''
+        dump_str += prefix + get_offset_string(i, show_offset) + ''
 
     ascii_string = ''
     for ch in data:
@@ -121,9 +121,9 @@ def DumpHex(data, style = None, prefix = '',
             ascii_string = ''
 
             if style == 'string':
-                dump_str += "' + \\\n" + prefix  + GetOffsetStr(i + 1, show_offset) + "'"
+                dump_str += "' + \\\n" + prefix  + get_offset_string(i + 1, show_offset) + "'"
             else:
-                dump_str += '\n' + prefix + GetOffsetStr(i + 1, show_offset)
+                dump_str += '\n' + prefix + get_offset_string(i + 1, show_offset)
         i += 1
 
     if ascii_string:

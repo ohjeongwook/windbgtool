@@ -35,7 +35,7 @@ elif bits == '32bit':
     windbg_folders32.append(os.environ["ProgramFiles"])
     python_folders32.append(r'C:\Python27' + pykd_folder)
 
-def CopyFiles(windbg_folders, python_folders):
+def copy_files(windbg_folders, python_folders):
     for windbg_folder in windbg_folders:
         if not os.path.isdir(windbg_folder):
             continue
@@ -65,7 +65,7 @@ def CopyFiles(windbg_folders, python_folders):
                     pass
 
 print('* Copying 64bit files:')
-CopyFiles(windbg_folders64, python_folders64)
+copy_files(windbg_folders64, python_folders64)
 
 print('* Copying 32bit files:')
-CopyFiles(windbg_folders32, python_folders32)
+copy_files(windbg_folders32, python_folders32)

@@ -48,10 +48,10 @@ class Parser:
             fd = open(filename, 'r')
             self.Data = fd.read()
             fd.close()
-            self.ParseCmdLines()
-            self.ParseRunLogOutput()
+            self.parse_cmd_lines()
+            self.parse_run_log_output()
 
-    def ParseCmdLines(self):
+    def parse_cmd_lines(self):
         seq = 0
 
         self.CmdResults = []
@@ -60,7 +60,7 @@ class Parser:
         for line in self.Data.splitlines():
             cmd_line_match = self.CmdPattern.match(line)
             if cmd_line_match != None:
-                parsed_cmd_lines = self.ParseCmdOutputLines(cmd_line, cmd_output_lines)
+                parsed_cmd_lines = self.parse_cmd_output_lines(cmd_line, cmd_output_lines)
                 self.CmdResults.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
 
                 seq += 1
@@ -69,26 +69,26 @@ class Parser:
             else:
                 cmd_output_lines.append(line)
 
-        parsed_cmd_lines = self.ParseCmdOutputLines(cmd_line, cmd_output_lines)
+        parsed_cmd_lines = self.parse_cmd_output_lines(cmd_line, cmd_output_lines)
         self.CmdResults.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
 
-    def ParseCmdOutputLines(self, cmd, result_lines):
+    def parse_cmd_output_lines(self, cmd, result_lines):
         cmd_toks = cmd.split()
         if len(cmd_toks) == 0:
             return
 
         parsed_results = []
         if cmd_toks[0] == 'g' or cmd_toks[0] == 't' or cmd_toks[0] == 'p' or cmd_toks[0] == 'pr' or cmd_toks[0] == 'u':
-            parsed_results = self.ParseInstructionLines(result_lines)
+            parsed_results = self.parse_instruction_lines(result_lines)
         elif cmd_toks[0].startswith("lm"):
-            parsed_results = self.ParseLM(result_lines)
+            parsed_results = self.parse_lm(result_lines)
             pprint.pprint(parsed_results)
         elif cmd_toks[0] == 'k':
             pass #TODO: put comments where any call stack matches
 
         return parsed_results
 
-    def ParseRegisterLine(self, line):
+    def parse_register_line(self, line):
         registers = {}
         m = self.RegisterLinePattern.match(line)
         if m != None:
@@ -98,10 +98,10 @@ class Parser:
                 if len(toks) == 1:
                     registers[toks[0]] = 1
                 elif len(toks) == 2:
-                    registers[toks[0]] = util.common.Int(toks[1])
+                    registers[toks[0]] = util.common.convert_to_int(toks[1])
         return registers
 
-    def ParseLM(self, result_lines):
+    def parse_lm(self, result_lines):
         parsed_results = []
         for line in result_lines:
             m = self.LMLine.match(line)
@@ -115,7 +115,7 @@ class Parser:
                 })
         return parsed_results
         
-    def ParseInstructionLines(self, result_lines):
+    def parse_instruction_lines(self, result_lines):
         parsed_results = []
         registers = {}
         current_location = []
@@ -124,10 +124,10 @@ class Parser:
             if m != None:
                 parsed_results.append(
                     {
-                        'Address': util.common.Int(m.group(1)), 
-                        'Bytes': util.common.HexStrToBytes(m.group(2)), 
+                        'Address': util.common.convert_to_int(m.group(1)), 
+                        'Bytes': util.common.hex_string_to_bytes(m.group(2)), 
                         'Op': m.group(3), 
-                        'Operands': self.ParseOperandLine(m.group(4)), 
+                        'Operands': self.parse_operand_line(m.group(4)), 
                         'Registers': registers, 
                         'Location': current_location
                     }
@@ -140,10 +140,10 @@ class Parser:
             if m != None:
                 parsed_results.append(
                     {
-                        'Address': util.common.Int(m.group(1)), 
-                        'Bytes': util.common.HexStrToBytes(m.group(2)), 
+                        'Address': util.common.convert_to_int(m.group(1)), 
+                        'Bytes': util.common.hex_string_to_bytes(m.group(2)), 
                         'Op': m.group(3), 
-                        'Operands': self.ParseOperandLine(m.group(4)), 
+                        'Operands': self.parse_operand_line(m.group(4)), 
                         'Registers': registers, 
                         'Location': current_location
                     }
@@ -152,18 +152,18 @@ class Parser:
                 current_location = []
                 continue
                 
-            registers = self.ParseRegisterLine(line)
+            registers = self.parse_register_line(line)
             if len(registers)>0:
                 continue
 
             m = self.CurrentLocationPattern.match(line)
             if m != None:
-                current_location = ((m.group(1), m.group(2), util.common.Int(m.group(3))))
+                current_location = ((m.group(1), m.group(2), util.common.convert_to_int(m.group(3))))
                 continue
 
             m = self.CurrentLocationWithSourcePattern.match(line)
             if m != None:
-                current_location = ((m.group(1), m.group(2), util.common.Int(m.group(3))))
+                current_location = ((m.group(1), m.group(2), util.common.convert_to_int(m.group(3))))
                 continue
 
             m = self.CurrentLocationShortPattern.match(line)
@@ -178,10 +178,10 @@ class Parser:
             
         return parsed_results
         
-    def ParseT(self, data):
-        return self.ParseInstructionLines(data.splitlines())
+    def parse_t(self, data):
+        return self.parse_instruction_lines(data.splitlines())
         
-    def ParseOperandLine(self, operand_line):
+    def parse_operand_line(self, operand_line):
         operand = operand_line
         pointer_line = ''
         m = self.Pointer64DumpPattern.match(operand_line)
@@ -205,7 +205,7 @@ class Parser:
         operands = operand.split(', ')    
         return (operands, pointer_line)
 
-    def ParseX(self, data):
+    def parse_x(self, data):
         map = {}
         for line in data.splitlines():
             try:
@@ -213,18 +213,18 @@ class Parser:
                 for pattern in self.XPatterns:
                     m = pattern.match(line)
                     if m:
-                        address = util.common.Int(m.group(1), 0x10)
+                        address = util.common.convert_to_int(m.group(1), 0x10)
                         name = m.group(2)
                         map[address] = name
                         break
 
                 if name == '':
-                    self.logger.debug('ParseX: none matched line - %s' % line)
+                    self.logger.debug('parse_x: none matched line - %s' % line)
             except:
                 pass
         return map
 
-    def ParseLMVM(self, data):
+    def parse_lmvm(self, data):
         info = {}
         for line in data.splitlines():
             toks = re.split(":[ ]+", re.sub("^[ ]+", "", line))
@@ -233,7 +233,7 @@ class Parser:
                 info[toks[0]] = toks[1]
         return info
         
-    def ParseAddress(self, data, debug = 0):
+    def parse_address(self, data, debug = 0):
         lines = data.splitlines()
         address_list = []
         for line in lines:
@@ -241,9 +241,9 @@ class Parser:
             m = self.AddressesPattern.match(line)
             if m:
                 mem_info = {
-                    'BaseAddr': util.common.Int(m.groups()[0]), 
-                    'EndAddr': util.common.Int(m.groups()[1]), 
-                    'RgnSize': util.common.Int(m.groups()[2]), 
+                    'BaseAddr': util.common.convert_to_int(m.groups()[0]), 
+                    'EndAddr': util.common.convert_to_int(m.groups()[1]), 
+                    'RgnSize': util.common.convert_to_int(m.groups()[2]), 
                     'Type': m.groups()[3], 
                     'State': m.groups()[4], 
                     'Protect': m.groups()[5], 
@@ -255,9 +255,9 @@ class Parser:
                 m = self.Addresses2Pattern.match(line)
                 if m:
                     mem_info = {
-                        'BaseAddr': util.common.Int(m.groups()[0]), 
-                        'EndAddr': util.common.Int(m.groups()[1]), 
-                        'RgnSize': util.common.Int(m.groups()[2]), 
+                        'BaseAddr': util.common.convert_to_int(m.groups()[0]), 
+                        'EndAddr': util.common.convert_to_int(m.groups()[1]), 
+                        'RgnSize': util.common.convert_to_int(m.groups()[2]), 
                         'Type': m.groups()[3], 
                         'State': m.groups()[4], 
                         'Usage': m.groups()[5], 
@@ -275,7 +275,7 @@ class Parser:
 
         return address_list
 
-    def ParseAddressDetails(self, data, debug = 0):
+    def parse_address_details(self, data, debug = 0):
         name_convert_map = {
             'Module name': 'Module Name'
         }
@@ -298,7 +298,7 @@ class Parser:
                 pass
         return address_details
 
-    def Dump(self, level = 0):
+    def dump(self, level = 0):
         for (seq, cmd_line, parsed_results, result_lines) in self.CmdResults:
             print('* %.4d: %s' % (seq , cmd_line))
             
@@ -312,10 +312,10 @@ class Parser:
                     bytes = parsed_result['Bytes']
 
                     print('>> Disasm: %.8x %s %s' % (addr, op, ', '.join(operands)))
-                    print('\t', util.common.BytesToHexStr(bytes))
+                    print('\t', util.common.bytes_to_hex_string(bytes))
                     if self.UseVex:
                         parser = vex.windbg.Parser(bytes, addr, 'x64')
-                        (read_commands, write_commands) = parser.GetWinDBGDumpCommands()
+                        (read_commands, write_commands) = parser.get_windbg_dump_commands()
                         
                         print('>> Commands: ', read_commands, write_commands)
                     print('')
@@ -326,14 +326,14 @@ class Parser:
                 print('')
                 
 
-    def SkipSpaces(self, line):
+    def skip_spaces(self, line):
         m = re.search('^[ \t]+', line)        
         if m:
             line = line[m.end():]
         return line
 
     # 76b89910 55              push    ebp
-    def ParseDisasmLine(self, line):
+    def parse_disassembly_line(self, line):
         parsed_disasm_line = {'Line':line}
         # Address
         m = re.search('^([0-9a-fA-F]+)[ \t]+', line)
@@ -356,7 +356,7 @@ class Parser:
             line = line[m.end():]
 
         parsed_disasm_line['Bytes'] = insn_bytes
-        line = self.SkipSpaces(line)
+        line = self.skip_spaces(line)
             
         m = re.search('^[^ \t]+', line)
         if m:
@@ -367,7 +367,7 @@ class Parser:
             parsed_disasm_line['Op'] = op
             line = line[m.end():]
 
-        line = self.SkipSpaces(line)
+        line = self.skip_spaces(line)
         operands = []
         for operand in re.split(', [ \t]*', line):
             operand = operand.strip()
@@ -376,7 +376,7 @@ class Parser:
         
         return parsed_disasm_line
 
-    def ParseRunLogOutput(self):
+    def parse_run_log_output(self):
         bp_point = {}
         self.RunLogOutputLines = []
         for line in self.Data.splitlines():
@@ -407,7 +407,7 @@ class Parser:
                 bp_point['Memory'].append((address, value))
                 continue
                 
-            parsed_disasm_line = self.ParseDisasmLine(line)
+            parsed_disasm_line = self.parse_disassembly_line(line)
             
             if parsed_disasm_line != None:
                 if not bp_point.has_key('DisasmLines'):
@@ -417,7 +417,7 @@ class Parser:
 
         self.RunLogOutputLines.append(bp_point)
 
-    def ParseRunLogOutputLines(self):
+    def parse_run_log_output_lines(self):
         echo_cmd_maps = {}
         for line in self.Data.splitlines():
             (bp_cmd, addr, cmd) = line.split(' ', 2)
@@ -431,7 +431,7 @@ class Parser:
                 print(bp_cmd, addr, cmd)
                 print('%s %.16X %s' % (bp_cmd, int(addr, 16)+(new_addr-orig_addr), cmd))
                 
-    def DumpRunLogOutput(self):
+    def dump_run_log_output(self):
         for log_output in self.RunLogOutputLines:
             if not log_output.has_key('Address'):
                 continue
@@ -472,11 +472,11 @@ if __name__ == '__main__':
         data = fd.read()
         fd.close()
         log_parser = Parser(use_vex = use_vex)
-        pprint.pprint(log_parser.ParseAddress(data))
+        pprint.pprint(log_parser.parse_address(data))
     elif options.run_log:
         parser = Parser(options.run_log)
-        parser.DumpRunLogOutput()
+        parser.dump_run_log_output()
     else:
         filename = args[1]
         log_parser = Parser(filename, use_vex = use_vex)
-        log_parser.Dump()
+        log_parser.dump()
