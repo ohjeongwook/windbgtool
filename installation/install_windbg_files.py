@@ -16,31 +16,34 @@ python_folders32 = []
 
 pykd_folder = r'\Lib\site-packages\pykd'
 if bits == '64bit':
-    windbg_folders64.append(os.environ["ProgramW6432"] + r'\Windows Kits\10\Debuggers\x64')
     windbg_folders64.append(os.environ["ProgramW6432"] + r'\Debugging Tools for Windows (x64)')
+    windbg_folders64.append(os.environ["ProgramW6432"] + r'\Windows Kits\10\Debuggers\x64')
+    windbg_folders64.append(os.environ["ProgramFiles(x86)"] + r'\Windows Kits\10\Debuggers\x64')
 
     windbg_folders32.append(os.environ["ProgramFiles(x86)"] + r'\Windows Kits\10\Debuggers\x86')
     windbg_folders32.append(os.environ["ProgramW6432"] + r'\Debugging Tools for Windows (x64)\Wow64')
 
     python_folders64.append(r'C:\python27-x64' + pykd_folder)
     python_folders64.append(os.environ['LOCALAPPDATA'] + r'\Programs\Python\Python37' + pykd_folder)
+    python_folders64.append(os.environ['LOCALAPPDATA'] + r'\Programs\Python\Python38' + pykd_folder)
 
     python_folders32.append(r'C:\Python27' + pykd_folder)
     python_folders32.append(os.environ['LOCALAPPDATA'] + r'\Programs\Python\Python37-32' + pykd_folder)
+    python_folders32.append(os.environ['LOCALAPPDATA'] + r'\Programs\Python\Python38-32' + pykd_folder)
 
 elif bits == '32bit':
     windbg_folders32.append(os.environ["ProgramFiles"])
     python_folders32.append(r'C:\Python27' + pykd_folder)
 
-def CopyFiles(src_folder, dst_folders):
-    for windbg_folder in src_folder:
+def CopyFiles(windbg_folders, python_folders):
+    for windbg_folder in windbg_folders:
         if not os.path.isdir(windbg_folder):
             continue
 
-        for python_folder in dst_folders:
+        for python_folder in python_folders:
             if not os.path.isdir(python_folder):
                 continue        
-            print('\t'+windbg_folder + ' -> ' + python_folder)
+            print('\t' + windbg_folder + ' -> ' + python_folder)
 
             for filename in ('dbgeng.dll', 'dbghelp.dll', 'DbgModel.dll', 'msdia140.dll', 'srcsrv.dll', 'symsrv.dll'):
                 try:
