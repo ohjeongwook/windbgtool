@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="windbgtool-ohjeongwook",
-    version="0.0.1",
+    version="1.0",
     author="Matt Oh",
     author_email="jeongoh@darungrim.com",
     description="WinDbg Tool",
