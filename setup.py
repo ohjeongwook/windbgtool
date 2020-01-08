@@ -16,7 +16,7 @@ setuptools.setup(
     install_requires=[
         'pykd',
         'capstone',
-        'pyvex',
+        #'pyvex',
         'archinfo',
         'cffi',
         'idatool-ohjeongwook @ git+https://github.com/ohjeongwook/idatool@v1.0#egg=idatool-ohjeongwook',
