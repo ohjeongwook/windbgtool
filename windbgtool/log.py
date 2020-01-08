@@ -8,11 +8,6 @@ import logging
 
 import util.common
 
-try:
-    import vex.windbg
-except:
-    pass
-
 class Parser:
     CmdPattern = re.compile("^[0-9]:[0-9][0-9][0-9]> (.*)")
     InstructionLinePattern = re.compile("(^[0-9a-fA-F]{8}) ([0-9a-fA-F]+)[ ]+([a-zA-Z]+)[ ]*(.*)")
@@ -36,11 +31,7 @@ class Parser:
     LMLine = re.compile('^([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ \t]+)[ ]+\(([a-zA-Z ]+)\)[ ]*(.*)') #
 
     def __init__(self, filename = '', use_vex = False):
-        self.logger = logging.getLogger(__name__)
-        if "vex.windbg" not in sys.modules:
-            self.UseVex = False
-        self.UseVex = use_vex
-        
+        self.logger = logging.getLogger(__name__)       
         self.CmdResults = []
         self.RunLogOutputLines = []
 
@@ -313,11 +304,6 @@ class Parser:
 
                     print('>> Disasm: %.8x %s %s' % (addr, op, ', '.join(operands)))
                     print('\t', util.common.bytes_to_hex_string(bytes))
-                    if self.UseVex:
-                        parser = vex.windbg.Parser(bytes, addr, 'x64')
-                        (read_commands, write_commands) = parser.get_windbg_dump_commands()
-                        
-                        print('>> Commands: ', read_commands, write_commands)
                     print('')
                 print('')
                 
