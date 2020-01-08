@@ -13,5 +13,9 @@ pip install git+https://github.com/ohjeongwook/windbgtool --upgrade
 ```
 
 3. PyKD has some issues with DLL package distribution.
-   * Run [install_windbg_files.py](pykdfix/install_windbg_files.py) to fix dependencies on the target machine
+   * Run following command to fix PyKD WinDbg dependencies on the target machine
+   
+```
+python -m pykdfix.fix_windbg_files
+```
 
