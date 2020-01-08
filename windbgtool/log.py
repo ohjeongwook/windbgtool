@@ -6,7 +6,7 @@ import re
 import pprint
 import logging
 
-import util.common
+import windbgtool.util
 
 class Parser:
     CmdPattern = re.compile("^[0-9]:[0-9][0-9][0-9]> (.*)")
@@ -89,7 +89,7 @@ class Parser:
                 if len(toks) == 1:
                     registers[toks[0]] = 1
                 elif len(toks) == 2:
-                    registers[toks[0]] = util.common.convert_to_int(toks[1])
+                    registers[toks[0]] = windbgtool.util.convert_to_int(toks[1])
         return registers
 
     def parse_lm(self, result_lines):
@@ -115,8 +115,8 @@ class Parser:
             if m != None:
                 parsed_results.append(
                     {
-                        'Address': util.common.convert_to_int(m.group(1)), 
-                        'Bytes': util.common.hex_string_to_bytes(m.group(2)), 
+                        'Address': windbgtool.util.convert_to_int(m.group(1)), 
+                        'Bytes': windbgtool.util.hex_string_to_bytes(m.group(2)), 
                         'Op': m.group(3), 
                         'Operands': self.parse_operand_line(m.group(4)), 
                         'Registers': registers, 
@@ -131,8 +131,8 @@ class Parser:
             if m != None:
                 parsed_results.append(
                     {
-                        'Address': util.common.convert_to_int(m.group(1)), 
-                        'Bytes': util.common.hex_string_to_bytes(m.group(2)), 
+                        'Address': windbgtool.util.convert_to_int(m.group(1)), 
+                        'Bytes': windbgtool.util.hex_string_to_bytes(m.group(2)), 
                         'Op': m.group(3), 
                         'Operands': self.parse_operand_line(m.group(4)), 
                         'Registers': registers, 
@@ -149,12 +149,12 @@ class Parser:
 
             m = self.CurrentLocationPattern.match(line)
             if m != None:
-                current_location = ((m.group(1), m.group(2), util.common.convert_to_int(m.group(3))))
+                current_location = ((m.group(1), m.group(2), windbgtool.util.convert_to_int(m.group(3))))
                 continue
 
             m = self.CurrentLocationWithSourcePattern.match(line)
             if m != None:
-                current_location = ((m.group(1), m.group(2), util.common.convert_to_int(m.group(3))))
+                current_location = ((m.group(1), m.group(2), windbgtool.util.convert_to_int(m.group(3))))
                 continue
 
             m = self.CurrentLocationShortPattern.match(line)
@@ -204,7 +204,7 @@ class Parser:
                 for pattern in self.XPatterns:
                     m = pattern.match(line)
                     if m:
-                        address = util.common.convert_to_int(m.group(1), 0x10)
+                        address = windbgtool.util.convert_to_int(m.group(1), 0x10)
                         name = m.group(2)
                         map[address] = name
                         break
@@ -232,9 +232,9 @@ class Parser:
             m = self.AddressesPattern.match(line)
             if m:
                 mem_info = {
-                    'BaseAddr': util.common.convert_to_int(m.groups()[0]), 
-                    'EndAddr': util.common.convert_to_int(m.groups()[1]), 
-                    'RgnSize': util.common.convert_to_int(m.groups()[2]), 
+                    'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
+                    'EndAddr': windbgtool.util.convert_to_int(m.groups()[1]), 
+                    'RgnSize': windbgtool.util.convert_to_int(m.groups()[2]), 
                     'Type': m.groups()[3], 
                     'State': m.groups()[4], 
                     'Protect': m.groups()[5], 
@@ -246,9 +246,9 @@ class Parser:
                 m = self.Addresses2Pattern.match(line)
                 if m:
                     mem_info = {
-                        'BaseAddr': util.common.convert_to_int(m.groups()[0]), 
-                        'EndAddr': util.common.convert_to_int(m.groups()[1]), 
-                        'RgnSize': util.common.convert_to_int(m.groups()[2]), 
+                        'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
+                        'EndAddr': windbgtool.util.convert_to_int(m.groups()[1]), 
+                        'RgnSize': windbgtool.util.convert_to_int(m.groups()[2]), 
                         'Type': m.groups()[3], 
                         'State': m.groups()[4], 
                         'Usage': m.groups()[5], 
@@ -303,7 +303,7 @@ class Parser:
                     bytes = parsed_result['Bytes']
 
                     print('>> Disasm: %.8x %s %s' % (addr, op, ', '.join(operands)))
-                    print('\t', util.common.bytes_to_hex_string(bytes))
+                    print('\t', windbgtool.util.bytes_to_hex_string(bytes))
                     print('')
                 print('')
                 

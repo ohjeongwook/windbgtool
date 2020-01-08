@@ -11,7 +11,7 @@ import base64
 
 import pykd
 
-import util.common
+import windbgtool.util
 import windbgtool.log
 import windbgtool.breakpoints
 
@@ -141,7 +141,7 @@ class DbgEngine:
             toks = line.split()[0:4]
             
             if len(toks) >= 4:
-                (start, end, module, full_path) = (util.common.convert_to_int(toks[0]), util.common.convert_to_int(toks[1]), toks[2], toks[3])
+                (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
             
                 self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
                 self.Modules[module] = (start, end, full_path)
@@ -157,7 +157,7 @@ class DbgEngine:
         else:
             line = lines[2]
             toks = line.split()[0:4]
-            (start, end, module, full_path) = (util.common.convert_to_int(toks[0]), util.common.convert_to_int(toks[1]), toks[2], toks[3])
+            (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
         
             self.Logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
             self.Modules[module] = (start, end, full_path)
@@ -257,7 +257,7 @@ class DbgEngine:
         
         if len(addr_toks)>1:
             addr_str = addr_toks[0]
-            offset = util.common.convert_to_int(addr_toks[1], 16)
+            offset = windbgtool.util.convert_to_int(addr_toks[1], 16)
         else:
             offset = 0
 
@@ -265,7 +265,7 @@ class DbgEngine:
         
         res_lines = res.splitlines()
         if len(res_lines)>0:
-            return util.common.convert_to_int(res_lines[-1].split()[0])+offset
+            return windbgtool.util.convert_to_int(res_lines[-1].split()[0])+offset
         else:
             [module, symbol] = addr_str.split("!")
             for line in self.run_command("x %s!" % (module)).splitlines():
@@ -275,7 +275,7 @@ class DbgEngine:
                     xaddress_str = toks[1]
                     
                     if xaddress_str == addr_str:
-                        return util.common.convert_to_int(xaddress)+offset
+                        return windbgtool.util.convert_to_int(xaddress)+offset
 
             return 0+offset
 

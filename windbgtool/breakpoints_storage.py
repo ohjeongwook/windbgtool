@@ -7,7 +7,7 @@ import pprint
 import json
 import base64
 
-import util.common
+import windbgtool.util
 
 class Storage:
     def __init__(self,filename,module_name = '',prototype_filename = ''):
@@ -336,7 +336,7 @@ class Record:
                     if 'Type' in dump_target['Target']:
                         type = dump_target['Target']['Type']
                     elif 'DumpInstruction' in dump_target['Target']:
-                        for line in util.common.dump_hex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
+                        for line in windbgtool.util.dump_hex(base64.b64decode(dump_target['Value']),prefix = '\t\t').splitlines():
                             parameter_lines.append(line)
                         continue
 
@@ -358,14 +358,14 @@ class Record:
                             elif 'String' in parameter:
                                 parameter_lines.append('\t'+parameter['String'])
                             elif 'Bytes' in parameter:
-                                for line in util.common.dump_hex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
+                                for line in windbgtool.util.dump_hex(base64.b64decode(parameter['Bytes']),prefix = '\t\t').splitlines():
                                     parameter_lines.append(line)
 
                     elif type == 'Function':
                         for arg in value:
                             parameter_lines.append('\t%s: %.8x' % (arg['Name'], arg['Value']))
                             if arg['Bytes']:
-                                for line in util.common.dump_hex(base64.b64decode(arg['Bytes']),prefix = '\t\t').splitlines():
+                                for line in windbgtool.util.dump_hex(base64.b64decode(arg['Bytes']),prefix = '\t\t').splitlines():
                                     parameter_lines.append(line)
                     
                 if symbol:

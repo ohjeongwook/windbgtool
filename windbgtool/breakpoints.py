@@ -10,7 +10,7 @@ import logging
 import base64
 
 import pykd
-import util.common
+import windbgtool.util
 import windbgtool.breakpoints_storage
         
 class Operations:
