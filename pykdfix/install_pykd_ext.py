@@ -34,9 +34,18 @@ elif bits == '32bit':
 for windbg_folder in windbg_folders64:
     if not os.path.isdir(windbg_folder):
         continue
-    shutil.copy(r'pykd_ext_2.0.0.22\x64\pykd.dll', windbg_folder + '\winext')
+
+    src = r'pykd_ext_2.0.0.22\x64\pykd.dll'
+    dst = windbg_folder + '\winext'
+    print('Copying "%s" -> "%s"' % (src, dst))
+    shutil.copy(src, dst)
 
 for windbg_folder in windbg_folders32:
     if not os.path.isdir(windbg_folder):
         continue
-    shutil.copy(r'pykd_ext_2.0.0.22\x86\pykd.dll', windbg_folder + '\winext')
+
+    src = r'pykd_ext_2.0.0.22\x86\pykd.dll'
+    dst = windbg_folder + '\winext'
+    print('Copying "%s" -> "%s"' % (src, dst))
+    shutil.copy(src, dst)
+
