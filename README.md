@@ -1,34 +1,22 @@
-# windbgtool
+# WinDbgTool
 
 This is a WinDbg Toolbox package. This tool runs more complicated operations based upon PyKD package.
 
-# Installation
-## Python 3.x
+## Installation
 
-* Install python 3.x on the target system from [Python Releases for Windows](https://www.python.org/downloads/windows/)
-
-* Install pip if it is not installed
+Run pip to install windbgtool from this repository:
 
 ```
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
+pip install git+https://github.com/ohjeongwook/windbgtool --upgrade
 ```
 
-## Python Modules
-* Install dependencies:
+## PyKD + WinDbg Integration Issue Fixes
 
-```
-pip install pykd
-pip install capstone
-pip install pyvex
-pip install archinfo
-pip install cffi
-pip install git+https://github.com/ohjeongwook/idatool
-```
-
-## PyKD + WinDbg Integration
+* There are some compatibility issues with existing PyKD DLL distributions. This is how you can fix it.
 
 1. Locate Python installation folder.
+
+Ex)
 
 ```
 %LOCALAPPDATA%\Programs\Python\Python37-32\python.exe
@@ -36,20 +24,22 @@ pip install git+https://github.com/ohjeongwook/idatool
 
 2. Locate pykd site-packages folder:
 
+Ex)
+
 ```
 %LOCALAPPDATA%\Programs\Python\Python37-32\Lib\site-packages\pykd
 ```
 
 3. Locate WinDbg extension folders
 
-64 bit WinDbg Installation:
-> "%ProgramFiles%\Debugging Tools for Windows (x64)\winext"
+* 64 bit WinDbg Installation:
+   > "%ProgramFiles%\Debugging Tools for Windows (x64)\winext"
 
-32 bit WinDbg in 64 bit WinDbg Installation:
-> "%ProgramFiles%\Debugging Tools for Windows (x64)\Wow64\winext"
+* 32 bit WinDbg in 64 bit WinDbg Installation:
+   > "%ProgramFiles%\Debugging Tools for Windows (x64)\Wow64\winext"
 
-32 bit WinDbg Installation:
-> "%ProgramFiles%\Debugging Tools for Windows (x86)\winext"
+* 32 bit WinDbg Installation:
+   > "%ProgramFiles%\Debugging Tools for Windows (x86)\winext"
 
 ### PyKD from WinDbg
 
@@ -128,18 +118,3 @@ symsrv.dll
 winext\*.dll
 
 * Use [install_windbg_files.py](windbgtool\install_windbg_files.py) to copy dependencies.
-
-
-## Installing windbgtool
-
-Run pip to install windbgtool from this repository:
-
-```
-pip install git+https://github.com/ohjeongwook/windbgtool
-```
-
-For upgrading existing modules.
-
-```
-pip install git+https://github.com/ohjeongwook/windbgtool --upgrade
-```
