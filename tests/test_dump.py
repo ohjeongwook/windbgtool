@@ -19,4 +19,4 @@ if __name__ == '__main__':
     dbg_engine.load_symbols(['kernel32', 'ntdll'])
 
     for address in dbg_engine.get_address_list():
-        print(address['Comment'] + ': ' + hex(address['BaseAddr']))
+        print('> BaseAddress: ' + hex(address['BaseAddr']) + ' Comments: ' + address['Comment'])
