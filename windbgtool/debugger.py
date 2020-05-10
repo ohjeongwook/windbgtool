@@ -30,7 +30,7 @@ class DbgEngine:
         self.module_symbol_map = {}
         self.symbol_to_address = {}
 
-        self.WindbgLogParser = windbgtool.log.Parser()
+        self.windbg_log_parser = windbgtool.log.Parser()
 
     def __del__(self):
         self.close_dump()
@@ -122,10 +122,10 @@ class DbgEngine:
         return False
 
     def get_address_info(self, address):
-        return self.WindbgLogParser.parse_address_details(self.run_command("!address %x" % address))
+        return self.windbg_log_parser.parse_address_details(self.run_command("!address %x" % address))
 
     def get_address_list(self):
-        return self.WindbgLogParser.parse_address(self.run_command("!address"))
+        return self.windbg_log_parser.parse_address(self.run_command("!address"))
 
     def get_address_details(self, type):
         results = []
@@ -180,7 +180,7 @@ class DbgEngine:
             self.module_list[module] = (start, end, full_path)
 
     def get_addresses(self, name):
-        return self.WindbgLogParser.parse_x(self.run_command("x %s" % name))        
+        return self.windbg_log_parser.parse_x(self.run_command("x %s" % name))        
 
     def enumerate_module_symbols(self, module_name_patterns = []):
         map = {}
@@ -286,7 +286,7 @@ class DbgEngine:
         return ''
 
     def get_module_info(self, module):
-        return self.WindbgLogParser.parse_lmvm(self.run_command("lmvm "+module))        
+        return self.windbg_log_parser.parse_lmvm(self.run_command("lmvm "+module))        
 
     def resolve_address(self, addr_str):
         addr_toks = addr_str.split("+")

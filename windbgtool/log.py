@@ -9,31 +9,31 @@ import logging
 import windbgtool.util
 
 class Parser:
-    CmdPattern = re.compile("^[0-9]:[0-9][0-9][0-9]> (.*)")
-    InstructionLinePattern = re.compile("(^[0-9a-fA-F]{8}) ([0-9a-fA-F]+)[ ]+([a-zA-Z]+)[ ]*(.*)")
-    Instruction64LinePattern = re.compile("(^[0-9a-fA-F]{8}`[0-9a-fA-F]{8}) ([0-9a-fA-F]+)[ ]+([a-zA-Z]+)[ ]*(.*)")
-    RegisterLinePattern = re.compile("[a-zA-Z0-9 ]* = [0-9a-fA-F]+")
-    PointerDumpPattern = re.compile("(.*) ([a-z]s:[0-9a-fA-F]{8}.*$)")
-    Pointer64DumpPattern = re.compile("(.*) ([a-z]s:[0-9a-fA-F]{8}`[0-9a-fA-F]{8}.*$)")
-    JmpLinePattern = re.compile("(.*) (\(.*\)) \[br = [0-9]+\]")
-    JmpLinePattern2 = re.compile("([^ ]+)[ ]+\[br = [0-9]+\]")
-    AddressesPattern = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
-    Addresses2Pattern = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
+    cmd_pattern = re.compile("^[0-9]:[0-9][0-9][0-9]> (.*)")
+    instruction_line_pattern = re.compile("(^[0-9a-fA-F]{8}) ([0-9a-fA-F]+)[ ]+([a-zA-Z]+)[ ]*(.*)")
+    instruction64_line_pattern = re.compile("(^[0-9a-fA-F]{8}`[0-9a-fA-F]{8}) ([0-9a-fA-F]+)[ ]+([a-zA-Z]+)[ ]*(.*)")
+    register_line_pattern = re.compile("[a-zA-Z0-9 ]* = [0-9a-fA-F]+")
+    pointer_dump_pattern = re.compile("(.*) ([a-z]s:[0-9a-fA-F]{8}.*$)")
+    pointer64_dump_pattern = re.compile("(.*) ([a-z]s:[0-9a-fA-F]{8}`[0-9a-fA-F]{8}.*$)")
+    jump_line_pattern = re.compile("(.*) (\(.*\)) \[br = [0-9]+\]")
+    jump_line_pattern2 = re.compile("([^ ]+)[ ]+\[br = [0-9]+\]")
+    addresses_pattern = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
+    addresses_pattern2 = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
     
-    XPatterns = []
-    XPatterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+([^ \t]+)[ \t]*\(.*\)'))
-    XPatterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+([^ \t]+)[ \t]* = [ \t]*(.*)'))
-    XPatterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+(.+)[ \t]+\(.*\)'))
-    CurrentLocationPattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+)\+(0x[a-fA-F0-9]+):')
-    CurrentLocationWithSourcePattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+)\+(0x[a-fA-F0-9]+) \[.*\]:')
-    CurrentLocationShortPattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+):')
-    CurrentLocationShortWithSourcePattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+) \[.*\]:')
-    LMLine = re.compile('^([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ \t]+)[ ]+\(([a-zA-Z ]+)\)[ ]*(.*)') #
+    x_patterns = []
+    x_patterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+([^ \t]+)[ \t]*\(.*\)'))
+    x_patterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+([^ \t]+)[ \t]* = [ \t]*(.*)'))
+    x_patterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+(.+)[ \t]+\(.*\)'))
+    current_location_pattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+)\+(0x[a-fA-F0-9]+):')
+    current_location_with_source_pattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+)\+(0x[a-fA-F0-9]+) \[.*\]:')
+    current_location_short_pattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+):')
+    current_location_short_with_source_pattern = re.compile('^([a-zA-Z0-9]+)!([a-zA-Z0-9_:]+) \[.*\]:')
+    lm_line = re.compile('^([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ \t]+)[ ]+\(([a-zA-Z ]+)\)[ ]*(.*)') #
 
     def __init__(self, filename = '', use_vex = False):
         self.logger = logging.getLogger(__name__)       
-        self.CmdResults = []
-        self.RunLogOutputLines = []
+        self.command_results = []
+        self.run_log_output_lines = []
 
         if filename:
             fd = open(filename, 'r')
@@ -45,14 +45,14 @@ class Parser:
     def parse_cmd_lines(self):
         seq = 0
 
-        self.CmdResults = []
+        self.command_results = []
         cmd_line = ''
         cmd_output_lines = []
         for line in self.Data.splitlines():
-            cmd_line_match = self.CmdPattern.match(line)
+            cmd_line_match = self.cmd_pattern.match(line)
             if cmd_line_match != None:
                 parsed_cmd_lines = self.parse_cmd_output_lines(cmd_line, cmd_output_lines)
-                self.CmdResults.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
+                self.command_results.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
 
                 seq += 1
                 cmd_line = cmd_line_match.group(1)
@@ -61,7 +61,7 @@ class Parser:
                 cmd_output_lines.append(line)
 
         parsed_cmd_lines = self.parse_cmd_output_lines(cmd_line, cmd_output_lines)
-        self.CmdResults.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
+        self.command_results.append((seq, cmd_line, parsed_cmd_lines, cmd_output_lines))
 
     def parse_cmd_output_lines(self, cmd, result_lines):
         cmd_toks = cmd.split()
@@ -81,7 +81,7 @@ class Parser:
 
     def parse_register_line(self, line):
         registers = {}
-        m = self.RegisterLinePattern.match(line)
+        m = self.register_line_pattern.match(line)
         if m != None:
             for reg_line in line.split():
                 toks = reg_line.split('=')                
@@ -95,7 +95,7 @@ class Parser:
     def parse_lm(self, result_lines):
         parsed_results = []
         for line in result_lines:
-            m = self.LMLine.match(line)
+            m = self.lm_line.match(line)
             if m != None:
                 parsed_results.append({
                     'Start': m.group(1), 
@@ -111,7 +111,7 @@ class Parser:
         registers = {}
         current_location = []
         for line in result_lines:
-            m = self.Instruction64LinePattern.match(line)
+            m = self.instruction64_line_pattern.match(line)
             if m != None:
                 parsed_results.append(
                     {
@@ -127,7 +127,7 @@ class Parser:
                 current_location = []
                 continue
 
-            m = self.InstructionLinePattern.match(line)
+            m = self.instruction_line_pattern.match(line)
             if m != None:
                 parsed_results.append(
                     {
@@ -147,22 +147,22 @@ class Parser:
             if len(registers)>0:
                 continue
 
-            m = self.CurrentLocationPattern.match(line)
+            m = self.current_location_pattern.match(line)
             if m != None:
                 current_location = ((m.group(1), m.group(2), windbgtool.util.convert_to_int(m.group(3))))
                 continue
 
-            m = self.CurrentLocationWithSourcePattern.match(line)
+            m = self.current_location_with_source_pattern.match(line)
             if m != None:
                 current_location = ((m.group(1), m.group(2), windbgtool.util.convert_to_int(m.group(3))))
                 continue
 
-            m = self.CurrentLocationShortPattern.match(line)
+            m = self.current_location_short_pattern.match(line)
             if m != None:
                 current_location = ((m.group(1), m.group(2), 0))
                 continue
 
-            m = self.CurrentLocationShortWithSourcePattern.match(line)
+            m = self.current_location_short_with_source_pattern.match(line)
             if m != None:
                 current_location = ((m.group(1), m.group(2), 0))
                 continue
@@ -175,21 +175,21 @@ class Parser:
     def parse_operand_line(self, operand_line):
         operand = operand_line
         pointer_line = ''
-        m = self.Pointer64DumpPattern.match(operand_line)
+        m = self.pointer64_dump_pattern.match(operand_line)
         if m != None:
             operand = m.group(1)
             pointer_line = m.group(2)
         else:
-            m = self.PointerDumpPattern.match(operand_line)
+            m = self.pointer_dump_pattern.match(operand_line)
             if m != None:
                 operand = m.group(1)
                 pointer_line = m.group(2)
             else:
-                m = self.JmpLinePattern.match(operand_line)
+                m = self.jump_line_pattern.match(operand_line)
                 if m != None:
                     operand = m.group(1)
                 else:
-                    m = self.JmpLinePattern2.match(operand_line)
+                    m = self.jump_line_pattern2.match(operand_line)
                     if m != None:
                         operand = m.group(1)            
 
@@ -201,7 +201,7 @@ class Parser:
         for line in data.splitlines():
             try:
                 name = ''
-                for pattern in self.XPatterns:
+                for pattern in self.x_patterns:
                     m = pattern.match(line)
                     if m:
                         address = windbgtool.util.convert_to_int(m.group(1), 0x10)
@@ -229,7 +229,7 @@ class Parser:
         address_list = []
         for line in lines:
             mem_info = {}
-            m = self.AddressesPattern.match(line)
+            m = self.addresses_pattern.match(line)
             if m:
                 mem_info = {
                     'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
@@ -243,7 +243,7 @@ class Parser:
                 }
                 pass
             else:
-                m = self.Addresses2Pattern.match(line)
+                m = self.addresses_pattern2.match(line)
                 if m:
                     mem_info = {
                         'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
@@ -290,7 +290,7 @@ class Parser:
         return address_details
 
     def dump(self, level = 0):
-        for (seq, cmd_line, parsed_results, result_lines) in self.CmdResults:
+        for (seq, cmd_line, parsed_results, result_lines) in self.command_results:
             print('* %.4d: %s' % (seq , cmd_line))
             
             if parsed_results != None:
@@ -364,12 +364,12 @@ class Parser:
 
     def parse_run_log_output(self):
         bp_point = {}
-        self.RunLogOutputLines = []
+        self.run_log_output_lines = []
         for line in self.Data.splitlines():
             # * :003123ec call eax
             m = re.match('^\* ([^:]*):([a-fA-F0-9]+) (.*)', line)
             if m:
-                self.RunLogOutputLines.append(bp_point)
+                self.run_log_output_lines.append(bp_point)
                 bp_point = {}
                 bp_point['Function'] = m.group(1)
                 bp_point['Address'] = windbgtool.util.convert_to_int(m.group(2), 16)            
@@ -401,7 +401,7 @@ class Parser:
                 bp_point['DisasmLines'].append(parsed_disasm_line)
                 continue
 
-        self.RunLogOutputLines.append(bp_point)
+        self.run_log_output_lines.append(bp_point)
 
     def parse_run_log_output_lines(self):
         echo_cmd_maps = {}
@@ -418,7 +418,7 @@ class Parser:
                 print('%s %.16X %s' % (bp_cmd, windbgtool.util.convert_to_int(addr, 16)+(new_addr-orig_addr), cmd))
                 
     def dump_run_log_output(self):
-        for log_output in self.RunLogOutputLines:
+        for log_output in self.run_log_output_lines:
             if not log_output.has_key('Address'):
                 continue
 

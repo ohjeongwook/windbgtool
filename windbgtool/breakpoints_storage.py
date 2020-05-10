@@ -11,7 +11,7 @@ import windbgtool.util
 
 class Storage:
     def __init__(self,filename,module_name = '',prototype_filename = ''):
-        self.ModuleName = module_name
+        self.module_name = module_name
         
         if prototype_filename:
             self.load_prototype(prototype_filename)
@@ -51,13 +51,13 @@ class Storage:
                 try:
                     operands = self.get_dump_targets(entry['Operands'])
                     self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Address, RVA, DumpTargets, Type) VALUES (?,?,?,?,?)',
-                        (self.ModuleName, entry['Address'], entry['RVA'], json.dumps(operands), entry['Type']))
+                        (self.module_name, entry['Address'], entry['RVA'], json.dumps(operands), entry['Type']))
                 except:
                     pass
             elif entry['Type'] == 'Function':
                 try:
                     self.Cursor.execute('INSERT INTO Breakpoints (ModuleName, Address, RVA,  DumpTargets, Type) VALUES (?,?,?,?,?)',
-                        (self.ModuleName, entry['Address'], entry['RVA'], json.dumps([entry]), entry['Type']))
+                        (self.module_name, entry['Address'], entry['RVA'], json.dumps([entry]), entry['Type']))
                 except:
                     pass
 

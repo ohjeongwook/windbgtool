@@ -4,15 +4,15 @@ import re
 
 class Generator:
     def __init__(self, target_base_address = 0, src_base_address = 0, arch = 'x86', exclusions = None):
-        self.Arch = arch       
-        self.TargetBaseAddress = target_base_address
-        self.SrcBaseAddress = src_base_address
-        self.ImageBaseDiff = self.TargetBaseAddress-self.SrcBaseAddress
+        self.arch = arch       
+        self.target_base_address = target_base_address
+        self.src_base_address = src_base_address
+        self.image_base_diff = self.target_base_address-self.src_base_address
 
         if exclusions != None:
-            self.Exclusions = exclusions
+            self.exclusions = exclusions
         else:
-            self.Exclusions = {
+            self.exclusions = {
                 'cs:HeapAlloc':1, 
                 'cs:HeapCreate':1, 
                 'cs:DecodePointer':1, 
@@ -56,7 +56,7 @@ class Generator:
             operand_str_list.append(operand_str)
 
             operand_type = operand['Type']
-            if not operand_str in self.Exclusions:
+            if not operand_str in self.exclusions:
                 if operand_type == 'Register':
                     disasm_cmd += 'u @%s L5; ' % (operand_str)
                 elif operand_type == 'Memory' or operand_type == 'Displacement':
@@ -66,7 +66,7 @@ class Generator:
                 else:
                     pass
 
-        rebased_address = self.ImageBaseDiff+current
+        rebased_address = self.image_base_diff+current
         dmp_command = 'bp %.8x ".echo * %s:%.8x %s %s; %s;' % (
                                             rebased_address, 
                                             func_name, 
@@ -76,7 +76,7 @@ class Generator:
                                             disasm_cmd
                                         )
 
-        if self.Arch == 'x86':
+        if self.arch == 'x86':
             dmp_command += 'dps @esp L10'
         else:
             dmp_command += 'r @rcx, @rdx, @r8, @r9'
@@ -87,12 +87,12 @@ class Generator:
         if op == 'call':
             next_address = current+instruction['Size']
             ret_command = 'bp %.8x ".echo * %.16x %s %s Return;' % (
-                                                next_address+self.ImageBaseDiff, 
+                                                next_address+self.image_base_diff, 
                                                 rebased_address, 
                                                 op, 
                                                 ', '.join(operand_str_list)
                                             )
-            if self.Arch == 'x86':
+            if self.arch == 'x86':
                 ret_command += "r @eax;"
             else:
                 ret_command += "r @rax;"
