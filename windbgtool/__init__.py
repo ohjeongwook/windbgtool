@@ -1,1 +1,1 @@
-name = "WinDbgRunBox"
+name = "WindbgTool"
