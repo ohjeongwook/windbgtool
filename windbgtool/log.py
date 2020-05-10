@@ -327,7 +327,7 @@ class Parser:
         if m == None or m.end() == 0:
             return None
 
-        parsed_disasm_line['Address'] = int(m.group(1), 16)
+        parsed_disasm_line['Address'] = convert_to_int(m.group(1), 16)
         line = line[m.end():]
 
         # Hex bytes
@@ -372,7 +372,7 @@ class Parser:
                 self.RunLogOutputLines.append(bp_point)
                 bp_point = {}
                 bp_point['Function'] = m.group(1)
-                bp_point['Address'] = int(m.group(2), 16)            
+                bp_point['Address'] = windbgtool.util.convert_to_int(m.group(2), 16)            
                 bp_point['Disasm Line'] = m.group(3)
                 continue
                     
@@ -387,7 +387,7 @@ class Parser:
             # 0029ea58  00000040
             m = re.match('^([0-9a-fA-F]{8})  ([0-9a-fA-F]{8})', line)
             if m:
-                (address, value) = (int(m.group(1), 16), int(m.group(2), 16))
+                (address, value) = (windbgtool.util.convert_to_int(m.group(1), 16), windbgtool.util.convert_to_int(m.group(2), 16))
                 if not bp_point.has_key('Memory'):
                     bp_point['Memory'] = []
                 bp_point['Memory'].append((address, value))
@@ -415,7 +415,7 @@ class Parser:
         for key in keys:
             for (bp_cmd, addr, cmd) in echo_cmd_maps[key]:
                 print(bp_cmd, addr, cmd)
-                print('%s %.16X %s' % (bp_cmd, int(addr, 16)+(new_addr-orig_addr), cmd))
+                print('%s %.16X %s' % (bp_cmd, windbgtool.util.convert_to_int(addr, 16)+(new_addr-orig_addr), cmd))
                 
     def dump_run_log_output(self):
         for log_output in self.RunLogOutputLines:
