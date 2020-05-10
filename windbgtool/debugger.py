@@ -90,7 +90,7 @@ class DbgEngine:
         if module in self.module_symbol_map:
             del self.module_symbol_map[module]
 
-    def resolve_symbol(self, address):
+    def find_symbol(self, address):
         if address in self.module_symbol_map:
             name = self.module_symbol_map[address]
         else:
@@ -110,7 +110,7 @@ class DbgEngine:
 
         return name
 
-    def get_symbol_address(self, symbol):
+    def resolve_symbol(self, symbol):
         if symbol in self.symbol_to_address:
             return self.symbol_to_address[symbol]
 

@@ -25,7 +25,7 @@ class NotepadTests(unittest.TestCase):
         assert(self.dbg_engine.get_machine() == 'AMD64', "get_machine changed")
 
     def test_get_bytes(self):
-        resolved_address = self.dbg_engine.get_symbol_address('kernel32!CreateFileW')
+        resolved_address = self.dbg_engine.resolve_symbol('kernel32!CreateFileW')
         read_bytes = self.dbg_engine.get_bytes(resolved_address, 10)
         assert(read_bytes == b'\xff%zm\x05\x00\xcc\xcc\xcc\xcc', "test_get_bytes failed")
 
@@ -74,7 +74,7 @@ class NotepadTests(unittest.TestCase):
             orig_kernel32_symbols = json.load(fd)
             assert(kernel32_symbols == orig_kernel32_symbols, "kernel32_symbols changed")
 
-    def test_resolve_symbol(self):
+    def test_find_symbol(self):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(['kernel32'])
 
@@ -84,7 +84,7 @@ class NotepadTests(unittest.TestCase):
                 kernel32_symbols = json.load(fd)
 
                 for address, symbol in kernel32_symbols.items():
-                    resolved_symbol = self.dbg_engine.resolve_symbol(int(address))
+                    resolved_symbol = self.dbg_engine.find_symbol(int(address))
                     assert(resolved_symbol == symbol, "resolve_symbol failed: %s" % symbol)       
 
     def test_resolve_symbol_find_symbol(self):
@@ -99,14 +99,14 @@ class NotepadTests(unittest.TestCase):
 
                 i = 0
                 for address, symbol in kernel32_symbols.items():
-                    resolved_symbol = self.dbg_engine.resolve_symbol(int(address))
+                    resolved_symbol = self.dbg_engine.find_symbol(int(address))
                     assert(resolved_symbol == symbol, "resolve_symbol failed: %s" % symbol)
                     i += 1
 
                     if i > 10:
                         break
 
-    def xtest_get_symbol_address(self):
+    def xtest_resolve_symbol(self):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(['kernel32'])
 
@@ -116,8 +116,8 @@ class NotepadTests(unittest.TestCase):
                 kernel32_symbols = json.load(fd)
 
                 for address, symbol in kernel32_symbols.items():
-                    resolved_address = self.dbg_engine.get_symbol_address('kernel32!' + symbol)
-                    assert(resolved_address == address, "test_get_symbol_address failed: %s" % symbol)           
+                    resolved_address = self.dbg_engine.resolve_symbol('kernel32!' + symbol)
+                    assert(resolved_address == address, "test_resolve_symbol failed: %s" % symbol)           
 
     def test_enumerate_modules(self):
         module_list = self.dbg_engine.enumerate_modules()
