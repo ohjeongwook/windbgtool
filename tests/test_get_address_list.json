@@ -1,0 +1,5657 @@
+[
+    {
+        "BaseAddr": 0,
+        "EndAddr": 146866176,
+        "RgnSize": 146866176,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 146866176,
+        "EndAddr": 146870272,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[2..........J....]"
+    },
+    {
+        "BaseAddr": 146870272,
+        "EndAddr": 2147352576,
+        "RgnSize": 2000482304,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2147352576,
+        "EndAddr": 2147356672,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[User Shared Data]"
+    },
+    {
+        "BaseAddr": 2147356672,
+        "EndAddr": 2147368960,
+        "RgnSize": 12288,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2147368960,
+        "EndAddr": 2147373056,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[HalT......y.....]"
+    },
+    {
+        "BaseAddr": 2147373056,
+        "EndAddr": 1091278929920,
+        "RgnSize": 1089131556864,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 1091278929920,
+        "EndAddr": 1091279372288,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~0;",
+        "Comment": "4d0c.8588]"
+    },
+    {
+        "BaseAddr": 1091279372288,
+        "EndAddr": 1091279384576,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~0; 4d0c.8588]"
+    },
+    {
+        "BaseAddr": 1091279384576,
+        "EndAddr": 1091279454208,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~0; 4d0c.8588]"
+    },
+    {
+        "BaseAddr": 1091279454208,
+        "EndAddr": 1091279896576,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~1;",
+        "Comment": "4d0c.4084]"
+    },
+    {
+        "BaseAddr": 1091279896576,
+        "EndAddr": 1091279908864,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~1; 4d0c.4084]"
+    },
+    {
+        "BaseAddr": 1091279908864,
+        "EndAddr": 1091279978496,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~1; 4d0c.4084]"
+    },
+    {
+        "BaseAddr": 1091279978496,
+        "EndAddr": 1091280306176,
+        "RgnSize": 327680,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 1091280306176,
+        "EndAddr": 1091281686528,
+        "RgnSize": 1380352,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 1091281686528,
+        "EndAddr": 1091281690624,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "PEB",
+        "Comment": "[4d0c]"
+    },
+    {
+        "BaseAddr": 1091281690624,
+        "EndAddr": 1091281698816,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~0; 4d0c.8588]"
+    },
+    {
+        "BaseAddr": 1091281698816,
+        "EndAddr": 1091281707008,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~1; 4d0c.4084]"
+    },
+    {
+        "BaseAddr": 1091281707008,
+        "EndAddr": 1091281715200,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~2; 4d0c.7f70]"
+    },
+    {
+        "BaseAddr": 1091281715200,
+        "EndAddr": 1091281723392,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~3; 4d0c.51e8]"
+    },
+    {
+        "BaseAddr": 1091281723392,
+        "EndAddr": 1091281731584,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~4; 4d0c.29b4]"
+    },
+    {
+        "BaseAddr": 1091281731584,
+        "EndAddr": 1091281739776,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~5; 4d0c.89c4]"
+    },
+    {
+        "BaseAddr": 1091281739776,
+        "EndAddr": 1091281747968,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "TEB",
+        "Comment": "[~6; 4d0c.3ac8]"
+    },
+    {
+        "BaseAddr": 1091281747968,
+        "EndAddr": 1091282403328,
+        "RgnSize": 655360,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 1091282403328,
+        "EndAddr": 1091282845696,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~2;",
+        "Comment": "4d0c.7f70]"
+    },
+    {
+        "BaseAddr": 1091282845696,
+        "EndAddr": 1091282857984,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~2; 4d0c.7f70]"
+    },
+    {
+        "BaseAddr": 1091282857984,
+        "EndAddr": 1091282927616,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~2; 4d0c.7f70]"
+    },
+    {
+        "BaseAddr": 1091282927616,
+        "EndAddr": 1091283369984,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~3;",
+        "Comment": "4d0c.51e8]"
+    },
+    {
+        "BaseAddr": 1091283369984,
+        "EndAddr": 1091283382272,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~3; 4d0c.51e8]"
+    },
+    {
+        "BaseAddr": 1091283382272,
+        "EndAddr": 1091283451904,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~3; 4d0c.51e8]"
+    },
+    {
+        "BaseAddr": 1091283451904,
+        "EndAddr": 1091283894272,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~4;",
+        "Comment": "4d0c.29b4]"
+    },
+    {
+        "BaseAddr": 1091283894272,
+        "EndAddr": 1091283906560,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~4; 4d0c.29b4]"
+    },
+    {
+        "BaseAddr": 1091283906560,
+        "EndAddr": 1091283976192,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~4; 4d0c.29b4]"
+    },
+    {
+        "BaseAddr": 1091283976192,
+        "EndAddr": 1091284418560,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~5;",
+        "Comment": "4d0c.89c4]"
+    },
+    {
+        "BaseAddr": 1091284418560,
+        "EndAddr": 1091284430848,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~5; 4d0c.89c4]"
+    },
+    {
+        "BaseAddr": 1091284430848,
+        "EndAddr": 1091284500480,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~5; 4d0c.89c4]"
+    },
+    {
+        "BaseAddr": 1091284500480,
+        "EndAddr": 1091284942848,
+        "RgnSize": 442368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Stack",
+        "Usage": "[~6;",
+        "Comment": "4d0c.3ac8]"
+    },
+    {
+        "BaseAddr": 1091284942848,
+        "EndAddr": 1091284955136,
+        "RgnSize": 12288,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE|PAGE_GUARD",
+        "Usage": "Stack",
+        "Comment": "[~6; 4d0c.3ac8]"
+    },
+    {
+        "BaseAddr": 1091284955136,
+        "EndAddr": 1091285024768,
+        "RgnSize": 69632,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Stack",
+        "Comment": "[~6; 4d0c.3ac8]"
+    },
+    {
+        "BaseAddr": 1091285024768,
+        "EndAddr": 2423582162944,
+        "RgnSize": 1332297138176,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582162944,
+        "EndAddr": 2423582228480,
+        "RgnSize": 65536,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 1; Handle: 0000023448c10000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423582228480,
+        "EndAddr": 2423582244864,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[.........D..Qp..]"
+    },
+    {
+        "BaseAddr": 2423582244864,
+        "EndAddr": 2423582261248,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582261248,
+        "EndAddr": 2423582294016,
+        "RgnSize": 32768,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582294016,
+        "EndAddr": 2423582400512,
+        "RgnSize": 106496,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[API Set Map]"
+    },
+    {
+        "BaseAddr": 2423582400512,
+        "EndAddr": 2423582425088,
+        "RgnSize": 24576,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582425088,
+        "EndAddr": 2423582441472,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[System Default Activation Context Data]"
+    },
+    {
+        "BaseAddr": 2423582441472,
+        "EndAddr": 2423582490624,
+        "RgnSize": 49152,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582490624,
+        "EndAddr": 2423582502912,
+        "RgnSize": 12288,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[Activation Context Data]"
+    },
+    {
+        "BaseAddr": 2423582502912,
+        "EndAddr": 2423582556160,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582556160,
+        "EndAddr": 2423582564352,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423582564352,
+        "EndAddr": 2423582621696,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423582621696,
+        "EndAddr": 2423583428608,
+        "RgnSize": 806912,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423583428608,
+        "EndAddr": 2423583473664,
+        "RgnSize": 45056,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423583473664,
+        "EndAddr": 2423583481856,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 0; Handle: 0000023448e60000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423583481856,
+        "EndAddr": 2423584272384,
+        "RgnSize": 790528,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "0; Handle: 0000023448e60000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423584272384,
+        "EndAddr": 2423584325632,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423584325632,
+        "EndAddr": 2423584337920,
+        "RgnSize": 12288,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[MZ..............]"
+    },
+    {
+        "BaseAddr": 2423584337920,
+        "EndAddr": 2423584391168,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423584391168,
+        "EndAddr": 2423584395264,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423584395264,
+        "EndAddr": 2423584456704,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423584456704,
+        "EndAddr": 2423584464896,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[Activation Context Data]"
+    },
+    {
+        "BaseAddr": 2423584464896,
+        "EndAddr": 2423584522240,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423584522240,
+        "EndAddr": 2423584526336,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423584526336,
+        "EndAddr": 2423584587776,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423584587776,
+        "EndAddr": 2423585153024,
+        "RgnSize": 565248,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 0; Handle: 0000023448e60000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423585153024,
+        "EndAddr": 2423585632256,
+        "RgnSize": 479232,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "0; Handle: 0000023448e60000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423585632256,
+        "EndAddr": 2423585636352,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423585636352,
+        "EndAddr": 2423585644544,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 2; Handle: 00000234490e0000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423585644544,
+        "EndAddr": 2423586435072,
+        "RgnSize": 790528,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "2; Handle: 00000234490e0000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423586435072,
+        "EndAddr": 2423586488320,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586488320,
+        "EndAddr": 2423586492416,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423586492416,
+        "EndAddr": 2423586553856,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586553856,
+        "EndAddr": 2423586574336,
+        "RgnSize": 20480,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423586574336,
+        "EndAddr": 2423586619392,
+        "RgnSize": 45056,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586619392,
+        "EndAddr": 2423586623488,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423586623488,
+        "EndAddr": 2423586684928,
+        "RgnSize": 61440,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586684928,
+        "EndAddr": 2423586689024,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423586689024,
+        "EndAddr": 2423586750464,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586750464,
+        "EndAddr": 2423586758656,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[MZ..............]"
+    },
+    {
+        "BaseAddr": 2423586758656,
+        "EndAddr": 2423586816000,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586816000,
+        "EndAddr": 2423586824192,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[Activation Context Data]"
+    },
+    {
+        "BaseAddr": 2423586824192,
+        "EndAddr": 2423586881536,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586881536,
+        "EndAddr": 2423586889728,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[MZ..............]"
+    },
+    {
+        "BaseAddr": 2423586889728,
+        "EndAddr": 2423586947072,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423586947072,
+        "EndAddr": 2423586951168,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[xV4.............]"
+    },
+    {
+        "BaseAddr": 2423586951168,
+        "EndAddr": 2423587012608,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423587012608,
+        "EndAddr": 2423587016704,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[xV4.............]"
+    },
+    {
+        "BaseAddr": 2423587016704,
+        "EndAddr": 2423587209216,
+        "RgnSize": 192512,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423587209216,
+        "EndAddr": 2423587270656,
+        "RgnSize": 61440,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 2; Handle: 00000234490e0000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423587270656,
+        "EndAddr": 2423587274752,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423587274752,
+        "EndAddr": 2423587418112,
+        "RgnSize": 143360,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423587418112,
+        "EndAddr": 2423589371904,
+        "RgnSize": 1953792,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423589371904,
+        "EndAddr": 2423590948864,
+        "RgnSize": 1576960,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[GDI Shared Handle Table]"
+    },
+    {
+        "BaseAddr": 2423590948864,
+        "EndAddr": 2423591010304,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423591010304,
+        "EndAddr": 2423592624128,
+        "RgnSize": 1613824,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[........26V.Qp..]"
+    },
+    {
+        "BaseAddr": 2423592624128,
+        "EndAddr": 2423611985920,
+        "RgnSize": 19361792,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423611985920,
+        "EndAddr": 2423612047360,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423612047360,
+        "EndAddr": 2423613079552,
+        "RgnSize": 1032192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[BEGINTHM....Z...]"
+    },
+    {
+        "BaseAddr": 2423613079552,
+        "EndAddr": 2423613095936,
+        "RgnSize": 16384,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423613095936,
+        "EndAddr": 2423613104128,
+        "RgnSize": 8192,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 3; Handle: 000002344aa70000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423613104128,
+        "EndAddr": 2423613894656,
+        "RgnSize": 790528,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "3; Handle: 000002344aa70000; Type: Front End]"
+    },
+    {
+        "BaseAddr": 2423613894656,
+        "EndAddr": 2423614013440,
+        "RgnSize": 118784,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423614013440,
+        "EndAddr": 2423614054400,
+        "RgnSize": 40960,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 3; Handle: 000002344aa70000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423614054400,
+        "EndAddr": 2423614074880,
+        "RgnSize": 20480,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "3; Handle: 000002344aa70000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423614074880,
+        "EndAddr": 2423614078976,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423614078976,
+        "EndAddr": 2423647305728,
+        "RgnSize": 33226752,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423647305728,
+        "EndAddr": 2423666573312,
+        "RgnSize": 19267584,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[..W.............]"
+    },
+    {
+        "BaseAddr": 2423666573312,
+        "EndAddr": 2423669944320,
+        "RgnSize": 3371008,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[........hL..xw..]"
+    },
+    {
+        "BaseAddr": 2423669944320,
+        "EndAddr": 2423669981184,
+        "RgnSize": 36864,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423669981184,
+        "EndAddr": 2423669985280,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[.........2.H4...]"
+    },
+    {
+        "BaseAddr": 2423669985280,
+        "EndAddr": 2423671029760,
+        "RgnSize": 1044480,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423671029760,
+        "EndAddr": 2423671033856,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 2423671033856,
+        "EndAddr": 2423679418368,
+        "RgnSize": 8384512,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423679418368,
+        "EndAddr": 2423679541248,
+        "RgnSize": 122880,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Heap",
+        "Comment": "[ID: 2; Handle: 00000234490e0000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423679541248,
+        "EndAddr": 2423680462848,
+        "RgnSize": 921600,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Protect": "Heap",
+        "Usage": "[ID:",
+        "Comment": "2; Handle: 00000234490e0000; Type: Segment]"
+    },
+    {
+        "BaseAddr": 2423680462848,
+        "EndAddr": 2423680466944,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 2423680466944,
+        "EndAddr": 138491165343744,
+        "RgnSize": 136067484876800,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138491165343744,
+        "EndAddr": 138491165364224,
+        "RgnSize": 20480,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[Read Only Shared Memory]"
+    },
+    {
+        "BaseAddr": 138491165364224,
+        "EndAddr": 138491166392320,
+        "RgnSize": 1028096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138491166392320,
+        "EndAddr": 138495461490688,
+        "RgnSize": 4295098368,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495461490688,
+        "EndAddr": 138495495045120,
+        "RgnSize": 33554432,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495495045120,
+        "EndAddr": 138495495049216,
+        "RgnSize": 4096,
+        "Type": "MEM_PRIVATE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 138495495049216,
+        "EndAddr": 138495495110656,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495495110656,
+        "EndAddr": 138495495114752,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 138495495114752,
+        "EndAddr": 138495495176192,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495495176192,
+        "EndAddr": 138495495319552,
+        "RgnSize": 143360,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Other",
+        "Comment": "[NLS Tables]"
+    },
+    {
+        "BaseAddr": 138495495319552,
+        "EndAddr": 138495495372800,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495495372800,
+        "EndAddr": 138495518961664,
+        "RgnSize": 23588864,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495518961664,
+        "EndAddr": 138495522635776,
+        "RgnSize": 3674112,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495522635776,
+        "EndAddr": 138495526633472,
+        "RgnSize": 3997696,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495526633472,
+        "EndAddr": 138495526645760,
+        "RgnSize": 12288,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 138495526645760,
+        "EndAddr": 140693890609152,
+        "RgnSize": 2198363963392,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140693890609152,
+        "EndAddr": 140693890617344,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140693890617344,
+        "EndAddr": 140694158581760,
+        "RgnSize": 267964416,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694158581760,
+        "EndAddr": 140694173118464,
+        "RgnSize": 14536704,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694173118464,
+        "EndAddr": 140694173134848,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694173134848,
+        "EndAddr": 140694173265920,
+        "RgnSize": 131072,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694173265920,
+        "EndAddr": 140694173298688,
+        "RgnSize": 32768,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694173298688,
+        "EndAddr": 140694174007296,
+        "RgnSize": 708608,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694174007296,
+        "EndAddr": 140694174040064,
+        "RgnSize": 32768,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694174040064,
+        "EndAddr": 140694177062912,
+        "RgnSize": 3022848,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694177062912,
+        "EndAddr": 140694177079296,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694177079296,
+        "EndAddr": 140694186733568,
+        "RgnSize": 9654272,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694186733568,
+        "EndAddr": 140694186782720,
+        "RgnSize": 49152,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694186782720,
+        "EndAddr": 140694187094016,
+        "RgnSize": 311296,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694187094016,
+        "EndAddr": 140694187102208,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694187102208,
+        "EndAddr": 140694188662784,
+        "RgnSize": 1560576,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694188662784,
+        "EndAddr": 140694188699648,
+        "RgnSize": 36864,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694188699648,
+        "EndAddr": 140694189051904,
+        "RgnSize": 352256,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694189051904,
+        "EndAddr": 140694189096960,
+        "RgnSize": 45056,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694189096960,
+        "EndAddr": 140694190071808,
+        "RgnSize": 974848,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190071808,
+        "EndAddr": 140694190084096,
+        "RgnSize": 12288,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190084096,
+        "EndAddr": 140694190301184,
+        "RgnSize": 217088,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190301184,
+        "EndAddr": 140694190313472,
+        "RgnSize": 12288,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190313472,
+        "EndAddr": 140694190354432,
+        "RgnSize": 40960,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190354432,
+        "EndAddr": 140694190358528,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190358528,
+        "EndAddr": 140694190419968,
+        "RgnSize": 61440,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190419968,
+        "EndAddr": 140694190473216,
+        "RgnSize": 53248,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190473216,
+        "EndAddr": 140694190731264,
+        "RgnSize": 258048,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190731264,
+        "EndAddr": 140694190755840,
+        "RgnSize": 24576,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190755840,
+        "EndAddr": 140694190870528,
+        "RgnSize": 114688,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190870528,
+        "EndAddr": 140694190891008,
+        "RgnSize": 20480,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190891008,
+        "EndAddr": 140694190931968,
+        "RgnSize": 40960,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694190931968,
+        "EndAddr": 140694190964736,
+        "RgnSize": 32768,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694190964736,
+        "EndAddr": 140694191353856,
+        "RgnSize": 389120,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191353856,
+        "EndAddr": 140694191370240,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191370240,
+        "EndAddr": 140694191509504,
+        "RgnSize": 139264,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191509504,
+        "EndAddr": 140694191566848,
+        "RgnSize": 57344,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191566848,
+        "EndAddr": 140694191681536,
+        "RgnSize": 114688,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191681536,
+        "EndAddr": 140694191689728,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191689728,
+        "EndAddr": 140694191767552,
+        "RgnSize": 77824,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191767552,
+        "EndAddr": 140694191775744,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191775744,
+        "EndAddr": 140694191841280,
+        "RgnSize": 65536,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191841280,
+        "EndAddr": 140694191845376,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191845376,
+        "EndAddr": 140694191931392,
+        "RgnSize": 86016,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191931392,
+        "EndAddr": 140694191947776,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694191947776,
+        "EndAddr": 140694191951872,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694191951872,
+        "EndAddr": 140694192168960,
+        "RgnSize": 217088,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694192168960,
+        "EndAddr": 140694192177152,
+        "RgnSize": 8192,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694192177152,
+        "EndAddr": 140694192234496,
+        "RgnSize": 57344,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694192234496,
+        "EndAddr": 140694192304128,
+        "RgnSize": 69632,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694192304128,
+        "EndAddr": 140694192394240,
+        "RgnSize": 90112,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694192394240,
+        "EndAddr": 140694192398336,
+        "RgnSize": 4096,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694192398336,
+        "EndAddr": 140694192820224,
+        "RgnSize": 421888,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694192820224,
+        "EndAddr": 140694192852992,
+        "RgnSize": 32768,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694192852992,
+        "EndAddr": 140694192926720,
+        "RgnSize": 73728,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694192926720,
+        "EndAddr": 140694192943104,
+        "RgnSize": 16384,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_NOACCESS",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694192943104,
+        "EndAddr": 140694193008640,
+        "RgnSize": 65536,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "<unknown>",
+        "Comment": "[................]"
+    },
+    {
+        "BaseAddr": 140694193008640,
+        "EndAddr": 140694518628352,
+        "RgnSize": 325619712,
+        "Type": "MEM_MAPPED",
+        "State": "MEM_RESERVE",
+        "Usage": "<unknown>",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140694518628352,
+        "EndAddr": 140697295126528,
+        "RgnSize": 2776498176,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140697295126528,
+        "EndAddr": 140697295130624,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[notepad; \"C:\\Windows\\System32\\notepad.exe\"]"
+    },
+    {
+        "BaseAddr": 140697295130624,
+        "EndAddr": 140697295241216,
+        "RgnSize": 110592,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[notepad; \"C:\\Windows\\System32\\notepad.exe\"]"
+    },
+    {
+        "BaseAddr": 140697295241216,
+        "EndAddr": 140697295273984,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[notepad; \"C:\\Windows\\System32\\notepad.exe\"]"
+    },
+    {
+        "BaseAddr": 140697295273984,
+        "EndAddr": 140697295286272,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[notepad; \"C:\\Windows\\System32\\notepad.exe\"]"
+    },
+    {
+        "BaseAddr": 140697295286272,
+        "EndAddr": 140697295400960,
+        "RgnSize": 114688,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[notepad; \"C:\\Windows\\System32\\notepad.exe\"]"
+    },
+    {
+        "BaseAddr": 140697295400960,
+        "EndAddr": 140715375722496,
+        "RgnSize": 18080321536,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715375722496,
+        "EndAddr": 140715375726592,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrtip; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll\"]"
+    },
+    {
+        "BaseAddr": 140715375726592,
+        "EndAddr": 140715375947776,
+        "RgnSize": 221184,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[imkrtip; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll\"]"
+    },
+    {
+        "BaseAddr": 140715375947776,
+        "EndAddr": 140715376033792,
+        "RgnSize": 86016,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrtip; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll\"]"
+    },
+    {
+        "BaseAddr": 140715376033792,
+        "EndAddr": 140715376037888,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[imkrtip; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll\"]"
+    },
+    {
+        "BaseAddr": 140715376037888,
+        "EndAddr": 140715376570368,
+        "RgnSize": 532480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrtip; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll\"]"
+    },
+    {
+        "BaseAddr": 140715376570368,
+        "EndAddr": 140715385356288,
+        "RgnSize": 8785920,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715385356288,
+        "EndAddr": 140715385360384,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMJKAPI; \"C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385360384,
+        "EndAddr": 140715385483264,
+        "RgnSize": 122880,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[IMJKAPI; \"C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385483264,
+        "EndAddr": 140715385548800,
+        "RgnSize": 65536,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMJKAPI; \"C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385548800,
+        "EndAddr": 140715385556992,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[IMJKAPI; \"C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385556992,
+        "EndAddr": 140715385614336,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMJKAPI; \"C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385614336,
+        "EndAddr": 140715385618432,
+        "RgnSize": 4096,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715385618432,
+        "EndAddr": 140715385622528,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrapi; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140715385622528,
+        "EndAddr": 140715385769984,
+        "RgnSize": 147456,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[imkrapi; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140715385769984,
+        "EndAddr": 140715385835520,
+        "RgnSize": 65536,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrapi; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140715385835520,
+        "EndAddr": 140715385843712,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[imkrapi; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140715385843712,
+        "EndAddr": 140715385872384,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imkrapi; \"C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140715385872384,
+        "EndAddr": 140715385880576,
+        "RgnSize": 8192,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715385880576,
+        "EndAddr": 140715385884672,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMETIP; \"C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715385884672,
+        "EndAddr": 140715386712064,
+        "RgnSize": 827392,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[IMETIP; \"C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715386712064,
+        "EndAddr": 140715387039744,
+        "RgnSize": 327680,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMETIP; \"C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715387039744,
+        "EndAddr": 140715387047936,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[IMETIP; \"C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715387047936,
+        "EndAddr": 140715387158528,
+        "RgnSize": 110592,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IMETIP; \"C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL\"]"
+    },
+    {
+        "BaseAddr": 140715387158528,
+        "EndAddr": 140715432738816,
+        "RgnSize": 45580288,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715432738816,
+        "EndAddr": 140715432742912,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dui70; \"C:\\Windows\\System32\\dui70.dll\"]"
+    },
+    {
+        "BaseAddr": 140715432742912,
+        "EndAddr": 140715433803776,
+        "RgnSize": 1060864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[dui70; \"C:\\Windows\\System32\\dui70.dll\"]"
+    },
+    {
+        "BaseAddr": 140715433803776,
+        "EndAddr": 140715434352640,
+        "RgnSize": 548864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dui70; \"C:\\Windows\\System32\\dui70.dll\"]"
+    },
+    {
+        "BaseAddr": 140715434352640,
+        "EndAddr": 140715434373120,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[dui70; \"C:\\Windows\\System32\\dui70.dll\"]"
+    },
+    {
+        "BaseAddr": 140715434373120,
+        "EndAddr": 140715434528768,
+        "RgnSize": 155648,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dui70; \"C:\\Windows\\System32\\dui70.dll\"]"
+    },
+    {
+        "BaseAddr": 140715434528768,
+        "EndAddr": 140715628232704,
+        "RgnSize": 193703936,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140715628232704,
+        "EndAddr": 140715628236800,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[efswrt; \"C:\\Windows\\System32\\efswrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140715628236800,
+        "EndAddr": 140715628711936,
+        "RgnSize": 475136,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[efswrt; \"C:\\Windows\\System32\\efswrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140715628711936,
+        "EndAddr": 140715628978176,
+        "RgnSize": 266240,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[efswrt; \"C:\\Windows\\System32\\efswrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140715628978176,
+        "EndAddr": 140715628986368,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[efswrt; \"C:\\Windows\\System32\\efswrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140715628986368,
+        "EndAddr": 140715629043712,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[efswrt; \"C:\\Windows\\System32\\efswrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140715629043712,
+        "EndAddr": 140716247154688,
+        "RgnSize": 618110976,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716247154688,
+        "EndAddr": 140716247158784,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comctl32; \"C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716247158784,
+        "EndAddr": 140716249026560,
+        "RgnSize": 1867776,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[comctl32; \"C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716249026560,
+        "EndAddr": 140716249309184,
+        "RgnSize": 282624,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comctl32; \"C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716249309184,
+        "EndAddr": 140716249325568,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[comctl32; \"C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716249325568,
+        "EndAddr": 140716249747456,
+        "RgnSize": 421888,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comctl32; \"C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716249747456,
+        "EndAddr": 140716249776128,
+        "RgnSize": 28672,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716249776128,
+        "EndAddr": 140716249780224,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleacc; \"C:\\Windows\\System32\\oleacc.dll\"]"
+    },
+    {
+        "BaseAddr": 140716249780224,
+        "EndAddr": 140716250054656,
+        "RgnSize": 274432,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[oleacc; \"C:\\Windows\\System32\\oleacc.dll\"]"
+    },
+    {
+        "BaseAddr": 140716250054656,
+        "EndAddr": 140716250157056,
+        "RgnSize": 102400,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleacc; \"C:\\Windows\\System32\\oleacc.dll\"]"
+    },
+    {
+        "BaseAddr": 140716250157056,
+        "EndAddr": 140716250161152,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[oleacc; \"C:\\Windows\\System32\\oleacc.dll\"]"
+    },
+    {
+        "BaseAddr": 140716250161152,
+        "EndAddr": 140716250218496,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleacc; \"C:\\Windows\\System32\\oleacc.dll\"]"
+    },
+    {
+        "BaseAddr": 140716250218496,
+        "EndAddr": 140716270354432,
+        "RgnSize": 20135936,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716270354432,
+        "EndAddr": 140716270358528,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[mpr; \"C:\\Windows\\System32\\mpr.dll\"]"
+    },
+    {
+        "BaseAddr": 140716270358528,
+        "EndAddr": 140716270419968,
+        "RgnSize": 61440,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[mpr; \"C:\\Windows\\System32\\mpr.dll\"]"
+    },
+    {
+        "BaseAddr": 140716270419968,
+        "EndAddr": 140716270440448,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[mpr; \"C:\\Windows\\System32\\mpr.dll\"]"
+    },
+    {
+        "BaseAddr": 140716270440448,
+        "EndAddr": 140716270444544,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[mpr; \"C:\\Windows\\System32\\mpr.dll\"]"
+    },
+    {
+        "BaseAddr": 140716270444544,
+        "EndAddr": 140716270460928,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[mpr; \"C:\\Windows\\System32\\mpr.dll\"]"
+    },
+    {
+        "BaseAddr": 140716270460928,
+        "EndAddr": 140716370755584,
+        "RgnSize": 100294656,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716370755584,
+        "EndAddr": 140716370759680,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716370759680,
+        "EndAddr": 140716371959808,
+        "RgnSize": 1200128,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716371959808,
+        "EndAddr": 140716372213760,
+        "RgnSize": 253952,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372213760,
+        "EndAddr": 140716372238336,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372238336,
+        "EndAddr": 140716372267008,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372267008,
+        "EndAddr": 140716372332544,
+        "RgnSize": 65536,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372332544,
+        "EndAddr": 140716372336640,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372336640,
+        "EndAddr": 140716372684800,
+        "RgnSize": 348160,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[urlmon; \"C:\\Windows\\System32\\urlmon.dll\"]"
+    },
+    {
+        "BaseAddr": 140716372684800,
+        "EndAddr": 140716395528192,
+        "RgnSize": 22843392,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716395528192,
+        "EndAddr": 140716395532288,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716395532288,
+        "EndAddr": 140716396056576,
+        "RgnSize": 524288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716396056576,
+        "EndAddr": 140716398125056,
+        "RgnSize": 2068480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398125056,
+        "EndAddr": 140716398141440,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398141440,
+        "EndAddr": 140716398149632,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398149632,
+        "EndAddr": 140716398153728,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398153728,
+        "EndAddr": 140716398170112,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398170112,
+        "EndAddr": 140716398206976,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398206976,
+        "EndAddr": 140716398211072,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398211072,
+        "EndAddr": 140716398313472,
+        "RgnSize": 102400,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[iertutil; \"C:\\Windows\\System32\\iertutil.dll\"]"
+    },
+    {
+        "BaseAddr": 140716398313472,
+        "EndAddr": 140716460802048,
+        "RgnSize": 62488576,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716460802048,
+        "EndAddr": 140716460806144,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[winspool; \"C:\\Windows\\System32\\winspool.drv\"]"
+    },
+    {
+        "BaseAddr": 140716460806144,
+        "EndAddr": 140716461109248,
+        "RgnSize": 303104,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[winspool; \"C:\\Windows\\System32\\winspool.drv\"]"
+    },
+    {
+        "BaseAddr": 140716461109248,
+        "EndAddr": 140716461236224,
+        "RgnSize": 126976,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[winspool; \"C:\\Windows\\System32\\winspool.drv\"]"
+    },
+    {
+        "BaseAddr": 140716461236224,
+        "EndAddr": 140716461244416,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[winspool; \"C:\\Windows\\System32\\winspool.drv\"]"
+    },
+    {
+        "BaseAddr": 140716461244416,
+        "EndAddr": 140716461363200,
+        "RgnSize": 118784,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[winspool; \"C:\\Windows\\System32\\winspool.drv\"]"
+    },
+    {
+        "BaseAddr": 140716461363200,
+        "EndAddr": 140716475416576,
+        "RgnSize": 14053376,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716475416576,
+        "EndAddr": 140716475420672,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[TextInputFramework; \"C:\\Windows\\System32\\TextInputFramework.dll\"]"
+    },
+    {
+        "BaseAddr": 140716475420672,
+        "EndAddr": 140716475838464,
+        "RgnSize": 417792,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[TextInputFramework; \"C:\\Windows\\System32\\TextInputFramework.dll\"]"
+    },
+    {
+        "BaseAddr": 140716475838464,
+        "EndAddr": 140716475977728,
+        "RgnSize": 139264,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[TextInputFramework; \"C:\\Windows\\System32\\TextInputFramework.dll\"]"
+    },
+    {
+        "BaseAddr": 140716475977728,
+        "EndAddr": 140716475985920,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[TextInputFramework; \"C:\\Windows\\System32\\TextInputFramework.dll\"]"
+    },
+    {
+        "BaseAddr": 140716475985920,
+        "EndAddr": 140716476026880,
+        "RgnSize": 40960,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[TextInputFramework; \"C:\\Windows\\System32\\TextInputFramework.dll\"]"
+    },
+    {
+        "BaseAddr": 140716476026880,
+        "EndAddr": 140716478889984,
+        "RgnSize": 2863104,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716478889984,
+        "EndAddr": 140716478894080,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[version; \"C:\\Windows\\System32\\version.dll\"]"
+    },
+    {
+        "BaseAddr": 140716478894080,
+        "EndAddr": 140716478906368,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[version; \"C:\\Windows\\System32\\version.dll\"]"
+    },
+    {
+        "BaseAddr": 140716478906368,
+        "EndAddr": 140716478914560,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[version; \"C:\\Windows\\System32\\version.dll\"]"
+    },
+    {
+        "BaseAddr": 140716478914560,
+        "EndAddr": 140716478918656,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[version; \"C:\\Windows\\System32\\version.dll\"]"
+    },
+    {
+        "BaseAddr": 140716478918656,
+        "EndAddr": 140716478930944,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[version; \"C:\\Windows\\System32\\version.dll\"]"
+    },
+    {
+        "BaseAddr": 140716478930944,
+        "EndAddr": 140716483018752,
+        "RgnSize": 4087808,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716483018752,
+        "EndAddr": 140716483022848,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716483022848,
+        "EndAddr": 140716484702208,
+        "RgnSize": 1679360,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716484702208,
+        "EndAddr": 140716485820416,
+        "RgnSize": 1118208,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716485820416,
+        "EndAddr": 140716485828608,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716485828608,
+        "EndAddr": 140716485832704,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716485832704,
+        "EndAddr": 140716485836800,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716485836800,
+        "EndAddr": 140716486303744,
+        "RgnSize": 466944,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreUIComponents; \"C:\\Windows\\System32\\CoreUIComponents.dll\"]"
+    },
+    {
+        "BaseAddr": 140716486303744,
+        "EndAddr": 140716502941696,
+        "RgnSize": 16637952,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716502941696,
+        "EndAddr": 140716502945792,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[WinTypes; \"C:\\Windows\\System32\\WinTypes.dll\"]"
+    },
+    {
+        "BaseAddr": 140716502945792,
+        "EndAddr": 140716503420928,
+        "RgnSize": 475136,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[WinTypes; \"C:\\Windows\\System32\\WinTypes.dll\"]"
+    },
+    {
+        "BaseAddr": 140716503420928,
+        "EndAddr": 140716504182784,
+        "RgnSize": 761856,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[WinTypes; \"C:\\Windows\\System32\\WinTypes.dll\"]"
+    },
+    {
+        "BaseAddr": 140716504182784,
+        "EndAddr": 140716504190976,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[WinTypes; \"C:\\Windows\\System32\\WinTypes.dll\"]"
+    },
+    {
+        "BaseAddr": 140716504190976,
+        "EndAddr": 140716504330240,
+        "RgnSize": 139264,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[WinTypes; \"C:\\Windows\\System32\\WinTypes.dll\"]"
+    },
+    {
+        "BaseAddr": 140716504330240,
+        "EndAddr": 140716511920128,
+        "RgnSize": 7589888,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716511920128,
+        "EndAddr": 140716511924224,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716511924224,
+        "EndAddr": 140716512661504,
+        "RgnSize": 737280,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716512661504,
+        "EndAddr": 140716512903168,
+        "RgnSize": 241664,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716512903168,
+        "EndAddr": 140716512907264,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716512907264,
+        "EndAddr": 140716512915456,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716512915456,
+        "EndAddr": 140716512997376,
+        "RgnSize": 81920,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[MrmCoreR; \"C:\\Windows\\System32\\MrmCoreR.dll\"]"
+    },
+    {
+        "BaseAddr": 140716512997376,
+        "EndAddr": 140716515983360,
+        "RgnSize": 2985984,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716515983360,
+        "EndAddr": 140716515987456,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[propsys; \"C:\\Windows\\System32\\propsys.dll\"]"
+    },
+    {
+        "BaseAddr": 140716515987456,
+        "EndAddr": 140716516585472,
+        "RgnSize": 598016,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[propsys; \"C:\\Windows\\System32\\propsys.dll\"]"
+    },
+    {
+        "BaseAddr": 140716516585472,
+        "EndAddr": 140716516872192,
+        "RgnSize": 286720,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[propsys; \"C:\\Windows\\System32\\propsys.dll\"]"
+    },
+    {
+        "BaseAddr": 140716516872192,
+        "EndAddr": 140716516880384,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[propsys; \"C:\\Windows\\System32\\propsys.dll\"]"
+    },
+    {
+        "BaseAddr": 140716516880384,
+        "EndAddr": 140716517720064,
+        "RgnSize": 839680,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[propsys; \"C:\\Windows\\System32\\propsys.dll\"]"
+    },
+    {
+        "BaseAddr": 140716517720064,
+        "EndAddr": 140716542787584,
+        "RgnSize": 25067520,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716542787584,
+        "EndAddr": 140716542791680,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreMessaging; \"C:\\Windows\\System32\\CoreMessaging.dll\"]"
+    },
+    {
+        "BaseAddr": 140716542791680,
+        "EndAddr": 140716543356928,
+        "RgnSize": 565248,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[CoreMessaging; \"C:\\Windows\\System32\\CoreMessaging.dll\"]"
+    },
+    {
+        "BaseAddr": 140716543356928,
+        "EndAddr": 140716543574016,
+        "RgnSize": 217088,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreMessaging; \"C:\\Windows\\System32\\CoreMessaging.dll\"]"
+    },
+    {
+        "BaseAddr": 140716543574016,
+        "EndAddr": 140716543586304,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[CoreMessaging; \"C:\\Windows\\System32\\CoreMessaging.dll\"]"
+    },
+    {
+        "BaseAddr": 140716543586304,
+        "EndAddr": 140716543713280,
+        "RgnSize": 126976,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CoreMessaging; \"C:\\Windows\\System32\\CoreMessaging.dll\"]"
+    },
+    {
+        "BaseAddr": 140716543713280,
+        "EndAddr": 140716552749056,
+        "RgnSize": 9035776,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716552749056,
+        "EndAddr": 140716552753152,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[uxtheme; \"C:\\Windows\\System32\\uxtheme.dll\"]"
+    },
+    {
+        "BaseAddr": 140716552753152,
+        "EndAddr": 140716553121792,
+        "RgnSize": 368640,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[uxtheme; \"C:\\Windows\\System32\\uxtheme.dll\"]"
+    },
+    {
+        "BaseAddr": 140716553121792,
+        "EndAddr": 140716553330688,
+        "RgnSize": 208896,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[uxtheme; \"C:\\Windows\\System32\\uxtheme.dll\"]"
+    },
+    {
+        "BaseAddr": 140716553330688,
+        "EndAddr": 140716553342976,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[uxtheme; \"C:\\Windows\\System32\\uxtheme.dll\"]"
+    },
+    {
+        "BaseAddr": 140716553342976,
+        "EndAddr": 140716553388032,
+        "RgnSize": 45056,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[uxtheme; \"C:\\Windows\\System32\\uxtheme.dll\"]"
+    },
+    {
+        "BaseAddr": 140716553388032,
+        "EndAddr": 140716553732096,
+        "RgnSize": 344064,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716553732096,
+        "EndAddr": 140716553736192,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716553736192,
+        "EndAddr": 140716555153408,
+        "RgnSize": 1417216,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555153408,
+        "EndAddr": 140716555702272,
+        "RgnSize": 548864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555702272,
+        "EndAddr": 140716555706368,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555706368,
+        "EndAddr": 140716555710464,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555710464,
+        "EndAddr": 140716555722752,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555722752,
+        "EndAddr": 140716555882496,
+        "RgnSize": 159744,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[twinapi_appcore; \"C:\\Windows\\System32\\twinapi.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555882496,
+        "EndAddr": 140716555894784,
+        "RgnSize": 12288,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716555894784,
+        "EndAddr": 140716555898880,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rmclient; \"C:\\Windows\\System32\\rmclient.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555898880,
+        "EndAddr": 140716555972608,
+        "RgnSize": 73728,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[rmclient; \"C:\\Windows\\System32\\rmclient.dll\"]"
+    },
+    {
+        "BaseAddr": 140716555972608,
+        "EndAddr": 140716556034048,
+        "RgnSize": 61440,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rmclient; \"C:\\Windows\\System32\\rmclient.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556034048,
+        "EndAddr": 140716556038144,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[rmclient; \"C:\\Windows\\System32\\rmclient.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556038144,
+        "EndAddr": 140716556058624,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rmclient; \"C:\\Windows\\System32\\rmclient.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556058624,
+        "EndAddr": 140716556222464,
+        "RgnSize": 163840,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716556222464,
+        "EndAddr": 140716556226560,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556226560,
+        "EndAddr": 140716556324864,
+        "RgnSize": 98304,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556324864,
+        "EndAddr": 140716556357632,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556357632,
+        "EndAddr": 140716556365824,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556365824,
+        "EndAddr": 140716556374016,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556374016,
+        "EndAddr": 140716556410880,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[dwmapi; \"C:\\Windows\\System32\\dwmapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716556410880,
+        "EndAddr": 140716563824640,
+        "RgnSize": 7413760,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716563824640,
+        "EndAddr": 140716563828736,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntmarta; \"C:\\Windows\\System32\\ntmarta.dll\"]"
+    },
+    {
+        "BaseAddr": 140716563828736,
+        "EndAddr": 140716563963904,
+        "RgnSize": 135168,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[ntmarta; \"C:\\Windows\\System32\\ntmarta.dll\"]"
+    },
+    {
+        "BaseAddr": 140716563963904,
+        "EndAddr": 140716563996672,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntmarta; \"C:\\Windows\\System32\\ntmarta.dll\"]"
+    },
+    {
+        "BaseAddr": 140716563996672,
+        "EndAddr": 140716564004864,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[ntmarta; \"C:\\Windows\\System32\\ntmarta.dll\"]"
+    },
+    {
+        "BaseAddr": 140716564004864,
+        "EndAddr": 140716564025344,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntmarta; \"C:\\Windows\\System32\\ntmarta.dll\"]"
+    },
+    {
+        "BaseAddr": 140716564025344,
+        "EndAddr": 140716569329664,
+        "RgnSize": 5304320,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716569329664,
+        "EndAddr": 140716569333760,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IPHLPAPI; \"C:\\Windows\\System32\\IPHLPAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716569333760,
+        "EndAddr": 140716569501696,
+        "RgnSize": 167936,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[IPHLPAPI; \"C:\\Windows\\System32\\IPHLPAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716569501696,
+        "EndAddr": 140716569554944,
+        "RgnSize": 53248,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IPHLPAPI; \"C:\\Windows\\System32\\IPHLPAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716569554944,
+        "EndAddr": 140716569559040,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[IPHLPAPI; \"C:\\Windows\\System32\\IPHLPAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716569559040,
+        "EndAddr": 140716569579520,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[IPHLPAPI; \"C:\\Windows\\System32\\IPHLPAPI.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716569579520,
+        "EndAddr": 140716573982720,
+        "RgnSize": 4403200,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716573982720,
+        "EndAddr": 140716573986816,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CRYPTBASE; \"C:\\Windows\\System32\\CRYPTBASE.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716573986816,
+        "EndAddr": 140716573999104,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[CRYPTBASE; \"C:\\Windows\\System32\\CRYPTBASE.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716573999104,
+        "EndAddr": 140716574011392,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CRYPTBASE; \"C:\\Windows\\System32\\CRYPTBASE.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716574011392,
+        "EndAddr": 140716574015488,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[CRYPTBASE; \"C:\\Windows\\System32\\CRYPTBASE.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716574015488,
+        "EndAddr": 140716574031872,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[CRYPTBASE; \"C:\\Windows\\System32\\CRYPTBASE.DLL\"]"
+    },
+    {
+        "BaseAddr": 140716574031872,
+        "EndAddr": 140716579880960,
+        "RgnSize": 5849088,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716579880960,
+        "EndAddr": 140716579885056,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msasn1; \"C:\\Windows\\System32\\msasn1.dll\"]"
+    },
+    {
+        "BaseAddr": 140716579885056,
+        "EndAddr": 140716579921920,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[msasn1; \"C:\\Windows\\System32\\msasn1.dll\"]"
+    },
+    {
+        "BaseAddr": 140716579921920,
+        "EndAddr": 140716579938304,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msasn1; \"C:\\Windows\\System32\\msasn1.dll\"]"
+    },
+    {
+        "BaseAddr": 140716579938304,
+        "EndAddr": 140716579942400,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[msasn1; \"C:\\Windows\\System32\\msasn1.dll\"]"
+    },
+    {
+        "BaseAddr": 140716579942400,
+        "EndAddr": 140716579954688,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msasn1; \"C:\\Windows\\System32\\msasn1.dll\"]"
+    },
+    {
+        "BaseAddr": 140716579954688,
+        "EndAddr": 140716580012032,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716580012032,
+        "EndAddr": 140716580016128,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel_appcore; \"C:\\Windows\\System32\\kernel.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580016128,
+        "EndAddr": 140716580032512,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[kernel_appcore; \"C:\\Windows\\System32\\kernel.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580032512,
+        "EndAddr": 140716580061184,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel_appcore; \"C:\\Windows\\System32\\kernel.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580061184,
+        "EndAddr": 140716580065280,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[kernel_appcore; \"C:\\Windows\\System32\\kernel.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580065280,
+        "EndAddr": 140716580081664,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel_appcore; \"C:\\Windows\\System32\\kernel.appcore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580081664,
+        "EndAddr": 140716580143104,
+        "RgnSize": 61440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716580143104,
+        "EndAddr": 140716580147200,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580147200,
+        "EndAddr": 140716580274176,
+        "RgnSize": 126976,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580274176,
+        "EndAddr": 140716580331520,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580331520,
+        "EndAddr": 140716580335616,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580335616,
+        "EndAddr": 140716580339712,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580339712,
+        "EndAddr": 140716580524032,
+        "RgnSize": 184320,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[powrprof; \"C:\\Windows\\System32\\powrprof.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580524032,
+        "EndAddr": 140716580536320,
+        "RgnSize": 12288,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716580536320,
+        "EndAddr": 140716580540416,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[profapi; \"C:\\Windows\\System32\\profapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580540416,
+        "EndAddr": 140716580622336,
+        "RgnSize": 81920,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[profapi; \"C:\\Windows\\System32\\profapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580622336,
+        "EndAddr": 140716580659200,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[profapi; \"C:\\Windows\\System32\\profapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580659200,
+        "EndAddr": 140716580663296,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[profapi; \"C:\\Windows\\System32\\profapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580663296,
+        "EndAddr": 140716580683776,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[profapi; \"C:\\Windows\\System32\\profapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716580683776,
+        "EndAddr": 140716581126144,
+        "RgnSize": 442368,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716581126144,
+        "EndAddr": 140716581130240,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716581130240,
+        "EndAddr": 140716581986304,
+        "RgnSize": 856064,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716581986304,
+        "EndAddr": 140716582666240,
+        "RgnSize": 679936,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716582666240,
+        "EndAddr": 140716582682624,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716582682624,
+        "EndAddr": 140716582686720,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716582686720,
+        "EndAddr": 140716582805504,
+        "RgnSize": 118784,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32full; \"C:\\Windows\\System32\\gdi32full.dll\"]"
+    },
+    {
+        "BaseAddr": 140716582805504,
+        "EndAddr": 140716582830080,
+        "RgnSize": 24576,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716582830080,
+        "EndAddr": 140716582834176,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716582834176,
+        "EndAddr": 140716588204032,
+        "RgnSize": 5369856,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716588204032,
+        "EndAddr": 140716589973504,
+        "RgnSize": 1769472,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716589973504,
+        "EndAddr": 140716590006272,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590006272,
+        "EndAddr": 140716590010368,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590010368,
+        "EndAddr": 140716590465024,
+        "RgnSize": 454656,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[windows_storage; \"C:\\Windows\\System32\\windows.storage.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590465024,
+        "EndAddr": 140716590497792,
+        "RgnSize": 32768,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716590497792,
+        "EndAddr": 140716590501888,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590501888,
+        "EndAddr": 140716590710784,
+        "RgnSize": 208896,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590710784,
+        "EndAddr": 140716590768128,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590768128,
+        "EndAddr": 140716590772224,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590772224,
+        "EndAddr": 140716590776320,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590776320,
+        "EndAddr": 140716590800896,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cfgmgr32; \"C:\\Windows\\System32\\cfgmgr32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590800896,
+        "EndAddr": 140716590825472,
+        "RgnSize": 24576,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716590825472,
+        "EndAddr": 140716590829568,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ucrtbase; \"C:\\Windows\\System32\\ucrtbase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716590829568,
+        "EndAddr": 140716591558656,
+        "RgnSize": 729088,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[ucrtbase; \"C:\\Windows\\System32\\ucrtbase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716591558656,
+        "EndAddr": 140716591788032,
+        "RgnSize": 229376,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ucrtbase; \"C:\\Windows\\System32\\ucrtbase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716591788032,
+        "EndAddr": 140716591800320,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[ucrtbase; \"C:\\Windows\\System32\\ucrtbase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716591800320,
+        "EndAddr": 140716591857664,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ucrtbase; \"C:\\Windows\\System32\\ucrtbase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716591857664,
+        "EndAddr": 140716591874048,
+        "RgnSize": 16384,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716591874048,
+        "EndAddr": 140716591878144,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[crypt32; \"C:\\Windows\\System32\\crypt32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716591878144,
+        "EndAddr": 140716592889856,
+        "RgnSize": 1011712,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[crypt32; \"C:\\Windows\\System32\\crypt32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716592889856,
+        "EndAddr": 140716593119232,
+        "RgnSize": 229376,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[crypt32; \"C:\\Windows\\System32\\crypt32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593119232,
+        "EndAddr": 140716593147904,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[crypt32; \"C:\\Windows\\System32\\crypt32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593147904,
+        "EndAddr": 140716593819648,
+        "RgnSize": 671744,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[crypt32; \"C:\\Windows\\System32\\crypt32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593819648,
+        "EndAddr": 140716593840128,
+        "RgnSize": 20480,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716593840128,
+        "EndAddr": 140716593844224,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[win32u; \"C:\\Windows\\System32\\win32u.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593844224,
+        "EndAddr": 140716593885184,
+        "RgnSize": 40960,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[win32u; \"C:\\Windows\\System32\\win32u.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593885184,
+        "EndAddr": 140716593942528,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[win32u; \"C:\\Windows\\System32\\win32u.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593942528,
+        "EndAddr": 140716593946624,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[win32u; \"C:\\Windows\\System32\\win32u.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593946624,
+        "EndAddr": 140716593971200,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[win32u; \"C:\\Windows\\System32\\win32u.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593971200,
+        "EndAddr": 140716593975296,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cryptsp; \"C:\\Windows\\System32\\cryptsp.dll\"]"
+    },
+    {
+        "BaseAddr": 140716593975296,
+        "EndAddr": 140716594020352,
+        "RgnSize": 45056,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[cryptsp; \"C:\\Windows\\System32\\cryptsp.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594020352,
+        "EndAddr": 140716594044928,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cryptsp; \"C:\\Windows\\System32\\cryptsp.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594044928,
+        "EndAddr": 140716594049024,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[cryptsp; \"C:\\Windows\\System32\\cryptsp.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594049024,
+        "EndAddr": 140716594065408,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[cryptsp; \"C:\\Windows\\System32\\cryptsp.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594065408,
+        "EndAddr": 140716594102272,
+        "RgnSize": 36864,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716594102272,
+        "EndAddr": 140716594106368,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcryptPrimitives; \"C:\\Windows\\System32\\bcryptPrimitives.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594106368,
+        "EndAddr": 140716594515968,
+        "RgnSize": 409600,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[bcryptPrimitives; \"C:\\Windows\\System32\\bcryptPrimitives.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594515968,
+        "EndAddr": 140716594593792,
+        "RgnSize": 77824,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcryptPrimitives; \"C:\\Windows\\System32\\bcryptPrimitives.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594593792,
+        "EndAddr": 140716594597888,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[bcryptPrimitives; \"C:\\Windows\\System32\\bcryptPrimitives.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594597888,
+        "EndAddr": 140716594618368,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcryptPrimitives; \"C:\\Windows\\System32\\bcryptPrimitives.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594618368,
+        "EndAddr": 140716594626560,
+        "RgnSize": 8192,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716594626560,
+        "EndAddr": 140716594630656,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcrypt; \"C:\\Windows\\System32\\bcrypt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594630656,
+        "EndAddr": 140716594733056,
+        "RgnSize": 102400,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[bcrypt; \"C:\\Windows\\System32\\bcrypt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594733056,
+        "EndAddr": 140716594757632,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcrypt; \"C:\\Windows\\System32\\bcrypt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594757632,
+        "EndAddr": 140716594761728,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[bcrypt; \"C:\\Windows\\System32\\bcrypt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594761728,
+        "EndAddr": 140716594782208,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[bcrypt; \"C:\\Windows\\System32\\bcrypt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716594782208,
+        "EndAddr": 140716595544064,
+        "RgnSize": 761856,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716595544064,
+        "EndAddr": 140716595548160,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716595548160,
+        "EndAddr": 140716595896320,
+        "RgnSize": 348160,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716595896320,
+        "EndAddr": 140716596150272,
+        "RgnSize": 253952,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716596150272,
+        "EndAddr": 140716596154368,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716596154368,
+        "EndAddr": 140716596166656,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716596166656,
+        "EndAddr": 140716596199424,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcp_win; \"C:\\Windows\\System32\\msvcp_win.dll\"]"
+    },
+    {
+        "BaseAddr": 140716596199424,
+        "EndAddr": 140716596203520,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716596203520,
+        "EndAddr": 140716597264384,
+        "RgnSize": 1060864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716597264384,
+        "EndAddr": 140716598665216,
+        "RgnSize": 1400832,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716598665216,
+        "EndAddr": 140716598681600,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716598681600,
+        "EndAddr": 140716598685696,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716598685696,
+        "EndAddr": 140716598898688,
+        "RgnSize": 212992,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[KERNELBASE; \"C:\\Windows\\System32\\KERNELBASE.dll\"]"
+    },
+    {
+        "BaseAddr": 140716598898688,
+        "EndAddr": 140716603670528,
+        "RgnSize": 4771840,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716603670528,
+        "EndAddr": 140716603674624,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716603674624,
+        "EndAddr": 140716604084224,
+        "RgnSize": 409600,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604084224,
+        "EndAddr": 140716604268544,
+        "RgnSize": 184320,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604268544,
+        "EndAddr": 140716604289024,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604289024,
+        "EndAddr": 140716604293120,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604293120,
+        "EndAddr": 140716604334080,
+        "RgnSize": 40960,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[clbcatq; \"C:\\Windows\\System32\\clbcatq.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604334080,
+        "EndAddr": 140716604391424,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716604391424,
+        "EndAddr": 140716604395520,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msctf; \"C:\\Windows\\System32\\msctf.dll\"]"
+    },
+    {
+        "BaseAddr": 140716604395520,
+        "EndAddr": 140716605341696,
+        "RgnSize": 946176,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[msctf; \"C:\\Windows\\System32\\msctf.dll\"]"
+    },
+    {
+        "BaseAddr": 140716605341696,
+        "EndAddr": 140716605513728,
+        "RgnSize": 172032,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msctf; \"C:\\Windows\\System32\\msctf.dll\"]"
+    },
+    {
+        "BaseAddr": 140716605513728,
+        "EndAddr": 140716605530112,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[msctf; \"C:\\Windows\\System32\\msctf.dll\"]"
+    },
+    {
+        "BaseAddr": 140716605530112,
+        "EndAddr": 140716605874176,
+        "RgnSize": 344064,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msctf; \"C:\\Windows\\System32\\msctf.dll\"]"
+    },
+    {
+        "BaseAddr": 140716605874176,
+        "EndAddr": 140716605898752,
+        "RgnSize": 24576,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716605898752,
+        "EndAddr": 140716605902848,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[combase; \"C:\\Windows\\System32\\combase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716605902848,
+        "EndAddr": 140716608106496,
+        "RgnSize": 2203648,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[combase; \"C:\\Windows\\System32\\combase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716608106496,
+        "EndAddr": 140716608892928,
+        "RgnSize": 786432,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[combase; \"C:\\Windows\\System32\\combase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716608892928,
+        "EndAddr": 140716608917504,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[combase; \"C:\\Windows\\System32\\combase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716608917504,
+        "EndAddr": 140716609232896,
+        "RgnSize": 315392,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[combase; \"C:\\Windows\\System32\\combase.dll\"]"
+    },
+    {
+        "BaseAddr": 140716609232896,
+        "EndAddr": 140716609830912,
+        "RgnSize": 598016,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716609830912,
+        "EndAddr": 140716609835008,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ole32; \"C:\\Windows\\System32\\ole32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716609835008,
+        "EndAddr": 140716610658304,
+        "RgnSize": 823296,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[ole32; \"C:\\Windows\\System32\\ole32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716610658304,
+        "EndAddr": 140716611035136,
+        "RgnSize": 376832,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ole32; \"C:\\Windows\\System32\\ole32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716611035136,
+        "EndAddr": 140716611043328,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[ole32; \"C:\\Windows\\System32\\ole32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716611043328,
+        "EndAddr": 140716611227648,
+        "RgnSize": 184320,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ole32; \"C:\\Windows\\System32\\ole32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716611227648,
+        "EndAddr": 140716611403776,
+        "RgnSize": 176128,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716611403776,
+        "EndAddr": 140716611407872,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[SHCore; \"C:\\Windows\\System32\\SHCore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716611407872,
+        "EndAddr": 140716611870720,
+        "RgnSize": 462848,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[SHCore; \"C:\\Windows\\System32\\SHCore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716611870720,
+        "EndAddr": 140716612022272,
+        "RgnSize": 151552,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[SHCore; \"C:\\Windows\\System32\\SHCore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716612022272,
+        "EndAddr": 140716612030464,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[SHCore; \"C:\\Windows\\System32\\SHCore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716612030464,
+        "EndAddr": 140716612091904,
+        "RgnSize": 61440,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[SHCore; \"C:\\Windows\\System32\\SHCore.dll\"]"
+    },
+    {
+        "BaseAddr": 140716612091904,
+        "EndAddr": 140716612190208,
+        "RgnSize": 98304,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716612190208,
+        "EndAddr": 140716612194304,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716612194304,
+        "EndAddr": 140716617785344,
+        "RgnSize": 5591040,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716617785344,
+        "EndAddr": 140716618928128,
+        "RgnSize": 1142784,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716618928128,
+        "EndAddr": 140716618956800,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716618956800,
+        "EndAddr": 140716618964992,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716618964992,
+        "EndAddr": 140716634140672,
+        "RgnSize": 15175680,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shell32; \"C:\\Windows\\System32\\shell32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716634140672,
+        "EndAddr": 140716634144768,
+        "RgnSize": 4096,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716634144768,
+        "EndAddr": 140716634148864,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rpcrt4; \"C:\\Windows\\System32\\rpcrt4.dll\"]"
+    },
+    {
+        "BaseAddr": 140716634148864,
+        "EndAddr": 140716635066368,
+        "RgnSize": 917504,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[rpcrt4; \"C:\\Windows\\System32\\rpcrt4.dll\"]"
+    },
+    {
+        "BaseAddr": 140716635066368,
+        "EndAddr": 140716635242496,
+        "RgnSize": 176128,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rpcrt4; \"C:\\Windows\\System32\\rpcrt4.dll\"]"
+    },
+    {
+        "BaseAddr": 140716635242496,
+        "EndAddr": 140716635250688,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[rpcrt4; \"C:\\Windows\\System32\\rpcrt4.dll\"]"
+    },
+    {
+        "BaseAddr": 140716635250688,
+        "EndAddr": 140716635336704,
+        "RgnSize": 86016,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[rpcrt4; \"C:\\Windows\\System32\\rpcrt4.dll\"]"
+    },
+    {
+        "BaseAddr": 140716635336704,
+        "EndAddr": 140716635783168,
+        "RgnSize": 446464,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716635783168,
+        "EndAddr": 140716635787264,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716635787264,
+        "EndAddr": 140716636266496,
+        "RgnSize": 479232,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636266496,
+        "EndAddr": 140716636368896,
+        "RgnSize": 102400,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636368896,
+        "EndAddr": 140716636377088,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636377088,
+        "EndAddr": 140716636389376,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636389376,
+        "EndAddr": 140716636401664,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636401664,
+        "EndAddr": 140716636430336,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[msvcrt; \"C:\\Windows\\System32\\msvcrt.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636430336,
+        "EndAddr": 140716636438528,
+        "RgnSize": 8192,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716636438528,
+        "EndAddr": 140716636442624,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imm32; \"C:\\Windows\\System32\\imm32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636442624,
+        "EndAddr": 140716636557312,
+        "RgnSize": 114688,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[imm32; \"C:\\Windows\\System32\\imm32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636557312,
+        "EndAddr": 140716636585984,
+        "RgnSize": 28672,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imm32; \"C:\\Windows\\System32\\imm32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636585984,
+        "EndAddr": 140716636590080,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[imm32; \"C:\\Windows\\System32\\imm32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636590080,
+        "EndAddr": 140716636626944,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[imm32; \"C:\\Windows\\System32\\imm32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716636626944,
+        "EndAddr": 140716638797824,
+        "RgnSize": 2170880,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716638797824,
+        "EndAddr": 140716638801920,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[sechost; \"C:\\Windows\\System32\\sechost.dll\"]"
+    },
+    {
+        "BaseAddr": 140716638801920,
+        "EndAddr": 140716639232000,
+        "RgnSize": 430080,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[sechost; \"C:\\Windows\\System32\\sechost.dll\"]"
+    },
+    {
+        "BaseAddr": 140716639232000,
+        "EndAddr": 140716639391744,
+        "RgnSize": 159744,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[sechost; \"C:\\Windows\\System32\\sechost.dll\"]"
+    },
+    {
+        "BaseAddr": 140716639391744,
+        "EndAddr": 140716639408128,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[sechost; \"C:\\Windows\\System32\\sechost.dll\"]"
+    },
+    {
+        "BaseAddr": 140716639408128,
+        "EndAddr": 140716639444992,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[sechost; \"C:\\Windows\\System32\\sechost.dll\"]"
+    },
+    {
+        "BaseAddr": 140716639444992,
+        "EndAddr": 140716639453184,
+        "RgnSize": 8192,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716639453184,
+        "EndAddr": 140716639457280,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleaut32; \"C:\\Windows\\System32\\oleaut32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716639457280,
+        "EndAddr": 140716640051200,
+        "RgnSize": 593920,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[oleaut32; \"C:\\Windows\\System32\\oleaut32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640051200,
+        "EndAddr": 140716640210944,
+        "RgnSize": 159744,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleaut32; \"C:\\Windows\\System32\\oleaut32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640210944,
+        "EndAddr": 140716640223232,
+        "RgnSize": 12288,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[oleaut32; \"C:\\Windows\\System32\\oleaut32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640223232,
+        "EndAddr": 140716640284672,
+        "RgnSize": 61440,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[oleaut32; \"C:\\Windows\\System32\\oleaut32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640284672,
+        "EndAddr": 140716640305152,
+        "RgnSize": 20480,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716640305152,
+        "EndAddr": 140716640309248,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32; \"C:\\Windows\\System32\\gdi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640309248,
+        "EndAddr": 140716640366592,
+        "RgnSize": 57344,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[gdi32; \"C:\\Windows\\System32\\gdi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640366592,
+        "EndAddr": 140716640448512,
+        "RgnSize": 81920,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32; \"C:\\Windows\\System32\\gdi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640448512,
+        "EndAddr": 140716640452608,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[gdi32; \"C:\\Windows\\System32\\gdi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640452608,
+        "EndAddr": 140716640473088,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[gdi32; \"C:\\Windows\\System32\\gdi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640473088,
+        "EndAddr": 140716640501760,
+        "RgnSize": 28672,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716640501760,
+        "EndAddr": 140716640505856,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comdlg32; \"C:\\Windows\\System32\\comdlg32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716640505856,
+        "EndAddr": 140716641153024,
+        "RgnSize": 647168,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[comdlg32; \"C:\\Windows\\System32\\comdlg32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716641153024,
+        "EndAddr": 140716641284096,
+        "RgnSize": 131072,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comdlg32; \"C:\\Windows\\System32\\comdlg32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716641284096,
+        "EndAddr": 140716641304576,
+        "RgnSize": 20480,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[comdlg32; \"C:\\Windows\\System32\\comdlg32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716641304576,
+        "EndAddr": 140716641710080,
+        "RgnSize": 405504,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[comdlg32; \"C:\\Windows\\System32\\comdlg32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716641710080,
+        "EndAddr": 140716641746944,
+        "RgnSize": 36864,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716641746944,
+        "EndAddr": 140716641751040,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[user32; \"C:\\Windows\\System32\\user32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716641751040,
+        "EndAddr": 140716642304000,
+        "RgnSize": 552960,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[user32; \"C:\\Windows\\System32\\user32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716642304000,
+        "EndAddr": 140716642439168,
+        "RgnSize": 135168,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[user32; \"C:\\Windows\\System32\\user32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716642439168,
+        "EndAddr": 140716642447360,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[user32; \"C:\\Windows\\System32\\user32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716642447360,
+        "EndAddr": 140716643414016,
+        "RgnSize": 966656,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[user32; \"C:\\Windows\\System32\\user32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716643414016,
+        "EndAddr": 140716644499456,
+        "RgnSize": 1085440,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716644499456,
+        "EndAddr": 140716644503552,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716644503552,
+        "EndAddr": 140716644986880,
+        "RgnSize": 483328,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716644986880,
+        "EndAddr": 140716645191680,
+        "RgnSize": 204800,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645191680,
+        "EndAddr": 140716645195776,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645195776,
+        "EndAddr": 140716645199872,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645199872,
+        "EndAddr": 140716645232640,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[kernel32; \"C:\\Windows\\System32\\kernel32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645232640,
+        "EndAddr": 140716645285888,
+        "RgnSize": 53248,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716645285888,
+        "EndAddr": 140716645289984,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shlwapi; \"C:\\Windows\\System32\\shlwapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645289984,
+        "EndAddr": 140716645462016,
+        "RgnSize": 172032,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[shlwapi; \"C:\\Windows\\System32\\shlwapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645462016,
+        "EndAddr": 140716645593088,
+        "RgnSize": 131072,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shlwapi; \"C:\\Windows\\System32\\shlwapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645593088,
+        "EndAddr": 140716645597184,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[shlwapi; \"C:\\Windows\\System32\\shlwapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645597184,
+        "EndAddr": 140716645621760,
+        "RgnSize": 24576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[shlwapi; \"C:\\Windows\\System32\\shlwapi.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645621760,
+        "EndAddr": 140716645679104,
+        "RgnSize": 57344,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716645679104,
+        "EndAddr": 140716645683200,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716645683200,
+        "EndAddr": 140716646072320,
+        "RgnSize": 389120,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646072320,
+        "EndAddr": 140716646289408,
+        "RgnSize": 217088,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646289408,
+        "EndAddr": 140716646305792,
+        "RgnSize": 16384,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646305792,
+        "EndAddr": 140716646309888,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646309888,
+        "EndAddr": 140716646346752,
+        "RgnSize": 36864,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[advapi32; \"C:\\Windows\\System32\\advapi32.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646346752,
+        "EndAddr": 140716646596608,
+        "RgnSize": 249856,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    },
+    {
+        "BaseAddr": 140716646596608,
+        "EndAddr": 140716646600704,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716646600704,
+        "EndAddr": 140716647743488,
+        "RgnSize": 1142784,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_EXECUTE_READ",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716647743488,
+        "EndAddr": 140716648034304,
+        "RgnSize": 290816,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716648034304,
+        "EndAddr": 140716648038400,
+        "RgnSize": 4096,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716648038400,
+        "EndAddr": 140716648046592,
+        "RgnSize": 8192,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_WRITECOPY",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716648046592,
+        "EndAddr": 140716648079360,
+        "RgnSize": 32768,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READWRITE",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716648079360,
+        "EndAddr": 140716648615936,
+        "RgnSize": 536576,
+        "Type": "MEM_IMAGE",
+        "State": "MEM_COMMIT",
+        "Protect": "PAGE_READONLY",
+        "Usage": "Image",
+        "Comment": "[ntdll; \"C:\\Windows\\System32\\ntdll.dll\"]"
+    },
+    {
+        "BaseAddr": 140716648615936,
+        "EndAddr": 140737488289792,
+        "RgnSize": 20839673856,
+        "Type": "MEM_FREE",
+        "State": "PAGE_NOACCESS",
+        "Usage": "Free",
+        "Comment": ""
+    }
+]
