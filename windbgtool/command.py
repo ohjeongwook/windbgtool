@@ -129,8 +129,3 @@ class Generator:
                 print(line)
                 fd.write(line+'\n')
         fd.close()
-
-if __name__ == '__main__':
-    pass
-
-
