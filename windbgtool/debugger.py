@@ -184,15 +184,25 @@ class DbgEngine(object, metaclass=Singleton):
 
     def enumerate_modules(self):
         self.module_list = {}
-        for line in self.run_command("lmf").splitlines()[1:]:
-            toks = line.split()[0:4]
-            
-            if len(toks) >= 4:
-                (start, end, name, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])           
-                logging.debug('Module: %x - %x (%s - %s)', start, end, name, full_path)
-                self.module_list[name] = {'Base': start, 'End': end, 'Path': full_path, 'Name': name}
-            else:
-                logging.info('Broken lm line: %s', ''.join(toks))
+
+        if self.use_command_mode:
+            for line in self.run_command("lmf").splitlines()[1:]:
+                toks = line.split()[0:4]
+                if len(toks) >= 4:
+                    (start, end, name, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])           
+                    logging.debug('Module: %x - %x (%s - %s)', start, end, name, full_path)
+                    self.module_list[name] = {'Base': start, 'End': end, 'Path': full_path, 'Name': name}
+                else:
+                    logging.info('Broken lm line: %s', ''.join(toks))
+        else:
+            for module in pykd.getModulesList():
+                name = module.name()
+                self.module_list[name] = {
+                                'Base': module.begin(), 
+                                'End': module.begin() + module.size(),
+                                'Path': module.image(),
+                                'Name': name
+                            }
 
         return self.module_list
 

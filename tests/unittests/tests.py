@@ -17,14 +17,15 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.load_dump(dump_filename)
         self.dbg_engine.set_symbol_path()
 
+        self.test_load_symbols_filename = 'test_load_symbols.json'
+        self.test_enumerate_modules_filename = 'test_enumerate_modules.json'
+        self.test_get_address_list_filename = 'test_get_address_list.json'
+
     def tearDown(self):
         pass
 
     def test_get_arch(self):
         assert str(self.dbg_engine.get_arch()) == 'AMD64', 'get_arch(): %s' % self.dbg_engine.get_arch()
-
-    def test_enumerate_modules(self):
-        self.dbg_engine.use_command_mode = True
 
     def test_resolve_symbol(self):
         symbols_and_address_pairs = (
@@ -85,12 +86,11 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.reset_symbols()
         self.dbg_engine.load_symbols(module_name_patterns = ['kernel32'])
 
-        test_filename = 'test_load_symbols.json'
-        if not os.path.isfile(test_filename):
-            with open(test_filename, 'w') as fd:
+        if not os.path.isfile(self.test_load_symbols_filename):
+            with open(self.test_load_symbols_filename, 'w') as fd:
                 json.dump(self.dbg_engine.address_to_symbols, fd, indent = 4)
 
-        orig_address_to_symbols =self.load_address_to_symbol_file(test_filename)
+        orig_address_to_symbols =self.load_address_to_symbol_file(self.test_load_symbols_filename)
 
         for (addres, symbol) in orig_address_to_symbols.items():
             assert self.dbg_engine.address_to_symbols[addres] == symbol
@@ -111,9 +111,8 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.unload_symbols('kernel32')
 
-        test_filename = 'test_load_symbols.json'
-        if os.path.isfile(test_filename):
-            with open(test_filename, 'r') as fd:
+        if os.path.isfile(self.test_load_symbols_filename):
+            with open(self.test_load_symbols_filename, 'r') as fd:
                 kernel32_symbols = json.load(fd)
 
                 i = 0
@@ -130,49 +129,58 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.reset_symbols()
         self.dbg_engine.load_symbols(['kernel32'])
 
-        test_filename = 'test_load_symbols.json'
-        if os.path.isfile(test_filename):
-            with open(test_filename, 'r') as fd:
+        if os.path.isfile(self.test_load_symbols_filename):
+            with open(self.test_load_symbols_filename, 'r') as fd:
                 kernel32_symbols = json.load(fd)
 
                 for address, symbol in kernel32_symbols.items():
                     resolved_address = self.dbg_engine.resolve_symbol('kernel32!' + symbol)
                     assert(resolved_address == address)
 
+    def compare_module_list(self, orig_module_list, module_list):
+        module_names = list(module_list.keys())
+        module_names.sort()
+
+        orig_module_names = list(orig_module_list.keys())
+        orig_module_names.sort()
+
+        assert module_names == orig_module_names
+
+        for module_name in module_names:
+            assert module_list[module_name] == orig_module_list[module_name], pprint.pformat(module_list[module_name]) + pprint.pformat(orig_module_list[module_name])
+
     def test_enumerate_modules(self):
+        self.dbg_engine.use_command_mode = False
         module_list = self.dbg_engine.enumerate_modules()
 
-        test_filename = 'test_enumerate_modules.json'
-        if not os.path.isfile(test_filename):
-            with open(test_filename, 'w') as fd:
+        if not os.path.isfile(self.test_enumerate_modules_filename):
+            with open(self.test_enumerate_modules_filename, 'w') as fd:
                 json.dump(module_list, fd, indent = 4)
 
-        with open(test_filename, 'r') as fd:
+        with open(self.test_enumerate_modules_filename, 'r') as fd:
             orig_module_list = json.load(fd)
+            self.compare_module_list(orig_module_list, module_list)
 
-            module_names = list(module_list.keys())
-            module_names.sort()
+    def test_enumerate_modules_in_command_mode(self):
+        self.dbg_engine.use_command_mode = True
+        module_list = self.dbg_engine.enumerate_modules()
 
-            orig_module_names = list(orig_module_list.keys())
-            orig_module_names.sort()
-
-            assert module_names == orig_module_names
-
-            for module_name in module_names:
-                assert module_list[module_name] == orig_module_list[module_name], pprint.pformat(module_list[module_name]) + pprint.pformat(orig_module_list[module_name])
+        with open(self.test_enumerate_modules_filename, 'r') as fd:
+            orig_module_list = json.load(fd)
+            self.compare_module_list(orig_module_list, module_list)            
 
     def test_get_address_list(self):
+        self.dbg_engine.use_command_mode = False
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.reset_symbols()
         self.dbg_engine.load_symbols(['kernel32', 'ntdll'])
         address_list = self.dbg_engine.get_address_list()
 
-        test_filename = 'test_get_address_list.json'
-        if not os.path.isfile(test_filename):
-            with open(test_filename, 'w') as fd:
+        if not os.path.isfile(self.test_get_address_list_filename):
+            with open(self.test_get_address_list_filename, 'w') as fd:
                 json.dump(address_list, fd, indent = 4)
 
-        with open(test_filename, 'r') as fd:
+        with open(self.test_get_address_list_filename, 'r') as fd:
             orig_address_list = json.load(fd)
             assert(address_list == orig_address_list)
 
