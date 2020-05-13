@@ -17,8 +17,11 @@ class Parser:
     pointer64_dump_pattern = re.compile("(.*) ([a-z]s:[0-9a-fA-F]{8}`[0-9a-fA-F]{8}.*$)")
     jump_line_pattern = re.compile("(.*) (\(.*\)) \[br = [0-9]+\]")
     jump_line_pattern2 = re.compile("([^ ]+)[ ]+\[br = [0-9]+\]")
-    addresses_pattern = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
-    addresses_pattern2 = re.compile('^[\+]*[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([0-9a-fA-F`]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+([^ ]+)[ ]+(.*)')
+    addresses_pattern_str = '^[\+]*[ ]+'
+    addresses_pattern_str += '([0-9a-fA-F`]+)[ ]+' * 3
+    #addresses_pattern_str += '([^ ]+)[ ]+' * 4
+    addresses_pattern_str += '(.*)'
+    addresses_pattern = re.compile(addresses_pattern_str)
     
     x_patterns = []
     x_patterns.append(re.compile('([a-fA-F0-9`]+)[ \t]+([^ \t]+)[ \t]*\(.*\)'))
@@ -231,29 +234,37 @@ class Parser:
             mem_info = {}
             m = self.addresses_pattern.match(line)
             if m:
+                mem_states = ('MEM_COMMIT', 'MEM_FREE', 'MEM_RESERVE')
+                toks = re.split('[ ]+', m.groups()[3], maxsplit = 5)
+
+                mem_type = ''
+                mem_state = ''
+                protect = ''
+                i = 0
+                for tok in toks:
+                    if tok in mem_states:
+                        mem_state = tok
+                    elif tok.startswith('MEM_'):
+                        mem_type = tok
+                    elif tok.startswith('PAGE_'):
+                        protect = tok
+                    else:
+                        usage = tok
+                        break
+                    i += 1
+
+                
+                comment = ' '.join(toks[i+1:])
                 mem_info = {
                     'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
                     'EndAddr': windbgtool.util.convert_to_int(m.groups()[1]), 
                     'RgnSize': windbgtool.util.convert_to_int(m.groups()[2]), 
-                    'Type': m.groups()[3], 
-                    'State': m.groups()[4], 
-                    'Protect': m.groups()[5], 
-                    'Usage': m.groups()[6], 
-                    'Comment': m.groups()[7]
+                    'Type': mem_type, 
+                    'State': mem_state, 
+                    'Protect': protect, 
+                    'Usage': usage, 
+                    'Comment': comment
                 }
-                pass
-            else:
-                m = self.addresses_pattern2.match(line)
-                if m:
-                    mem_info = {
-                        'BaseAddr': windbgtool.util.convert_to_int(m.groups()[0]), 
-                        'EndAddr': windbgtool.util.convert_to_int(m.groups()[1]), 
-                        'RgnSize': windbgtool.util.convert_to_int(m.groups()[2]), 
-                        'Type': m.groups()[3], 
-                        'State': m.groups()[4], 
-                        'Usage': m.groups()[5], 
-                        'Comment': m.groups()[6]
-                    }
 
             if len(mem_info)>0:
                 if debug>0:

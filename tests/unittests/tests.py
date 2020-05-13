@@ -10,7 +10,7 @@ import windbgtool.breakpoints
 
 import unittest
 
-class NotepadTests(unittest.TestCase):
+class tests(unittest.TestCase):
     def setUp(self):
         dump_filename = r'../test_files/notepad.dmp'
         self.dbg_engine = windbgtool.debugger.DbgEngine(use_command_mode = False)
@@ -182,7 +182,16 @@ class NotepadTests(unittest.TestCase):
 
         with open(self.test_get_address_list_filename, 'r') as fd:
             orig_address_list = json.load(fd)
-            assert(address_list == orig_address_list)
+
+            for i in range(0, len(address_list), 1):
+                assert(address_list[i]['BaseAddr'] == orig_address_list[i]['BaseAddr'])
+                assert(address_list[i]['EndAddr'] == orig_address_list[i]['EndAddr'])
+                assert(address_list[i]['RgnSize'] == orig_address_list[i]['RgnSize'])
+                assert(address_list[i]['Type'] == orig_address_list[i]['Type'])
+                assert(address_list[i]['State'] == orig_address_list[i]['State'])
+                assert(address_list[i]['Protect'] == orig_address_list[i]['Protect'])
+                assert(address_list[i]['Usage'] == orig_address_list[i]['Usage'])
 
 if __name__ == "__main__":
     unittest.main()
+

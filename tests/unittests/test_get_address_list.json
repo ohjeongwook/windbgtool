@@ -3,8 +3,9 @@
         "BaseAddr": 0,
         "EndAddr": 146866176,
         "RgnSize": 146866176,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -22,8 +23,9 @@
         "BaseAddr": 146870272,
         "EndAddr": 2147352576,
         "RgnSize": 2000482304,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -41,8 +43,9 @@
         "BaseAddr": 2147356672,
         "EndAddr": 2147368960,
         "RgnSize": 12288,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -60,8 +63,9 @@
         "BaseAddr": 2147373056,
         "EndAddr": 1091278929920,
         "RgnSize": 1089131556864,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -71,9 +75,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~28;",
-        "Comment": "4d0c.8588]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~0; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091279372288,
@@ -83,7 +87,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~28; 4d0c.8588]"
+        "Comment": "[~0; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091279384576,
@@ -93,7 +97,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~28; 4d0c.8588]"
+        "Comment": "[~0; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091279454208,
@@ -101,9 +105,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~29;",
-        "Comment": "4d0c.4084]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~1; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091279896576,
@@ -113,7 +117,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~29; 4d0c.4084]"
+        "Comment": "[~1; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091279908864,
@@ -123,14 +127,15 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~29; 4d0c.4084]"
+        "Comment": "[~1; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091279978496,
         "EndAddr": 1091280306176,
         "RgnSize": 327680,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -140,6 +145,7 @@
         "RgnSize": 1380352,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -161,7 +167,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~28; 4d0c.8588]"
+        "Comment": "[~0; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091281698816,
@@ -171,7 +177,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~29; 4d0c.4084]"
+        "Comment": "[~1; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091281707008,
@@ -181,7 +187,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~30; 4d0c.7f70]"
+        "Comment": "[~2; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091281715200,
@@ -191,7 +197,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~31; 4d0c.51e8]"
+        "Comment": "[~3; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091281723392,
@@ -201,7 +207,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~32; 4d0c.29b4]"
+        "Comment": "[~4; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091281731584,
@@ -211,7 +217,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~33; 4d0c.89c4]"
+        "Comment": "[~5; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091281739776,
@@ -221,7 +227,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~34; 4d0c.3ac8]"
+        "Comment": "[~6; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091281747968,
@@ -229,6 +235,7 @@
         "RgnSize": 655360,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -238,9 +245,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~30;",
-        "Comment": "4d0c.7f70]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~2; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091282845696,
@@ -250,7 +257,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~30; 4d0c.7f70]"
+        "Comment": "[~2; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091282857984,
@@ -260,7 +267,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~30; 4d0c.7f70]"
+        "Comment": "[~2; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091282927616,
@@ -268,9 +275,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~31;",
-        "Comment": "4d0c.51e8]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~3; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091283369984,
@@ -280,7 +287,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~31; 4d0c.51e8]"
+        "Comment": "[~3; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091283382272,
@@ -290,7 +297,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~31; 4d0c.51e8]"
+        "Comment": "[~3; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091283451904,
@@ -298,9 +305,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~32;",
-        "Comment": "4d0c.29b4]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~4; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091283894272,
@@ -310,7 +317,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~32; 4d0c.29b4]"
+        "Comment": "[~4; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091283906560,
@@ -320,7 +327,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~32; 4d0c.29b4]"
+        "Comment": "[~4; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091283976192,
@@ -328,9 +335,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~33;",
-        "Comment": "4d0c.89c4]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~5; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091284418560,
@@ -340,7 +347,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~33; 4d0c.89c4]"
+        "Comment": "[~5; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091284430848,
@@ -350,7 +357,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~33; 4d0c.89c4]"
+        "Comment": "[~5; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091284500480,
@@ -358,9 +365,9 @@
         "RgnSize": 442368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Stack",
-        "Usage": "[~34;",
-        "Comment": "4d0c.3ac8]"
+        "Protect": "",
+        "Usage": "Stack",
+        "Comment": "[~6; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091284942848,
@@ -370,7 +377,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~34; 4d0c.3ac8]"
+        "Comment": "[~6; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091284955136,
@@ -380,14 +387,15 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~34; 4d0c.3ac8]"
+        "Comment": "[~6; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091285024768,
         "EndAddr": 2423582162944,
         "RgnSize": 1332297138176,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -417,6 +425,7 @@
         "RgnSize": 16384,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -424,8 +433,9 @@
         "BaseAddr": 2423582261248,
         "EndAddr": 2423582294016,
         "RgnSize": 32768,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -443,8 +453,9 @@
         "BaseAddr": 2423582400512,
         "EndAddr": 2423582425088,
         "RgnSize": 24576,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -462,8 +473,9 @@
         "BaseAddr": 2423582441472,
         "EndAddr": 2423582490624,
         "RgnSize": 49152,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -481,8 +493,9 @@
         "BaseAddr": 2423582502912,
         "EndAddr": 2423582556160,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -500,8 +513,9 @@
         "BaseAddr": 2423582564352,
         "EndAddr": 2423582621696,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -519,8 +533,9 @@
         "BaseAddr": 2423583428608,
         "EndAddr": 2423583473664,
         "RgnSize": 45056,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -540,16 +555,17 @@
         "RgnSize": 790528,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "0; Handle: 0000023448e60000; Type: Front End]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 0; Handle: 0000023448e60000; Type: Front End]"
     },
     {
         "BaseAddr": 2423584272384,
         "EndAddr": 2423584325632,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -567,8 +583,9 @@
         "BaseAddr": 2423584337920,
         "EndAddr": 2423584391168,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -586,8 +603,9 @@
         "BaseAddr": 2423584395264,
         "EndAddr": 2423584456704,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -605,8 +623,9 @@
         "BaseAddr": 2423584464896,
         "EndAddr": 2423584522240,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -624,8 +643,9 @@
         "BaseAddr": 2423584526336,
         "EndAddr": 2423584587776,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -645,9 +665,9 @@
         "RgnSize": 479232,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "0; Handle: 0000023448e60000; Type: Segment]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 0; Handle: 0000023448e60000; Type: Segment]"
     },
     {
         "BaseAddr": 2423585632256,
@@ -655,6 +675,7 @@
         "RgnSize": 4096,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -674,16 +695,17 @@
         "RgnSize": 790528,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "2; Handle: 00000234490e0000; Type: Front End]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 2; Handle: 00000234490e0000; Type: Front End]"
     },
     {
         "BaseAddr": 2423586435072,
         "EndAddr": 2423586488320,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -701,8 +723,9 @@
         "BaseAddr": 2423586492416,
         "EndAddr": 2423586553856,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -720,8 +743,9 @@
         "BaseAddr": 2423586574336,
         "EndAddr": 2423586619392,
         "RgnSize": 45056,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -741,6 +765,7 @@
         "RgnSize": 61440,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -758,8 +783,9 @@
         "BaseAddr": 2423586689024,
         "EndAddr": 2423586750464,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -777,8 +803,9 @@
         "BaseAddr": 2423586758656,
         "EndAddr": 2423586816000,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -796,8 +823,9 @@
         "BaseAddr": 2423586824192,
         "EndAddr": 2423586881536,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -815,8 +843,9 @@
         "BaseAddr": 2423586889728,
         "EndAddr": 2423586947072,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -834,8 +863,9 @@
         "BaseAddr": 2423586951168,
         "EndAddr": 2423587012608,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -853,8 +883,9 @@
         "BaseAddr": 2423587016704,
         "EndAddr": 2423587209216,
         "RgnSize": 192512,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -874,6 +905,7 @@
         "RgnSize": 4096,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -893,6 +925,7 @@
         "RgnSize": 1953792,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -910,8 +943,9 @@
         "BaseAddr": 2423590948864,
         "EndAddr": 2423591010304,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -931,6 +965,7 @@
         "RgnSize": 19361792,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -938,8 +973,9 @@
         "BaseAddr": 2423611985920,
         "EndAddr": 2423612047360,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -957,8 +993,9 @@
         "BaseAddr": 2423613079552,
         "EndAddr": 2423613095936,
         "RgnSize": 16384,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -978,16 +1015,17 @@
         "RgnSize": 790528,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "3; Handle: 000002344aa70000; Type: Front End]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 3; Handle: 000002344aa70000; Type: Front End]"
     },
     {
         "BaseAddr": 2423613894656,
         "EndAddr": 2423614013440,
         "RgnSize": 118784,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1007,9 +1045,9 @@
         "RgnSize": 20480,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "3; Handle: 000002344aa70000; Type: Segment]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 3; Handle: 000002344aa70000; Type: Segment]"
     },
     {
         "BaseAddr": 2423614074880,
@@ -1017,6 +1055,7 @@
         "RgnSize": 4096,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1024,8 +1063,9 @@
         "BaseAddr": 2423614078976,
         "EndAddr": 2423647305728,
         "RgnSize": 33226752,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1053,8 +1093,9 @@
         "BaseAddr": 2423669944320,
         "EndAddr": 2423669981184,
         "RgnSize": 36864,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1074,6 +1115,7 @@
         "RgnSize": 1044480,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1093,6 +1135,7 @@
         "RgnSize": 8384512,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1112,9 +1155,9 @@
         "RgnSize": 921600,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
-        "Protect": "Heap",
-        "Usage": "[ID:",
-        "Comment": "2; Handle: 00000234490e0000; Type: Segment]"
+        "Protect": "",
+        "Usage": "Heap",
+        "Comment": "[ID: 2; Handle: 00000234490e0000; Type: Segment]"
     },
     {
         "BaseAddr": 2423680462848,
@@ -1122,6 +1165,7 @@
         "RgnSize": 4096,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1129,8 +1173,9 @@
         "BaseAddr": 2423680466944,
         "EndAddr": 138491165343744,
         "RgnSize": 136067484876800,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1150,6 +1195,7 @@
         "RgnSize": 1028096,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1159,6 +1205,7 @@
         "RgnSize": 4295098368,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1168,6 +1215,7 @@
         "RgnSize": 33554432,
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1185,8 +1233,9 @@
         "BaseAddr": 138495495049216,
         "EndAddr": 138495495110656,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1204,8 +1253,9 @@
         "BaseAddr": 138495495114752,
         "EndAddr": 138495495176192,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1223,8 +1273,9 @@
         "BaseAddr": 138495495319552,
         "EndAddr": 138495495372800,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1234,6 +1285,7 @@
         "RgnSize": 23588864,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1253,6 +1305,7 @@
         "RgnSize": 3997696,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1272,6 +1325,7 @@
         "RgnSize": 2198363963392,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1291,6 +1345,7 @@
         "RgnSize": 267964416,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1840,6 +1895,7 @@
         "RgnSize": 325619712,
         "Type": "MEM_MAPPED",
         "State": "MEM_RESERVE",
+        "Protect": "",
         "Usage": "<unknown>",
         "Comment": ""
     },
@@ -1847,8 +1903,9 @@
         "BaseAddr": 140694518628352,
         "EndAddr": 140697295126528,
         "RgnSize": 2776498176,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1906,8 +1963,9 @@
         "BaseAddr": 140697295400960,
         "EndAddr": 140715375722496,
         "RgnSize": 18080321536,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -1965,8 +2023,9 @@
         "BaseAddr": 140715376570368,
         "EndAddr": 140715385356288,
         "RgnSize": 8785920,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2024,8 +2083,9 @@
         "BaseAddr": 140715385614336,
         "EndAddr": 140715385618432,
         "RgnSize": 4096,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2083,8 +2143,9 @@
         "BaseAddr": 140715385872384,
         "EndAddr": 140715385880576,
         "RgnSize": 8192,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2142,8 +2203,9 @@
         "BaseAddr": 140715387158528,
         "EndAddr": 140715432738816,
         "RgnSize": 45580288,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2201,8 +2263,9 @@
         "BaseAddr": 140715434528768,
         "EndAddr": 140715628232704,
         "RgnSize": 193703936,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2260,8 +2323,9 @@
         "BaseAddr": 140715629043712,
         "EndAddr": 140716247154688,
         "RgnSize": 618110976,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2319,8 +2383,9 @@
         "BaseAddr": 140716249747456,
         "EndAddr": 140716249776128,
         "RgnSize": 28672,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2378,8 +2443,9 @@
         "BaseAddr": 140716250218496,
         "EndAddr": 140716270354432,
         "RgnSize": 20135936,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2437,8 +2503,9 @@
         "BaseAddr": 140716270460928,
         "EndAddr": 140716370755584,
         "RgnSize": 100294656,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2526,8 +2593,9 @@
         "BaseAddr": 140716372684800,
         "EndAddr": 140716395528192,
         "RgnSize": 22843392,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2635,8 +2703,9 @@
         "BaseAddr": 140716398313472,
         "EndAddr": 140716460802048,
         "RgnSize": 62488576,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2694,8 +2763,9 @@
         "BaseAddr": 140716461363200,
         "EndAddr": 140716475416576,
         "RgnSize": 14053376,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2753,8 +2823,9 @@
         "BaseAddr": 140716476026880,
         "EndAddr": 140716478889984,
         "RgnSize": 2863104,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2812,8 +2883,9 @@
         "BaseAddr": 140716478930944,
         "EndAddr": 140716483018752,
         "RgnSize": 4087808,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2891,8 +2963,9 @@
         "BaseAddr": 140716486303744,
         "EndAddr": 140716502941696,
         "RgnSize": 16637952,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -2950,8 +3023,9 @@
         "BaseAddr": 140716504330240,
         "EndAddr": 140716511920128,
         "RgnSize": 7589888,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3019,8 +3093,9 @@
         "BaseAddr": 140716512997376,
         "EndAddr": 140716515983360,
         "RgnSize": 2985984,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3078,8 +3153,9 @@
         "BaseAddr": 140716517720064,
         "EndAddr": 140716542787584,
         "RgnSize": 25067520,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3137,8 +3213,9 @@
         "BaseAddr": 140716543713280,
         "EndAddr": 140716552749056,
         "RgnSize": 9035776,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3196,8 +3273,9 @@
         "BaseAddr": 140716553388032,
         "EndAddr": 140716553732096,
         "RgnSize": 344064,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3275,8 +3353,9 @@
         "BaseAddr": 140716555882496,
         "EndAddr": 140716555894784,
         "RgnSize": 12288,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3334,8 +3413,9 @@
         "BaseAddr": 140716556058624,
         "EndAddr": 140716556222464,
         "RgnSize": 163840,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3403,8 +3483,9 @@
         "BaseAddr": 140716556410880,
         "EndAddr": 140716563824640,
         "RgnSize": 7413760,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3462,8 +3543,9 @@
         "BaseAddr": 140716564025344,
         "EndAddr": 140716569329664,
         "RgnSize": 5304320,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3521,8 +3603,9 @@
         "BaseAddr": 140716569579520,
         "EndAddr": 140716573982720,
         "RgnSize": 4403200,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3580,8 +3663,9 @@
         "BaseAddr": 140716574031872,
         "EndAddr": 140716579880960,
         "RgnSize": 5849088,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3639,8 +3723,9 @@
         "BaseAddr": 140716579954688,
         "EndAddr": 140716580012032,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3698,8 +3783,9 @@
         "BaseAddr": 140716580081664,
         "EndAddr": 140716580143104,
         "RgnSize": 61440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3767,8 +3853,9 @@
         "BaseAddr": 140716580524032,
         "EndAddr": 140716580536320,
         "RgnSize": 12288,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3826,8 +3913,9 @@
         "BaseAddr": 140716580683776,
         "EndAddr": 140716581126144,
         "RgnSize": 442368,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3895,8 +3983,9 @@
         "BaseAddr": 140716582805504,
         "EndAddr": 140716582830080,
         "RgnSize": 24576,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -3964,8 +4053,9 @@
         "BaseAddr": 140716590465024,
         "EndAddr": 140716590497792,
         "RgnSize": 32768,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4033,8 +4123,9 @@
         "BaseAddr": 140716590800896,
         "EndAddr": 140716590825472,
         "RgnSize": 24576,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4092,8 +4183,9 @@
         "BaseAddr": 140716591857664,
         "EndAddr": 140716591874048,
         "RgnSize": 16384,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4151,8 +4243,9 @@
         "BaseAddr": 140716593819648,
         "EndAddr": 140716593840128,
         "RgnSize": 20480,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4260,8 +4353,9 @@
         "BaseAddr": 140716594065408,
         "EndAddr": 140716594102272,
         "RgnSize": 36864,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4319,8 +4413,9 @@
         "BaseAddr": 140716594618368,
         "EndAddr": 140716594626560,
         "RgnSize": 8192,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4378,8 +4473,9 @@
         "BaseAddr": 140716594782208,
         "EndAddr": 140716595544064,
         "RgnSize": 761856,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4507,8 +4603,9 @@
         "BaseAddr": 140716598898688,
         "EndAddr": 140716603670528,
         "RgnSize": 4771840,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4576,8 +4673,9 @@
         "BaseAddr": 140716604334080,
         "EndAddr": 140716604391424,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4635,8 +4733,9 @@
         "BaseAddr": 140716605874176,
         "EndAddr": 140716605898752,
         "RgnSize": 24576,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4694,8 +4793,9 @@
         "BaseAddr": 140716609232896,
         "EndAddr": 140716609830912,
         "RgnSize": 598016,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4753,8 +4853,9 @@
         "BaseAddr": 140716611227648,
         "EndAddr": 140716611403776,
         "RgnSize": 176128,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4812,8 +4913,9 @@
         "BaseAddr": 140716612091904,
         "EndAddr": 140716612190208,
         "RgnSize": 98304,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4881,8 +4983,9 @@
         "BaseAddr": 140716634140672,
         "EndAddr": 140716634144768,
         "RgnSize": 4096,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -4940,8 +5043,9 @@
         "BaseAddr": 140716635336704,
         "EndAddr": 140716635783168,
         "RgnSize": 446464,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5019,8 +5123,9 @@
         "BaseAddr": 140716636430336,
         "EndAddr": 140716636438528,
         "RgnSize": 8192,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5078,8 +5183,9 @@
         "BaseAddr": 140716636626944,
         "EndAddr": 140716638797824,
         "RgnSize": 2170880,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5137,8 +5243,9 @@
         "BaseAddr": 140716639444992,
         "EndAddr": 140716639453184,
         "RgnSize": 8192,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5196,8 +5303,9 @@
         "BaseAddr": 140716640284672,
         "EndAddr": 140716640305152,
         "RgnSize": 20480,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5255,8 +5363,9 @@
         "BaseAddr": 140716640473088,
         "EndAddr": 140716640501760,
         "RgnSize": 28672,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5314,8 +5423,9 @@
         "BaseAddr": 140716641710080,
         "EndAddr": 140716641746944,
         "RgnSize": 36864,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5373,8 +5483,9 @@
         "BaseAddr": 140716643414016,
         "EndAddr": 140716644499456,
         "RgnSize": 1085440,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5442,8 +5553,9 @@
         "BaseAddr": 140716645232640,
         "EndAddr": 140716645285888,
         "RgnSize": 53248,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5501,8 +5613,9 @@
         "BaseAddr": 140716645621760,
         "EndAddr": 140716645679104,
         "RgnSize": 57344,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5570,8 +5683,9 @@
         "BaseAddr": 140716646346752,
         "EndAddr": 140716646596608,
         "RgnSize": 249856,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     },
@@ -5649,8 +5763,9 @@
         "BaseAddr": 140716648615936,
         "EndAddr": 140737488289792,
         "RgnSize": 20839673856,
-        "Type": "MEM_FREE",
-        "State": "PAGE_NOACCESS",
+        "Type": "",
+        "State": "MEM_FREE",
+        "Protect": "PAGE_NOACCESS",
         "Usage": "Free",
         "Comment": ""
     }
