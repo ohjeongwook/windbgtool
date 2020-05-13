@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../..'))
 
 import pprint
 import json
@@ -12,7 +12,7 @@ import unittest
 
 class NotepadTests(unittest.TestCase):
     def setUp(self):
-        dump_filename = r'test_files/notepad.dmp'
+        dump_filename = r'../test_files/notepad.dmp'
         self.dbg_engine = windbgtool.debugger.DbgEngine(use_command_mode = False)
         #dbg_engine.set_log_level(debug = True)        
         self.dbg_engine.load_dump(dump_filename)

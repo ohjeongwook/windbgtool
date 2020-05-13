@@ -1,8 +1,10 @@
-import sys
 import os
+import sys
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../..'))
+
 import logging
 
-import windbgtool.debugger
+import windbgtool.breakpoints
 
 from optparse import OptionParser, Option
 
@@ -24,9 +26,8 @@ if options.log == '':
 logging.basicConfig(level = logging.DEBUG)
 root = logging.getLogger()
 
-windbgtool_run = windbgtool.run()
-# windbgtool_run.set_symbol_path()
+windbgtool_breakpoints_operations = windbgtool.breakpoints.Operations()
 
 if options.breakpoint_db:
-    windbgtool_run.load_breakpoints(options.breakpoint_db, options.log)
-    windbgtool_run.go()
+    windbgtool_breakpoints_operations.load_breakpoints(options.breakpoint_db, options.log)
+    windbgtool_breakpoints_operations.go()
