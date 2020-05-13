@@ -24,6 +24,17 @@ class NotepadTests(unittest.TestCase):
     def test_get_arch(self):
         assert(self.dbg_engine.get_arch() == 'AMD64', "get_arch changed")
 
+    def test_resolve_symbol(self):
+        symbols_and_address_pairs = (
+            ('kernel32.dll!CreateFileW', 0x7ffb22bdf7b0), 
+            ('kernel32!CreateFileW', 0x7ffb259e1d30),
+            ('CreateFileW', 0x7ffb259e1d30),
+        )
+
+        for (symbol, address) in symbols_and_address_pairs:
+            resolved_address = self.dbg_engine.resolve_symbol(symbol)
+            assert(address == resolved_address)
+
     def test_get_bytes(self):
         resolved_address = self.dbg_engine.resolve_symbol('kernel32!CreateFileW')
         read_bytes = self.dbg_engine.get_bytes(resolved_address, 10)
@@ -44,12 +55,12 @@ class NotepadTests(unittest.TestCase):
 
         assert(get_module_names1 == get_module_names2, "test_get_module_list failed")
 
-    def test_enumerate_module_symbols_in_command_mode(self):
+    def test_load_symbols_in_command_mode(self):
         self.dbg_engine.use_command_mode = True
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(['kernel32'])
 
-        test_filename = 'test_enumerate_module_symbols.json'
+        test_filename = 'test_load_symbols.json'
         if not os.path.isfile(test_filename):
             with open(test_filename, 'w') as fd:
                 json.dump(self.dbg_engine.address_to_symbols, fd, indent = 4)
@@ -59,12 +70,12 @@ class NotepadTests(unittest.TestCase):
             orig_address_to_symbols = json.load(fd)
             assert(self.dbg_engine.address_to_symbols == orig_address_to_symbols, "kernel32_symbols changed")
 
-    def test_enumerate_module_symbols(self):
+    def test_load_symbols(self):
         self.dbg_engine.use_command_mode = False
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(module_name_patterns = ['kernel32'])
 
-        test_filename = 'test_enumerate_module_symbols.json'
+        test_filename = 'test_load_symbols.json'
         if not os.path.isfile(test_filename):
             with open(test_filename, 'w') as fd:
                 json.dump(self.dbg_engine.address_to_symbols, fd, indent = 4)
@@ -78,7 +89,7 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(['kernel32'])
 
-        test_filename = 'test_enumerate_module_symbols.json'
+        test_filename = 'test_load_symbols.json'
         if os.path.isfile(test_filename):
             with open(test_filename, 'r') as fd:
                 kernel32_symbols = json.load(fd)
@@ -92,7 +103,7 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.unload_symbols('kernel32')
 
-        test_filename = 'test_enumerate_module_symbols.json'
+        test_filename = 'test_load_symbols.json'
         if os.path.isfile(test_filename):
             with open(test_filename, 'r') as fd:
                 kernel32_symbols = json.load(fd)
@@ -110,7 +121,7 @@ class NotepadTests(unittest.TestCase):
         self.dbg_engine.enumerate_modules()
         self.dbg_engine.load_symbols(['kernel32'])
 
-        test_filename = 'test_enumerate_module_symbols.json'
+        test_filename = 'test_load_symbols.json'
         if os.path.isfile(test_filename):
             with open(test_filename, 'r') as fd:
                 kernel32_symbols = json.load(fd)

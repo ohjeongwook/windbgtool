@@ -108,8 +108,8 @@ class DbgEngine:
                     self.address_to_symbols[address] = symbol
        
         self.symbol_to_address = {}
-        for (k, v) in self.address_to_symbols.items():
-            self.symbol_to_address[v] = k
+        for (address, symbol) in self.address_to_symbols.items():
+            self.symbol_to_address[symbol] = address
 
     def load_address_symbol(self, address):
         address_info = self.get_address_info(address)
