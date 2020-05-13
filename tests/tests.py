@@ -21,8 +21,8 @@ class NotepadTests(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_get_machine(self):
-        assert(self.dbg_engine.get_machine() == 'AMD64', "get_machine changed")
+    def test_get_arch(self):
+        assert(self.dbg_engine.get_arch() == 'AMD64', "get_arch changed")
 
     def test_get_bytes(self):
         resolved_address = self.dbg_engine.resolve_symbol('kernel32!CreateFileW')
@@ -33,14 +33,14 @@ class NotepadTests(unittest.TestCase):
         wide_string = self.dbg_engine.get_wide_string(0x00007FF6A44DDD50)
         assert(wide_string == 'Security-SPP-GenuineLocalStatus', "test_get_wide_string failed")        
 
-    def test_get_module_list(self):
+    def test_get_module_names(self):
         self.dbg_engine.use_command_mode = False
-        module_list1 = self.dbg_engine.get_module_list()
+        get_module_names1 = self.dbg_engine.get_module_names()
         self.dbg_engine.use_command_mode = True
-        module_list2 = self.dbg_engine.get_module_list()
+        get_module_names2 = self.dbg_engine.get_module_names()
 
-        module_list1.sort()
-        module_list2.sort()
+        get_module_names1.sort()
+        get_module_names2.sort()
 
         assert(module_list1 == module_list2, "test_get_module_list failed")
 
