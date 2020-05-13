@@ -242,10 +242,16 @@ class DbgEngine(object, metaclass=Singleton):
         return (0, 0)
 
     def get_module_name_from_base(self, base):
-        for (k, module_info) in self.module_list.items():
+        for (module_name, module_info) in self.module_list.items():
             if module_info['Base'] == base:
-                return k
+                return module_name
         return ''
+
+    def get_module_name(self, address):
+        for (module_name, module_info) in self.module_list.items():
+            if module_info['Base'] <= address and address <= module_info['Base'] + module_info['End']:
+                return module_name
+        return ''        
 
     def get_instruction_pointer(self):
         try:
