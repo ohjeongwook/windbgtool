@@ -42,37 +42,37 @@ class NotepadTests(unittest.TestCase):
         get_module_names1.sort()
         get_module_names2.sort()
 
-        assert(module_list1 == module_list2, "test_get_module_list failed")
+        assert(get_module_names1 == get_module_names2, "test_get_module_list failed")
 
     def test_enumerate_module_symbols_in_command_mode(self):
         self.dbg_engine.use_command_mode = True
         self.dbg_engine.enumerate_modules()
-        kernel32_symbols = self.dbg_engine.enumerate_module_symbols(module_name_patterns = ['kernel32'])
+        self.dbg_engine.load_symbols(['kernel32'])
 
         test_filename = 'test_enumerate_module_symbols.json'
         if not os.path.isfile(test_filename):
             with open(test_filename, 'w') as fd:
-                json.dump(kernel32_symbols, fd, indent = 4)
-            pprint.pprint(kernel32_symbols)
+                json.dump(self.dbg_engine.address_to_symbols, fd, indent = 4)
+            pprint.pprint(self.dbg_engine.address_to_symbols)
 
         with open(test_filename, 'r') as fd:
-            orig_kernel32_symbols = json.load(fd)
-            assert(kernel32_symbols == orig_kernel32_symbols, "kernel32_symbols changed")
+            orig_address_to_symbols = json.load(fd)
+            assert(self.dbg_engine.address_to_symbols == orig_address_to_symbols, "kernel32_symbols changed")
 
     def test_enumerate_module_symbols(self):
         self.dbg_engine.use_command_mode = False
         self.dbg_engine.enumerate_modules()
-        kernel32_symbols = self.dbg_engine.enumerate_module_symbols(module_name_patterns = ['kernel32'])
+        self.dbg_engine.load_symbols(module_name_patterns = ['kernel32'])
 
         test_filename = 'test_enumerate_module_symbols.json'
         if not os.path.isfile(test_filename):
             with open(test_filename, 'w') as fd:
-                json.dump(kernel32_symbols, fd, indent = 4)
-            pprint.pprint(kernel32_symbols)
+                json.dump(self.dbg_engine.address_to_symbols, fd, indent = 4)
+            pprint.pprint(self.dbg_engine.address_to_symbols)
 
         with open(test_filename, 'r') as fd:
-            orig_kernel32_symbols = json.load(fd)
-            assert(kernel32_symbols == orig_kernel32_symbols, "kernel32_symbols changed")
+            orig_address_to_symbols = json.load(fd)
+            assert(self.dbg_engine.address_to_symbols == orig_address_to_symbols, "kernel32_symbols changed")
 
     def test_find_symbol(self):
         self.dbg_engine.enumerate_modules()
