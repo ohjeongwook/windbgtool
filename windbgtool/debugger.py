@@ -16,10 +16,9 @@ import windbgtool.log
 import windbgtool.breakpoints
 
 class DbgEngine:
-    MSDLSymPath = 'srv*https://msdl.microsoft.com/download/symbols'
-
     def __init__(self, use_command_mode = False):
         self.use_command_mode = use_command_mode
+
         self.logger = logging.getLogger(__name__)
         out_hdlr = logging.StreamHandler(sys.stdout)
         out_hdlr.setLevel(logging.INFO)
@@ -27,9 +26,8 @@ class DbgEngine:
         self.logger.setLevel(logging.INFO)
 
         self.module_list = {}
-        self.module_symbol_map = {}
+        self.address_to_symbols = {}
         self.symbol_to_address = {}
-
         self.windbg_log_parser = windbgtool.log.Parser()
 
     def __del__(self):
@@ -66,33 +64,70 @@ class DbgEngine:
         self.logger.debug('> run_command Result: [%s]', ret)
         return ret
 
-    def get_machine(self):
+    def get_arch(self):
         return pykd.getCPUMode()
 
-    def set_symbol_path(self):
-        output = self.run_command(".sympath %s" % self.MSDLSymPath)
-        output += self.run_command(".reload")
-
+    def set_symbol_path(self, symbol_path = 'srv*https://msdl.microsoft.com/download/symbols', reload = True):
+        output = self.run_command(".sympath+ %s" % symbol_path)
+        if reload:
+            output += self.run_command(".reload")
         return output
 
-    def load_symbols(self, modules = []):
-        self.module_symbol_map = self.enumerate_module_symbols(modules)
-       
-        self.logger.debug('* module_symbol_map:')
-        for (k, v) in self.module_symbol_map.items():
-            self.logger.debug('\t%x: %s' % (k, v))
+    def load_symbols(self, module_name_patterns = []):
+        if self.use_command_mode:
+            for name in self.module_list.keys():
+                found = False
+                if len(module_name_patterns) == 0:
+                    found = True
 
+                for module_name_pattern in module_name_patterns:
+                    if self.__match_name(name, module_name_pattern):
+                        found = True
+
+                if not found:
+                    continue
+
+                for (address, symbol) in self.get_addresses("%s!*" % name).items():
+                    self.address_to_symbols[address] = symbol
+        else:
+            for module in pykd.getModulesList():
+                name = module.name()
+                found = False
+
+                if len(module_name_patterns) == 0:
+                    found = True
+
+                for module_name_pattern in module_name_patterns:
+                    if self.__match_name(name, module_name_pattern):
+                        found = True
+
+                if not found:
+                    continue
+
+                for symbol, address in module.enumSymbols():
+                    self.address_to_symbols[address] = symbol
+       
         self.symbol_to_address = {}
-        for (k, v) in self.module_symbol_map.items():
+        for (k, v) in self.address_to_symbols.items():
             self.symbol_to_address[v] = k
 
+    def load_address_symbol(self, address):
+        address_info = self.get_address_info(address)
+        if address_info and 'Module Name' in address_info:
+            self.load_symbols([address_info['Module Name'],])
+
     def unload_symbols(self, module): 
-        if module in self.module_symbol_map:
-            del self.module_symbol_map[module]
+        if module in self.address_to_symbols:
+            del self.address_to_symbols[module]
 
     def find_symbol(self, address):
-        if address in self.module_symbol_map:
-            name = self.module_symbol_map[address]
+        name = ''
+
+        if not address in self.address_to_symbols:
+            self.load_address_symbol(address)
+
+        if address in self.address_to_symbols:
+            name = self.address_to_symbols[address]
         else:
             if self.use_command_mode:
                 try:
@@ -100,7 +135,6 @@ class DbgEngine:
                 except:
                     output = ''
 
-                name = ''
                 if output:
                     output_lines = output.splitlines()
                     if len(output_lines) >= 0 and output_lines[0].endswith(':'):
@@ -114,9 +148,18 @@ class DbgEngine:
         if symbol in self.symbol_to_address:
             return self.symbol_to_address[symbol]
 
+        if symbol.find("!") >= 0:
+            (module_name, symbol) = symbol.split('!', 1)
+            if symbol.find(".") >= 0:
+                module_name = module_name.split('.')[0]
+            self.load_symbols([module_name,])
+
+        if symbol in self.symbol_to_address:
+            return self.symbol_to_address[symbol]
+
         return pykd.getOffset(symbol)
 
-    def match_name(self, name, pattern):
+    def __match_name(self, name, pattern):
         if name.lower().find(pattern.lower()) >= 0:
             return True
         return False
@@ -132,15 +175,15 @@ class DbgEngine:
         for addr_info in self.get_address_list():
             if 'Protect' in addr_info:
                if type == 'NonImageRW' and \
-                  addr['Protect'] == 'PAGE_READWRITE' and \
-                  addr['Type'] != 'MEM_IMAGE':
+                  addr_info['Protect'] == 'PAGE_READWRITE' and \
+                  addr_info['Type'] != 'MEM_IMAGE':
 
-                cmd = 'dqs %x L%x' % (addr['BaseAddr'], addr['RgnSize']/8)
+                cmd = 'dqs %x L%x' % (addr_info['BaseAddr'], addr_info['RgnSize']/8)
                 results.append(dbgCommand(cmd))
 
         return results
-                
-    def get_module_list(self):
+
+    def get_module_names(self):
         if self.use_command_mode:
             module_list = self.run_command("lm1m").splitlines()
         else:
@@ -182,58 +225,21 @@ class DbgEngine:
     def get_addresses(self, name):
         return self.windbg_log_parser.parse_x(self.run_command("x %s" % name))        
 
-    def enumerate_module_symbols(self, module_name_patterns = []):
-        map = {}
-        if self.use_command_mode:
-            for name in self.module_list.keys():
-                found = False
-                if len(module_name_patterns) == 0:
-                    found = True
-
-                for module_name_pattern in module_name_patterns:
-                    if self.match_name(name, module_name_pattern):
-                        found = True
-
-                if not found:
-                    continue
-
-                for (k, v) in self.get_addresses("%s!*" % name).items():
-                    map[k] = v
-        else:
-            for module in pykd.getModulesList():
-                name = module.name()
-                found = False
-
-                if len(module_name_patterns) == 0:
-                    found = True
-
-                for module_name_pattern in module_name_patterns:
-                    if self.match_name(name, module_name_pattern):
-                        found = True
-
-                if not found:
-                    continue
-
-                for symbolname, offset in module.enumSymbols():
-                    map[offset] = symbolname
-                
-        return map
-
     def resolve_module_name(self, module_name_pattern):
         for name in self.module_list.keys():
-            if self.match_name(name, module_name_pattern):
+            if self.__match_name(name, module_name_pattern):
                 return name
         return ''
         
     def get_module_base(self, module_name_pattern):
         for name in self.module_list.keys():
-            if self.match_name(name, module_name_pattern):
+            if self.__match_name(name, module_name_pattern):
                 return self.module_list[name][0]
         return ''
         
     def get_module_range(self, module_name_pattern):
         for name in self.module_list.keys():
-            if self.match_name(name, module_name_pattern):
+            if self.__match_name(name, module_name_pattern):
                 return self.module_list[name][0:2]
         return (0, 0)
 
@@ -349,6 +355,12 @@ class DbgEngine:
         thread = pykd.dbgCommand('.thread')
         print(thread)
         return windbgtool.util.convert_to_int(pykd.dbgCommand('.thread').split()[-1], 0x10)
+
+    def get_disassembly_line(self, ip):
+        try:
+            return self.run_command('u %x L1' % (ip))
+        except:
+            return ''
 
     def go(self):
         pykd.go()
