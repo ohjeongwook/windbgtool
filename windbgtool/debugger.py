@@ -15,35 +15,21 @@ import windbgtool.util
 import windbgtool.log
 import windbgtool.breakpoints
 
-class DbgEngine:
+class Singleton(type):
+    _instances = {}
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
+        return cls._instances[cls]
+
+class DbgEngine(object, metaclass=Singleton):
     def __init__(self, use_command_mode = False):
+        return
         self.use_command_mode = use_command_mode
-
-        self.logger = logging.getLogger(__name__)
-        out_hdlr = logging.StreamHandler(sys.stdout)
-        out_hdlr.setLevel(logging.INFO)
-        self.logger.addHandler(out_hdlr)
-        self.logger.setLevel(logging.INFO)
-
         self.module_list = {}
         self.address_to_symbols = {}
         self.symbol_to_address = {}
         self.windbg_log_parser = windbgtool.log.Parser()
-
-    def __del__(self):
-        self.close_dump()
-        
-    def set_log_level(self, debug = True):
-        if debug:
-            out_hdlr = logging.StreamHandler(sys.stdout)
-            out_hdlr.setLevel(logging.DEBUG)
-            self.logger.addHandler(out_hdlr)
-            self.logger.setLevel(logging.DEBUG)
-        else:
-            out_hdlr = logging.StreamHandler(sys.stdout)
-            out_hdlr.setLevel(logging.INFO)
-            self.logger.addHandler(out_hdlr)
-            self.logger.setLevel(logging.INFO)
        
     def load_dump(self, dump_filename):
         pykd.loadDump(dump_filename)
@@ -55,13 +41,13 @@ class DbgEngine:
         pykd.startProcess(executable_path)
 
     def run_command(self, cmd):
-        self.logger.debug('> run_command: [%s]', cmd)
+        logging.debug('> run_command: [%s]', cmd)
 
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
 
-        self.logger.debug('> run_command Result: [%s]', ret)
+        logging.debug('> run_command Result: [%s]', ret)
         return ret
 
     def get_arch(self):
@@ -201,10 +187,10 @@ class DbgEngine:
             if len(toks) >= 4:
                 (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
             
-                self.logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
+                logging.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
                 self.module_list[module] = (start, end, full_path)
             else:
-                self.logger.info('Broken lm line: %s', ''.join(toks))
+                logging.info('Broken lm line: %s', ''.join(toks))
 
         return self.module_list
 
@@ -212,14 +198,14 @@ class DbgEngine:
         lines = self.run_command("lmfm %s" % module).splitlines()
 
         if len(lines)<3:
-            self.logger.info('Resolving %s information failed:', module)
-            self.logger.info('\n'.join(lines))
+            logging.info('Resolving %s information failed:', module)
+            logging.info('\n'.join(lines))
         else:
             line = lines[2]
             toks = line.split()[0:4]
             (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
         
-            self.logger.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
+            logging.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
             self.module_list[module] = (start, end, full_path)
 
     def get_addresses(self, name):
@@ -271,14 +257,14 @@ class DbgEngine:
             try:
                 return pykd.loadQWords(rsp, 1)[0]
             except:
-                self.logger.info('Accessing memory %x failed', rsp)
+                logging.info('Accessing memory %x failed', rsp)
             
         except:    
             esp = pykd.reg("esp")
             try:
                 return pykd.loadDWords(esp, 1)[0]
             except:
-                self.logger.info('Accessing memory %x failed', esp)
+                logging.info('Accessing memory %x failed', esp)
 
         return 0
 
@@ -356,9 +342,9 @@ class DbgEngine:
         print(thread)
         return windbgtool.util.convert_to_int(pykd.dbgCommand('.thread').split()[-1], 0x10)
 
-    def get_disassembly_line(self, ip):
+    def get_disassembly_line(self, ip, length = 1):
         try:
-            return self.run_command('u %x L1' % (ip))
+            return self.run_command('u %x L%x' % (ip, length))
         except:
             return ''
 
