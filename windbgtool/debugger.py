@@ -60,19 +60,19 @@ class DbgEngine(object, metaclass=Singleton):
 
     def load_symbols(self, module_name_patterns = []):
         if self.use_command_mode:
-            for name in self.module_list.keys():
+            for module_name in self.module_list.keys():
                 found = False
                 if len(module_name_patterns) == 0:
                     found = True
 
                 for module_name_pattern in module_name_patterns:
-                    if self.__match_name(name, module_name_pattern):
+                    if self.__match_name(module_name, module_name_pattern):
                         found = True
 
                 if not found:
                     continue
 
-                for (address, symbol) in self.get_addresses("%s!*" % name).items():
+                for (address, symbol) in self.get_addresses("%s!*" % module_name).items():
                     self.address_to_symbols[address] = symbol
         else:
             for module in pykd.getModulesList():
@@ -90,7 +90,8 @@ class DbgEngine(object, metaclass=Singleton):
                     continue
 
                 for symbol, address in module.enumSymbols():
-                    self.address_to_symbols[address] = symbol
+                    full_symbol = module.name() + "!" + symbol
+                    self.address_to_symbols[address] = full_symbol
        
         self.symbol_to_address = {}
         for (address, symbol) in self.address_to_symbols.items():
@@ -105,9 +106,12 @@ class DbgEngine(object, metaclass=Singleton):
         if module in self.address_to_symbols:
             del self.address_to_symbols[module]
 
+    def reset_symbols(self):
+        self.address_to_symbols = {}
+        self.symbol_to_address = {}
+
     def find_symbol(self, address):
         name = ''
-
         if not address in self.address_to_symbols:
             self.load_address_symbol(address)
 
@@ -123,7 +127,7 @@ class DbgEngine(object, metaclass=Singleton):
                 if output:
                     output_lines = output.splitlines()
                     if len(output_lines) >= 0 and output_lines[0].endswith(':'):
-                        name = output_lines[0][0:-1]
+                        name = output_lines[0]
             else:
                 name = pykd.findSymbol(address)
 
@@ -164,7 +168,7 @@ class DbgEngine(object, metaclass=Singleton):
                   addr_info['Type'] != 'MEM_IMAGE':
 
                 cmd = 'dqs %x L%x' % (addr_info['BaseAddr'], addr_info['RgnSize']/8)
-                results.append(dbgCommand(cmd))
+                results.append(pykd.dbgCommand(cmd))
 
         return results
 
@@ -184,10 +188,9 @@ class DbgEngine(object, metaclass=Singleton):
             toks = line.split()[0:4]
             
             if len(toks) >= 4:
-                (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
-            
-                logging.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
-                self.module_list[module] = (start, end, full_path)
+                (start, end, name, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])           
+                logging.debug('Module: %x - %x (%s - %s)', start, end, name, full_path)
+                self.module_list[name] = {'Base': start, 'End': end, 'Path': full_path, 'Name': name}
             else:
                 logging.info('Broken lm line: %s', ''.join(toks))
 
@@ -202,10 +205,10 @@ class DbgEngine(object, metaclass=Singleton):
         else:
             line = lines[2]
             toks = line.split()[0:4]
-            (start, end, module, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
+            (start, end, name, full_path) = (windbgtool.util.convert_to_int(toks[0]), windbgtool.util.convert_to_int(toks[1]), toks[2], toks[3])
         
-            logging.debug('Module: %x - %x (%s - %s)', start, end, module, full_path)
-            self.module_list[module] = (start, end, full_path)
+            logging.debug('Module: %x - %x (%s - %s)', start, end, name, full_path)
+            self.module_list[name] = {'Base': start, 'End': end, 'Path': full_path, 'Name': name}
 
     def get_addresses(self, name):
         return self.windbg_log_parser.parse_x(self.run_command("x %s" % name))        
@@ -219,18 +222,18 @@ class DbgEngine(object, metaclass=Singleton):
     def get_module_base(self, module_name_pattern):
         for name in self.module_list.keys():
             if self.__match_name(name, module_name_pattern):
-                return self.module_list[name][0]
+                return self.module_list[name]['Base']
         return ''
         
     def get_module_range(self, module_name_pattern):
         for name in self.module_list.keys():
             if self.__match_name(name, module_name_pattern):
-                return self.module_list[name][0:2]
+                return (self.module_list[name]['Base'], self.module_list[name]['End'])
         return (0, 0)
 
     def get_module_name_from_base(self, base):
-        for (k, v) in self.module_list.items():
-            if v[0] == base:
+        for (k, module_info) in self.module_list.items():
+            if module_info['Base'] == base:
                 return k
         return ''
 

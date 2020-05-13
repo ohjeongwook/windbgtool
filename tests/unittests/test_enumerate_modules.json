@@ -1,302 +1,362 @@
 {
-    "notepad": [
-        140697295126528,
-        140697295400960,
-        "C:\\Windows\\System32\\notepad.exe"
-    ],
-    "imkrtip": [
-        140715375722496,
-        140715376570368,
-        "C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll"
-    ],
-    "IMJKAPI": [
-        140715385356288,
-        140715385614336,
-        "C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL"
-    ],
-    "imkrapi": [
-        140715385618432,
-        140715385872384,
-        "C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll"
-    ],
-    "IMETIP": [
-        140715385880576,
-        140715387158528,
-        "C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL"
-    ],
-    "dui70": [
-        140715432738816,
-        140715434528768,
-        "C:\\Windows\\System32\\dui70.dll"
-    ],
-    "efswrt": [
-        140715628232704,
-        140715629043712,
-        "C:\\Windows\\System32\\efswrt.dll"
-    ],
-    "comctl32": [
-        140716247154688,
-        140716249747456,
-        "C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll"
-    ],
-    "oleacc": [
-        140716249776128,
-        140716250218496,
-        "C:\\Windows\\System32\\oleacc.dll"
-    ],
-    "mpr": [
-        140716270354432,
-        140716270460928,
-        "C:\\Windows\\System32\\mpr.dll"
-    ],
-    "urlmon": [
-        140716370755584,
-        140716372684800,
-        "C:\\Windows\\System32\\urlmon.dll"
-    ],
-    "iertutil": [
-        140716395528192,
-        140716398313472,
-        "C:\\Windows\\System32\\iertutil.dll"
-    ],
-    "winspool": [
-        140716460802048,
-        140716461363200,
-        "C:\\Windows\\System32\\winspool.drv"
-    ],
-    "TextInputFramework": [
-        140716475416576,
-        140716476026880,
-        "C:\\Windows\\System32\\TextInputFramework.dll"
-    ],
-    "version": [
-        140716478889984,
-        140716478930944,
-        "C:\\Windows\\System32\\version.dll"
-    ],
-    "CoreUIComponents": [
-        140716483018752,
-        140716486303744,
-        "C:\\Windows\\System32\\CoreUIComponents.dll"
-    ],
-    "WinTypes": [
-        140716502941696,
-        140716504330240,
-        "C:\\Windows\\System32\\WinTypes.dll"
-    ],
-    "MrmCoreR": [
-        140716511920128,
-        140716512997376,
-        "C:\\Windows\\System32\\MrmCoreR.dll"
-    ],
-    "propsys": [
-        140716515983360,
-        140716517720064,
-        "C:\\Windows\\System32\\propsys.dll"
-    ],
-    "CoreMessaging": [
-        140716542787584,
-        140716543713280,
-        "C:\\Windows\\System32\\CoreMessaging.dll"
-    ],
-    "uxtheme": [
-        140716552749056,
-        140716553388032,
-        "C:\\Windows\\System32\\uxtheme.dll"
-    ],
-    "twinapi_appcore": [
-        140716553732096,
-        140716555882496,
-        "C:\\Windows\\System32\\twinapi.appcore.dll"
-    ],
-    "rmclient": [
-        140716555894784,
-        140716556058624,
-        "C:\\Windows\\System32\\rmclient.dll"
-    ],
-    "dwmapi": [
-        140716556222464,
-        140716556410880,
-        "C:\\Windows\\System32\\dwmapi.dll"
-    ],
-    "ntmarta": [
-        140716563824640,
-        140716564025344,
-        "C:\\Windows\\System32\\ntmarta.dll"
-    ],
-    "IPHLPAPI": [
-        140716569329664,
-        140716569579520,
-        "C:\\Windows\\System32\\IPHLPAPI.DLL"
-    ],
-    "CRYPTBASE": [
-        140716573982720,
-        140716574031872,
-        "C:\\Windows\\System32\\CRYPTBASE.DLL"
-    ],
-    "msasn1": [
-        140716579880960,
-        140716579954688,
-        "C:\\Windows\\System32\\msasn1.dll"
-    ],
-    "kernel_appcore": [
-        140716580012032,
-        140716580081664,
-        "C:\\Windows\\System32\\kernel.appcore.dll"
-    ],
-    "powrprof": [
-        140716580143104,
-        140716580524032,
-        "C:\\Windows\\System32\\powrprof.dll"
-    ],
-    "profapi": [
-        140716580536320,
-        140716580683776,
-        "C:\\Windows\\System32\\profapi.dll"
-    ],
-    "gdi32full": [
-        140716581126144,
-        140716582805504,
-        "C:\\Windows\\System32\\gdi32full.dll"
-    ],
-    "windows_storage": [
-        140716582830080,
-        140716590465024,
-        "C:\\Windows\\System32\\windows.storage.dll"
-    ],
-    "cfgmgr32": [
-        140716590497792,
-        140716590800896,
-        "C:\\Windows\\System32\\cfgmgr32.dll"
-    ],
-    "ucrtbase": [
-        140716590825472,
-        140716591857664,
-        "C:\\Windows\\System32\\ucrtbase.dll"
-    ],
-    "crypt32": [
-        140716591874048,
-        140716593819648,
-        "C:\\Windows\\System32\\crypt32.dll"
-    ],
-    "win32u": [
-        140716593840128,
-        140716593971200,
-        "C:\\Windows\\System32\\win32u.dll"
-    ],
-    "cryptsp": [
-        140716593971200,
-        140716594065408,
-        "C:\\Windows\\System32\\cryptsp.dll"
-    ],
-    "bcryptPrimitives": [
-        140716594102272,
-        140716594618368,
-        "C:\\Windows\\System32\\bcryptPrimitives.dll"
-    ],
-    "bcrypt": [
-        140716594626560,
-        140716594782208,
-        "C:\\Windows\\System32\\bcrypt.dll"
-    ],
-    "msvcp_win": [
-        140716595544064,
-        140716596199424,
-        "C:\\Windows\\System32\\msvcp_win.dll"
-    ],
-    "KERNELBASE": [
-        140716596199424,
-        140716598898688,
-        "C:\\Windows\\System32\\KERNELBASE.dll"
-    ],
-    "clbcatq": [
-        140716603670528,
-        140716604334080,
-        "C:\\Windows\\System32\\clbcatq.dll"
-    ],
-    "msctf": [
-        140716604391424,
-        140716605874176,
-        "C:\\Windows\\System32\\msctf.dll"
-    ],
-    "combase": [
-        140716605898752,
-        140716609232896,
-        "C:\\Windows\\System32\\combase.dll"
-    ],
-    "ole32": [
-        140716609830912,
-        140716611227648,
-        "C:\\Windows\\System32\\ole32.dll"
-    ],
-    "SHCore": [
-        140716611403776,
-        140716612091904,
-        "C:\\Windows\\System32\\SHCore.dll"
-    ],
-    "shell32": [
-        140716612190208,
-        140716634140672,
-        "C:\\Windows\\System32\\shell32.dll"
-    ],
-    "rpcrt4": [
-        140716634144768,
-        140716635336704,
-        "C:\\Windows\\System32\\rpcrt4.dll"
-    ],
-    "msvcrt": [
-        140716635783168,
-        140716636430336,
-        "C:\\Windows\\System32\\msvcrt.dll"
-    ],
-    "imm32": [
-        140716636438528,
-        140716636626944,
-        "C:\\Windows\\System32\\imm32.dll"
-    ],
-    "sechost": [
-        140716638797824,
-        140716639444992,
-        "C:\\Windows\\System32\\sechost.dll"
-    ],
-    "oleaut32": [
-        140716639453184,
-        140716640284672,
-        "C:\\Windows\\System32\\oleaut32.dll"
-    ],
-    "gdi32": [
-        140716640305152,
-        140716640473088,
-        "C:\\Windows\\System32\\gdi32.dll"
-    ],
-    "comdlg32": [
-        140716640501760,
-        140716641710080,
-        "C:\\Windows\\System32\\comdlg32.dll"
-    ],
-    "user32": [
-        140716641746944,
-        140716643414016,
-        "C:\\Windows\\System32\\user32.dll"
-    ],
-    "kernel32": [
-        140716644499456,
-        140716645232640,
-        "C:\\Windows\\System32\\kernel32.dll"
-    ],
-    "shlwapi": [
-        140716645285888,
-        140716645621760,
-        "C:\\Windows\\System32\\shlwapi.dll"
-    ],
-    "advapi32": [
-        140716645679104,
-        140716646346752,
-        "C:\\Windows\\System32\\advapi32.dll"
-    ],
-    "ntdll": [
-        140716646596608,
-        140716648615936,
-        "C:\\Windows\\System32\\ntdll.dll"
-    ]
+    "notepad": {
+        "Base": 140697295126528,
+        "End": 140697295400960,
+        "Path": "C:\\Windows\\System32\\notepad.exe",
+        "Name": "notepad"
+    },
+    "imkrtip": {
+        "Base": 140715375722496,
+        "End": 140715376570368,
+        "Path": "C:\\Windows\\System32\\IME\\IMEKR\\imkrtip.dll",
+        "Name": "imkrtip"
+    },
+    "IMJKAPI": {
+        "Base": 140715385356288,
+        "End": 140715385614336,
+        "Path": "C:\\Windows\\System32\\IME\\shared\\IMJKAPI.DLL",
+        "Name": "IMJKAPI"
+    },
+    "imkrapi": {
+        "Base": 140715385618432,
+        "End": 140715385872384,
+        "Path": "C:\\Windows\\System32\\IME\\IMEKR\\imkrapi.dll",
+        "Name": "imkrapi"
+    },
+    "IMETIP": {
+        "Base": 140715385880576,
+        "End": 140715387158528,
+        "Path": "C:\\Windows\\System32\\IME\\shared\\IMETIP.DLL",
+        "Name": "IMETIP"
+    },
+    "dui70": {
+        "Base": 140715432738816,
+        "End": 140715434528768,
+        "Path": "C:\\Windows\\System32\\dui70.dll",
+        "Name": "dui70"
+    },
+    "efswrt": {
+        "Base": 140715628232704,
+        "End": 140715629043712,
+        "Path": "C:\\Windows\\System32\\efswrt.dll",
+        "Name": "efswrt"
+    },
+    "comctl32": {
+        "Base": 140716247154688,
+        "End": 140716249747456,
+        "Path": "C:\\Windows\\WinSxS\\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.17763.107_none_05b63884071e656e\\comctl32.dll",
+        "Name": "comctl32"
+    },
+    "oleacc": {
+        "Base": 140716249776128,
+        "End": 140716250218496,
+        "Path": "C:\\Windows\\System32\\oleacc.dll",
+        "Name": "oleacc"
+    },
+    "mpr": {
+        "Base": 140716270354432,
+        "End": 140716270460928,
+        "Path": "C:\\Windows\\System32\\mpr.dll",
+        "Name": "mpr"
+    },
+    "urlmon": {
+        "Base": 140716370755584,
+        "End": 140716372684800,
+        "Path": "C:\\Windows\\System32\\urlmon.dll",
+        "Name": "urlmon"
+    },
+    "iertutil": {
+        "Base": 140716395528192,
+        "End": 140716398313472,
+        "Path": "C:\\Windows\\System32\\iertutil.dll",
+        "Name": "iertutil"
+    },
+    "winspool": {
+        "Base": 140716460802048,
+        "End": 140716461363200,
+        "Path": "C:\\Windows\\System32\\winspool.drv",
+        "Name": "winspool"
+    },
+    "TextInputFramework": {
+        "Base": 140716475416576,
+        "End": 140716476026880,
+        "Path": "C:\\Windows\\System32\\TextInputFramework.dll",
+        "Name": "TextInputFramework"
+    },
+    "version": {
+        "Base": 140716478889984,
+        "End": 140716478930944,
+        "Path": "C:\\Windows\\System32\\version.dll",
+        "Name": "version"
+    },
+    "CoreUIComponents": {
+        "Base": 140716483018752,
+        "End": 140716486303744,
+        "Path": "C:\\Windows\\System32\\CoreUIComponents.dll",
+        "Name": "CoreUIComponents"
+    },
+    "WinTypes": {
+        "Base": 140716502941696,
+        "End": 140716504330240,
+        "Path": "C:\\Windows\\System32\\WinTypes.dll",
+        "Name": "WinTypes"
+    },
+    "MrmCoreR": {
+        "Base": 140716511920128,
+        "End": 140716512997376,
+        "Path": "C:\\Windows\\System32\\MrmCoreR.dll",
+        "Name": "MrmCoreR"
+    },
+    "propsys": {
+        "Base": 140716515983360,
+        "End": 140716517720064,
+        "Path": "C:\\Windows\\System32\\propsys.dll",
+        "Name": "propsys"
+    },
+    "CoreMessaging": {
+        "Base": 140716542787584,
+        "End": 140716543713280,
+        "Path": "C:\\Windows\\System32\\CoreMessaging.dll",
+        "Name": "CoreMessaging"
+    },
+    "uxtheme": {
+        "Base": 140716552749056,
+        "End": 140716553388032,
+        "Path": "C:\\Windows\\System32\\uxtheme.dll",
+        "Name": "uxtheme"
+    },
+    "twinapi_appcore": {
+        "Base": 140716553732096,
+        "End": 140716555882496,
+        "Path": "C:\\Windows\\System32\\twinapi.appcore.dll",
+        "Name": "twinapi_appcore"
+    },
+    "rmclient": {
+        "Base": 140716555894784,
+        "End": 140716556058624,
+        "Path": "C:\\Windows\\System32\\rmclient.dll",
+        "Name": "rmclient"
+    },
+    "dwmapi": {
+        "Base": 140716556222464,
+        "End": 140716556410880,
+        "Path": "C:\\Windows\\System32\\dwmapi.dll",
+        "Name": "dwmapi"
+    },
+    "ntmarta": {
+        "Base": 140716563824640,
+        "End": 140716564025344,
+        "Path": "C:\\Windows\\System32\\ntmarta.dll",
+        "Name": "ntmarta"
+    },
+    "IPHLPAPI": {
+        "Base": 140716569329664,
+        "End": 140716569579520,
+        "Path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+        "Name": "IPHLPAPI"
+    },
+    "CRYPTBASE": {
+        "Base": 140716573982720,
+        "End": 140716574031872,
+        "Path": "C:\\Windows\\System32\\CRYPTBASE.DLL",
+        "Name": "CRYPTBASE"
+    },
+    "msasn1": {
+        "Base": 140716579880960,
+        "End": 140716579954688,
+        "Path": "C:\\Windows\\System32\\msasn1.dll",
+        "Name": "msasn1"
+    },
+    "kernel_appcore": {
+        "Base": 140716580012032,
+        "End": 140716580081664,
+        "Path": "C:\\Windows\\System32\\kernel.appcore.dll",
+        "Name": "kernel_appcore"
+    },
+    "powrprof": {
+        "Base": 140716580143104,
+        "End": 140716580524032,
+        "Path": "C:\\Windows\\System32\\powrprof.dll",
+        "Name": "powrprof"
+    },
+    "profapi": {
+        "Base": 140716580536320,
+        "End": 140716580683776,
+        "Path": "C:\\Windows\\System32\\profapi.dll",
+        "Name": "profapi"
+    },
+    "gdi32full": {
+        "Base": 140716581126144,
+        "End": 140716582805504,
+        "Path": "C:\\Windows\\System32\\gdi32full.dll",
+        "Name": "gdi32full"
+    },
+    "windows_storage": {
+        "Base": 140716582830080,
+        "End": 140716590465024,
+        "Path": "C:\\Windows\\System32\\windows.storage.dll",
+        "Name": "windows_storage"
+    },
+    "cfgmgr32": {
+        "Base": 140716590497792,
+        "End": 140716590800896,
+        "Path": "C:\\Windows\\System32\\cfgmgr32.dll",
+        "Name": "cfgmgr32"
+    },
+    "ucrtbase": {
+        "Base": 140716590825472,
+        "End": 140716591857664,
+        "Path": "C:\\Windows\\System32\\ucrtbase.dll",
+        "Name": "ucrtbase"
+    },
+    "crypt32": {
+        "Base": 140716591874048,
+        "End": 140716593819648,
+        "Path": "C:\\Windows\\System32\\crypt32.dll",
+        "Name": "crypt32"
+    },
+    "win32u": {
+        "Base": 140716593840128,
+        "End": 140716593971200,
+        "Path": "C:\\Windows\\System32\\win32u.dll",
+        "Name": "win32u"
+    },
+    "cryptsp": {
+        "Base": 140716593971200,
+        "End": 140716594065408,
+        "Path": "C:\\Windows\\System32\\cryptsp.dll",
+        "Name": "cryptsp"
+    },
+    "bcryptPrimitives": {
+        "Base": 140716594102272,
+        "End": 140716594618368,
+        "Path": "C:\\Windows\\System32\\bcryptPrimitives.dll",
+        "Name": "bcryptPrimitives"
+    },
+    "bcrypt": {
+        "Base": 140716594626560,
+        "End": 140716594782208,
+        "Path": "C:\\Windows\\System32\\bcrypt.dll",
+        "Name": "bcrypt"
+    },
+    "msvcp_win": {
+        "Base": 140716595544064,
+        "End": 140716596199424,
+        "Path": "C:\\Windows\\System32\\msvcp_win.dll",
+        "Name": "msvcp_win"
+    },
+    "KERNELBASE": {
+        "Base": 140716596199424,
+        "End": 140716598898688,
+        "Path": "C:\\Windows\\System32\\KERNELBASE.dll",
+        "Name": "KERNELBASE"
+    },
+    "clbcatq": {
+        "Base": 140716603670528,
+        "End": 140716604334080,
+        "Path": "C:\\Windows\\System32\\clbcatq.dll",
+        "Name": "clbcatq"
+    },
+    "msctf": {
+        "Base": 140716604391424,
+        "End": 140716605874176,
+        "Path": "C:\\Windows\\System32\\msctf.dll",
+        "Name": "msctf"
+    },
+    "combase": {
+        "Base": 140716605898752,
+        "End": 140716609232896,
+        "Path": "C:\\Windows\\System32\\combase.dll",
+        "Name": "combase"
+    },
+    "ole32": {
+        "Base": 140716609830912,
+        "End": 140716611227648,
+        "Path": "C:\\Windows\\System32\\ole32.dll",
+        "Name": "ole32"
+    },
+    "SHCore": {
+        "Base": 140716611403776,
+        "End": 140716612091904,
+        "Path": "C:\\Windows\\System32\\SHCore.dll",
+        "Name": "SHCore"
+    },
+    "shell32": {
+        "Base": 140716612190208,
+        "End": 140716634140672,
+        "Path": "C:\\Windows\\System32\\shell32.dll",
+        "Name": "shell32"
+    },
+    "rpcrt4": {
+        "Base": 140716634144768,
+        "End": 140716635336704,
+        "Path": "C:\\Windows\\System32\\rpcrt4.dll",
+        "Name": "rpcrt4"
+    },
+    "msvcrt": {
+        "Base": 140716635783168,
+        "End": 140716636430336,
+        "Path": "C:\\Windows\\System32\\msvcrt.dll",
+        "Name": "msvcrt"
+    },
+    "imm32": {
+        "Base": 140716636438528,
+        "End": 140716636626944,
+        "Path": "C:\\Windows\\System32\\imm32.dll",
+        "Name": "imm32"
+    },
+    "sechost": {
+        "Base": 140716638797824,
+        "End": 140716639444992,
+        "Path": "C:\\Windows\\System32\\sechost.dll",
+        "Name": "sechost"
+    },
+    "oleaut32": {
+        "Base": 140716639453184,
+        "End": 140716640284672,
+        "Path": "C:\\Windows\\System32\\oleaut32.dll",
+        "Name": "oleaut32"
+    },
+    "gdi32": {
+        "Base": 140716640305152,
+        "End": 140716640473088,
+        "Path": "C:\\Windows\\System32\\gdi32.dll",
+        "Name": "gdi32"
+    },
+    "comdlg32": {
+        "Base": 140716640501760,
+        "End": 140716641710080,
+        "Path": "C:\\Windows\\System32\\comdlg32.dll",
+        "Name": "comdlg32"
+    },
+    "user32": {
+        "Base": 140716641746944,
+        "End": 140716643414016,
+        "Path": "C:\\Windows\\System32\\user32.dll",
+        "Name": "user32"
+    },
+    "kernel32": {
+        "Base": 140716644499456,
+        "End": 140716645232640,
+        "Path": "C:\\Windows\\System32\\kernel32.dll",
+        "Name": "kernel32"
+    },
+    "shlwapi": {
+        "Base": 140716645285888,
+        "End": 140716645621760,
+        "Path": "C:\\Windows\\System32\\shlwapi.dll",
+        "Name": "shlwapi"
+    },
+    "advapi32": {
+        "Base": 140716645679104,
+        "End": 140716646346752,
+        "Path": "C:\\Windows\\System32\\advapi32.dll",
+        "Name": "advapi32"
+    },
+    "ntdll": {
+        "Base": 140716646596608,
+        "End": 140716648615936,
+        "Path": "C:\\Windows\\System32\\ntdll.dll",
+        "Name": "ntdll"
+    }
 }

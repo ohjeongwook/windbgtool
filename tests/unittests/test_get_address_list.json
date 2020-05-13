@@ -72,7 +72,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~0;",
+        "Usage": "[~21;",
         "Comment": "4d0c.8588]"
     },
     {
@@ -83,7 +83,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~0; 4d0c.8588]"
+        "Comment": "[~21; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091279384576,
@@ -93,7 +93,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~0; 4d0c.8588]"
+        "Comment": "[~21; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091279454208,
@@ -102,7 +102,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~1;",
+        "Usage": "[~22;",
         "Comment": "4d0c.4084]"
     },
     {
@@ -113,7 +113,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~1; 4d0c.4084]"
+        "Comment": "[~22; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091279908864,
@@ -123,7 +123,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~1; 4d0c.4084]"
+        "Comment": "[~22; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091279978496,
@@ -161,7 +161,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~0; 4d0c.8588]"
+        "Comment": "[~21; 4d0c.8588]"
     },
     {
         "BaseAddr": 1091281698816,
@@ -171,7 +171,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~1; 4d0c.4084]"
+        "Comment": "[~22; 4d0c.4084]"
     },
     {
         "BaseAddr": 1091281707008,
@@ -181,7 +181,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~2; 4d0c.7f70]"
+        "Comment": "[~23; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091281715200,
@@ -191,7 +191,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~3; 4d0c.51e8]"
+        "Comment": "[~24; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091281723392,
@@ -201,7 +201,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~4; 4d0c.29b4]"
+        "Comment": "[~25; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091281731584,
@@ -211,7 +211,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~5; 4d0c.89c4]"
+        "Comment": "[~26; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091281739776,
@@ -221,7 +221,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "TEB",
-        "Comment": "[~6; 4d0c.3ac8]"
+        "Comment": "[~27; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091281747968,
@@ -239,7 +239,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~2;",
+        "Usage": "[~23;",
         "Comment": "4d0c.7f70]"
     },
     {
@@ -250,7 +250,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~2; 4d0c.7f70]"
+        "Comment": "[~23; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091282857984,
@@ -260,7 +260,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~2; 4d0c.7f70]"
+        "Comment": "[~23; 4d0c.7f70]"
     },
     {
         "BaseAddr": 1091282927616,
@@ -269,7 +269,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~3;",
+        "Usage": "[~24;",
         "Comment": "4d0c.51e8]"
     },
     {
@@ -280,7 +280,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~3; 4d0c.51e8]"
+        "Comment": "[~24; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091283382272,
@@ -290,7 +290,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~3; 4d0c.51e8]"
+        "Comment": "[~24; 4d0c.51e8]"
     },
     {
         "BaseAddr": 1091283451904,
@@ -299,7 +299,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~4;",
+        "Usage": "[~25;",
         "Comment": "4d0c.29b4]"
     },
     {
@@ -310,7 +310,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~4; 4d0c.29b4]"
+        "Comment": "[~25; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091283906560,
@@ -320,7 +320,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~4; 4d0c.29b4]"
+        "Comment": "[~25; 4d0c.29b4]"
     },
     {
         "BaseAddr": 1091283976192,
@@ -329,7 +329,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~5;",
+        "Usage": "[~26;",
         "Comment": "4d0c.89c4]"
     },
     {
@@ -340,7 +340,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~5; 4d0c.89c4]"
+        "Comment": "[~26; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091284430848,
@@ -350,7 +350,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~5; 4d0c.89c4]"
+        "Comment": "[~26; 4d0c.89c4]"
     },
     {
         "BaseAddr": 1091284500480,
@@ -359,7 +359,7 @@
         "Type": "MEM_PRIVATE",
         "State": "MEM_RESERVE",
         "Protect": "Stack",
-        "Usage": "[~6;",
+        "Usage": "[~27;",
         "Comment": "4d0c.3ac8]"
     },
     {
@@ -370,7 +370,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE|PAGE_GUARD",
         "Usage": "Stack",
-        "Comment": "[~6; 4d0c.3ac8]"
+        "Comment": "[~27; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091284955136,
@@ -380,7 +380,7 @@
         "State": "MEM_COMMIT",
         "Protect": "PAGE_READWRITE",
         "Usage": "Stack",
-        "Comment": "[~6; 4d0c.3ac8]"
+        "Comment": "[~27; 4d0c.3ac8]"
     },
     {
         "BaseAddr": 1091285024768,
