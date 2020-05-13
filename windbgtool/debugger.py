@@ -24,7 +24,6 @@ class Singleton(type):
 
 class DbgEngine(object, metaclass=Singleton):
     def __init__(self, use_command_mode = False):
-        return
         self.use_command_mode = use_command_mode
         self.module_list = {}
         self.address_to_symbols = {}
