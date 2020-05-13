@@ -12,8 +12,16 @@ if __name__ == '__main__':
     dbg_engine.enumerate_modules()
     dbg_engine.load_symbols(['kernel32'])
 
-    breakpointsOperations = windbgtool.breakpoints.Operations(dbg_engine)
-    breakpointsOperations.add_symbol_bp('kernel32', 'CreateFileA', [])
-    breakpointsOperations.add_symbol_bp('kernel32', 'CreateFileW', [])
+
+    def handler():
+        eip = dbg_engine.get_instruction_pointer()
+        print('handler: %x' % eip)
+        print(dbg_engine.run_command("dt _PEB"))
+        print(dbg_engine.run_command("r"))
+        print(dbg_engine.run_command("dqs fs:00"))
+
+    breakpoint_operations = windbgtool.breakpoints.Operations(dbg_engine)
+    breakpoint_operations.add_symbol_bp('kernel32', 'CreateFileA', [], handler = handler)
+    breakpoint_operations.add_symbol_bp('kernel32', 'CreateFileW', [], handler = handler)
 
     dbg_engine.go()
