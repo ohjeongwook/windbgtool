@@ -40,13 +40,10 @@ class DbgEngine(object, metaclass=Singleton):
         pykd.startProcess(executable_path)
 
     def run_command(self, cmd):
-        logging.debug('> run_command: [%s]', cmd)
-
         ret = pykd.dbgCommand(cmd)
         if ret == None:
             ret = ""
 
-        logging.debug('> run_command Result: [%s]', ret)
         return ret
 
     def get_arch(self):
@@ -138,8 +135,8 @@ class DbgEngine(object, metaclass=Singleton):
             return self.symbol_to_address[symbol]
 
         if symbol.find("!") >= 0:
-            (module_name, symbol) = symbol.split('!', 1)
-            if symbol.find(".") >= 0:
+            (module_name, function_name) = symbol.split('!', 1)
+            if module_name.find(".") >= 0:
                 module_name = module_name.split('.')[0]
             self.load_symbols([module_name,])
 
