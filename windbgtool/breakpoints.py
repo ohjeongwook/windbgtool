@@ -15,13 +15,6 @@ import windbgtool.breakpoints_storage
         
 class Operations:
     def __init__(self, debugger):
-        self.logger = logging.getLogger(__name__)
-        out_hdlr = logging.StreamHandler(sys.stdout)
-        out_hdlr.setFormatter(logging.Formatter('%(asctime)s %(message)s'))
-        out_hdlr.setLevel(logging.INFO)
-        self.logger.addHandler(out_hdlr)
-        self.logger.setLevel(logging.INFO)
-
         self.debugger = debugger
         self.address_to_breakpoints = {}
         self.breakpoints_map = {}
@@ -43,12 +36,12 @@ class Operations:
 
     def add_module_bp(self, module_name, module_bps, handler):
         module_base = self.debugger.get_module_base(module_name)
-        self.logger.info('add_module_bp: %s (%x)', module_name, module_base)
+        logging.info('add_module_bp: %s (%x)', module_name, module_base)
         
         addresses = []
         for (rva, dump_targets) in module_bps.items():
             address = module_base+rva
-            self.logger.info('\tSet bp: %x (%x+%x)) %s', address, module_base, rva, str(dump_targets))
+            logging.info('\tSet bp: %x (%x+%x)) %s', address, module_base, rva, str(dump_targets))
 
             self.set_bp(address, handler)
             addresses.append(address)
@@ -72,7 +65,7 @@ class Operations:
         if address>0:
             bp = self.set_bp(address, handler)
             
-            self.logger.info("Setting breakpoint %s (%.8x) - %d\n", symbol_str, address, bp.getId())
+            logging.info("Setting breakpoint %s (%.8x) - %d\n", symbol_str, address, bp.getId())
             self.breakpoints_map[address] = {
                                     'Type': 'Symbol', 
                                     'Module': module_name, 
@@ -91,7 +84,7 @@ class Operations:
             for (address, dump_targets) in rules.items():
                 bp = self.set_bp(address, self.handle_breakpoint)
                 
-                self.logger.info('Setting breakpoint on %s (%.8x) - %d' % (
+                logging.info('Setting breakpoint on %s (%.8x) - %d' % (
                                                 module, 
                                                 address, 
                                                 bp.getId()
@@ -245,7 +238,7 @@ class Operations:
                                         rsp = pykd.reg("rsp")
                                         parameters+= pykd.loadQWords(rsp+8, count-4)
                                     except:
-                                        self.logger.info('Accessing memory %x failed', rsp+8)
+                                        logging.info('Accessing memory %x failed', rsp+8)
 
             except:
                 bits = 32
@@ -253,7 +246,7 @@ class Operations:
                 try:                
                     parameters = pykd.loadDWords(esp+4, count)
                 except:
-                    self.logger.info('Accessing memory %x failed', esp)
+                    logging.info('Accessing memory %x failed', esp)
 
         return (bits, parameters)
         
@@ -322,7 +315,7 @@ class Operations:
             record['DumpTargets'] = []
 
             if record['Symbol']:
-                self.logger.info('> %s!%s (+%.8x) (%.8x)' % (
+                logging.info('> %s!%s (+%.8x) (%.8x)' % (
                                                 record['Module'], 
                                                 record['Symbol'], 
                                                 record['RVA'], 
@@ -362,7 +355,7 @@ class Operations:
                                                     }
 
                     bp = self.set_bp(return_address, self.handle_return_breakpoint)
-                    self.logger.info('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
+                    logging.info('\tSet Return BP on %.8x - %d' % (return_address, bp.getId()))
 
                 elif dump_target['Type'] == 'Function':
                     dump_result = []
@@ -385,9 +378,9 @@ class Operations:
             if self.record_db:
                 self.record_db.write_record(record)
             else:
-                self.logger.info(pprint.pformat(record))
+                logging.info(pprint.pformat(record))
         else:
-            self.logger.info('> BP @%.8x' % eip)
+            logging.info('> BP @%.8x' % eip)
 
     def handle_return_breakpoint(self):
         eip = self.debugger.get_instruction_pointer()
@@ -414,7 +407,7 @@ class Operations:
                                   ]
                                   
             if record['Symbol']:
-                self.logger.info('> %s!%s (+%.8x) (%.8x) Return' % (
+                logging.info('> %s!%s (+%.8x) (%.8x) Return' % (
                                                 record['Module'], 
                                                 record['Symbol'], 
                                                 record['RVA'], 
@@ -425,7 +418,7 @@ class Operations:
             if self.record_db:
                 self.record_db.write_record(record)
             else:
-                self.logger.info(pprint.pformat(record))
+                logging.info(pprint.pformat(record))
 
 
 
