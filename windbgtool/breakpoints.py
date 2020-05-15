@@ -67,7 +67,7 @@ class Operations:
             handler = self.handle_breakpoint
 
         symbol_str = module_name+'!'+symbol
-        address = self.debugger.resolve_address(symbol_str)
+        address = self.debugger.resolve_symbol(symbol_str)
         
         if address>0:
             bp = self.set_bp(address, handler)

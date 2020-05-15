@@ -135,8 +135,15 @@ class DbgEngine(object, metaclass=Singleton):
         return name
 
     def resolve_symbol(self, symbol):
+        offset = 0
+        if symbol.find('+') >= 0:
+            addr_toks = addr_str.split("+")
+            if len(addr_toks)>1:
+                symbol = addr_toks[0]
+                offset = windbgtool.util.convert_to_int(addr_toks[1], 16)               
+
         if symbol in self.symbol_to_address:
-            return self.symbol_to_address[symbol]
+            return self.symbol_to_address[symbol] + offset
 
         if symbol.find("!") >= 0:
             (module_name, function_name) = symbol.split('!', 1)
@@ -145,9 +152,9 @@ class DbgEngine(object, metaclass=Singleton):
             self.load_symbols([module_name,])
 
         if symbol in self.symbol_to_address:
-            return self.symbol_to_address[symbol]
+            return self.symbol_to_address[symbol] + offset
 
-        return pykd.getOffset(symbol)
+        return pykd.getOffset(symbol) + offset
 
     def __match_name(self, name, pattern):
         if name.lower().find(pattern.lower()) >= 0:
@@ -302,33 +309,6 @@ class DbgEngine(object, metaclass=Singleton):
 
     def get_module_info(self, module):
         return self.windbg_log_parser.parse_lmvm(self.run_command("lmvm "+module))        
-
-    def resolve_address(self, addr_str):
-        addr_toks = addr_str.split("+")
-        
-        if len(addr_toks)>1:
-            addr_str = addr_toks[0]
-            offset = windbgtool.util.convert_to_int(addr_toks[1], 16)
-        else:
-            offset = 0
-
-        res = self.run_command("x "+addr_str)
-        
-        res_lines = res.splitlines()
-        if len(res_lines)>0:
-            return windbgtool.util.convert_to_int(res_lines[-1].split()[0])+offset
-        else:
-            [module, symbol] = addr_str.split("!")
-            for line in self.run_command("x %s!" % (module)).splitlines():
-                toks = line.split(' ', 1)
-                if len(toks)>1:
-                    xaddress = toks[0]
-                    xaddress_str = toks[1]
-                    
-                    if xaddress_str == addr_str:
-                        return windbgtool.util.convert_to_int(xaddress)+offset
-
-            return 0+offset
 
     def show_stack(self):
         print('* Stack----')
