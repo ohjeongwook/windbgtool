@@ -28,6 +28,7 @@ class DbgEngine(object, metaclass=Singleton):
         self.module_list = {}
         self.address_to_symbols = {}
         self.symbol_to_address = {}
+        self.arch = ''
         self.windbg_log_parser = windbgtool.log.Parser()
        
     def load_dump(self, dump_filename):
@@ -47,7 +48,10 @@ class DbgEngine(object, metaclass=Singleton):
         return ret
 
     def get_arch(self):
-        return pykd.getCPUMode()
+        if not self.arch:
+            self.arch = pykd.getCPUMode()
+            return self.arch
+        return self.arch
 
     def set_symbol_path(self, symbol_path = 'srv*https://msdl.microsoft.com/download/symbols', reload = True):
         output = self.run_command(".sympath+ %s" % symbol_path)
@@ -251,35 +255,39 @@ class DbgEngine(object, metaclass=Singleton):
         return ''        
 
     def get_instruction_pointer(self):
-        try:
+        if self.get_arch() == 'AMD64':
             return pykd.reg("rip")
-        except:    
+        else:
             return pykd.reg("eip")
 
         return 0
 
     def get_stack_pointer(self):
-        try:
+        if self.get_arch() == 'AMD64':
             return pykd.reg("rsp")
-        except:    
+        else:
             return pykd.reg("esp")
 
         return 0
 
+    def get_eax(self):
+        if self.get_arch() == 'AMD64':
+            return pykd.reg("rax")
+        else:
+            return pykd.reg("eax")
+
+        return 0
+
     def get_return_address(self):
+        sp = self.get_stack_pointer()        
+        
         try:
-            rsp = pykd.reg("rsp")
-            try:
-                return pykd.loadQWords(rsp, 1)[0]
-            except:
-                logging.info('Accessing memory %x failed', rsp)
-            
-        except:    
-            esp = pykd.reg("esp")
-            try:
+            if self.get_arch() == 'AMD64':
+                return pykd.loadQWords(sp, 1)[0]
+            else:
                 return pykd.loadDWords(esp, 1)[0]
-            except:
-                logging.info('Accessing memory %x failed', esp)
+        except:
+            logging.info('Accessing memory %x failed', sp)
 
         return 0
 
@@ -362,6 +370,9 @@ class DbgEngine(object, metaclass=Singleton):
             return self.run_command('u %x L%x' % (ip, length))
         except:
             return ''
+
+    def gu(self):
+        pykd.dbgCommand("gu")
 
     def go(self):
         pykd.go()
