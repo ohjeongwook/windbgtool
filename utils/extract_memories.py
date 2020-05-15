@@ -42,5 +42,5 @@ if __name__ == '__main__':
             try:
                 debugger.run_command(".writemem %s %x L?%x" % (dmp_filename, address['BaseAddr'], address['RgnSize']))
             except:
-                printf("* Writemem failed")
+                print("* Writemem failed")
                 traceback.print_exc(file = sys.stdout)
