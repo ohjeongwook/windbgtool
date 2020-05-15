@@ -246,7 +246,7 @@ class DbgEngine(object, metaclass=Singleton):
 
     def get_module_name(self, address):
         for (module_name, module_info) in self.module_list.items():
-            if module_info['Base'] <= address and address <= module_info['Base'] + module_info['End']:
+            if module_info['Base'] <= address and address <= module_info['End']:
                 return module_name
         return ''        
 
