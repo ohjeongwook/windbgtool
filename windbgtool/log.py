@@ -453,27 +453,29 @@ class Parser:
                 print(prefix+line)
 
 if __name__ == '__main__':
-    import sys
     import os
-    from optparse import OptionParser, Option
+    import sys    
+    import argparse
 
-    parser = OptionParser(usage = "usage: %prog [options] args")    
-    parser.add_option("-a", "--address_list", dest = "address_list", type = "string", default = "", metavar = "ADDRESS_LIST", help = "Set address list filename")
-    parser.add_option("-r", "--run_log", dest = "run_log", type = "string", default = "", metavar = "RUN_LOG", help = "Parser run log file")
+    def auto_int(x):
+        return int(x, 0)
 
-    (options, args) = parser.parse_args(sys.argv)
+    parser = argparse.ArgumentParser(description='log.py')
+    parser.add_argument("-a", "--address_list", dest = "address_list", type = "string", default = "", metavar = "ADDRESS_LIST", help = "Set address list filename")
+    parser.add_argument("-r", "--run_log", dest = "run_log", type = "string", default = "", metavar = "RUN_LOG", help = "Parser run log file")
+    parser.add_argument('filename', metavar='FILENAME', help = "filename")
+    args = parser.parse_args()
 
     use_vex = True
-    if options.address_list:
-        fd = open(options.address_list, 'r')
+    if args.address_list:
+        fd = open(args.address_list, 'r')
         data = fd.read()
         fd.close()
         log_parser = Parser(use_vex = use_vex)
         pprint.pprint(log_parser.parse_address(data))
-    elif options.run_log:
-        parser = Parser(options.run_log)
+    elif args.run_log:
+        parser = Parser(args.run_log)
         parser.dump_run_log_output()
     else:
-        filename = args[1]
-        log_parser = Parser(filename, use_vex = use_vex)
+        log_parser = Parser(args.filename, use_vex = use_vex)
         log_parser.dump()
