@@ -64,19 +64,29 @@ class Dumper:
             name = function_def['arg_names'][index][1]
             print(arg_type + ' ' + name)
             argument = arguments[index]
+
+            print('\t' + hex(argument))            
             if arg_type == 'c_wchar_p':
-                print('\t' + hex(argument))
                 if argument != 0:
                     try:
                         print('\t' + self.debugger.get_wide_string(argument))
                     except:
                         print('\tException to read memory')
-
-            else:
-                print('\t' + hex(argument))
+            elif arg_type == 'c_char_p':
+                if argument != 0:
+                    try:
+                        print('\t' + self.debugger.get_string(argument))
+                    except:
+                        print('\tException to read memory')
+                
             index += 1
 
-    def dump_function(self, function_name):
+    def dump_function(self, symbol):
+        if symbol.find('!') > 0:
+            function_name = symbol.split('!')[1]
+        else:
+            function_name = symbol
+
         if function_name in self.windef['functions']:
             function_def = self.windef['functions'][function_name]
             print('# %s' % function_name)
