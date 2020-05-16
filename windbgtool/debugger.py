@@ -47,10 +47,7 @@ class DbgEngine(object, metaclass=Singleton):
         return ret
 
     def get_arch(self):
-        if not self.arch:
-            self.arch = str(pykd.getCPUMode())
-            return self.arch
-        return self.arch
+        return str(pykd.getCPUMode())
 
     def set_symbol_path(self, symbol_path = 'srv*https://msdl.microsoft.com/download/symbols', reload = True):
         output = self.run_command(".sympath+ %s" % symbol_path)
@@ -269,15 +266,11 @@ class DbgEngine(object, metaclass=Singleton):
         else:
             return pykd.reg("rip")
 
-        return 0
-
     def get_stack_pointer(self):
         if self.get_arch() == 'AMD64':
             return pykd.reg("rsp")
         else:
             return pykd.reg("esp")
-
-        return 0
 
     def get_eax(self):
         if self.get_arch() == 'AMD64':
@@ -285,7 +278,6 @@ class DbgEngine(object, metaclass=Singleton):
         else:
             return pykd.reg("eax")
 
-        return 0
 
     def get_return_address(self):
         sp = self.get_stack_pointer()        
@@ -294,7 +286,7 @@ class DbgEngine(object, metaclass=Singleton):
             if self.get_arch() == 'AMD64':
                 return pykd.loadQWords(sp, 1)[0]
             else:
-                return pykd.loadDWords(esp, 1)[0]
+                return pykd.loadDWords(sp, 1)[0]
         except:
             logging.info('Accessing memory %x failed', sp)
 
