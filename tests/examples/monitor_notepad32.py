@@ -4,7 +4,7 @@ sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), '../..
 
 import pykd
 import windbgtool.debugger
-import windbgtool.monitor
+import windbgtool.api
 
 if __name__ == '__main__':
     debugger = windbgtool.debugger.DbgEngine()
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     debugger.enumerate_modules()
     debugger.load_symbols(['kernel32'])
 
-    monitor_breakpoints = windbgtool.monitor.Breakpoints()
+    api_breakpoints = windbgtool.api.Breakpoints()
     api_list = [
         'kernel32!CreateFileA', 'kernel32!CreateFileW', 'KERNELBASE!CreateFileA', 'KERNELBASE!CreateFileW',
         'kernel32!WriteFile', 'KERNELBASE!WriteFile',
@@ -25,7 +25,7 @@ if __name__ == '__main__':
     ]
 
     for api in api_list:
-        monitor_breakpoints.add(api)
+        api_breakpoints.add(api)
     
     while True:
         debugger.go()
