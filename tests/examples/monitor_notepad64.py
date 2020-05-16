@@ -7,7 +7,7 @@ import windbgtool.monitor
 
 if __name__ == '__main__':
     debugger = windbgtool.debugger.DbgEngine()
-    debugger.run(executable_path = 'notepad.exe')
+    debugger.run(executable_path = r'c:\windows\notepad.exe')
     debugger.set_symbol_path()
     debugger.enumerate_modules()
     debugger.load_symbols(['kernel32'])
@@ -26,5 +26,6 @@ if __name__ == '__main__':
     for api in api_list:
         monitor_breakpoints.add(api)
     
-    debugger.go()
+    while True:
+        debugger.go()
 
