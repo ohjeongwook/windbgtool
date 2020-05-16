@@ -11,8 +11,14 @@ if __name__ == '__main__':
     debugger.set_symbol_path()
     debugger.enumerate_modules()
     debugger.load_symbols(['kernel32'])
+
     monitor_breakpoints = windbgtool.monitor.Breakpoints()
     monitor_breakpoints.add('kernel32!CreateFileA')
     monitor_breakpoints.add('kernel32!CreateFileW')
+    monitor_breakpoints.add('kernelbase!CreateFileA')
+    monitor_breakpoints.add('kernelbase!CreateFileW')
+    monitor_breakpoints.add('kernel32!WriteFile')
+    monitor_breakpoints.add('kernelbase!WriteFile')
+    
     debugger.go()
 
