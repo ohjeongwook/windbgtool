@@ -264,7 +264,7 @@ class DbgEngine(object, metaclass=Singleton):
         if self.get_arch() == 'AMD64':
             return pykd.reg("rip")
         else:
-            return pykd.reg("rip")
+            return pykd.reg("eip")
 
     def get_stack_pointer(self):
         if self.get_arch() == 'AMD64':
