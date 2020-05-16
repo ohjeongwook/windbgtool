@@ -23,11 +23,10 @@ class Dumper:
                 self.windef = json.load(fd)
 
         self.debugger = windbgtool.debugger.DbgEngine()
-        self.arch = self.debugger.get_arch()
 
     def get_arguments(self, count):
         arguments = []
-        if self.arch == 'AMD64':
+        if self.debugger.get_arch() == 'AMD64':
             arguments.append(pykd.reg('rcx'))
             count -= 1
 
@@ -47,7 +46,8 @@ class Dumper:
                 rsp = pykd.reg('rsp')
                 arguments += pykd.loadQWords(int(rsp + 8), count)
         else:
-            pass
+            esp = pykd.reg('esp')
+            arguments += pykd.loadDWords(int(esp + 4), count)
 
         return arguments
 
@@ -82,12 +82,26 @@ class Dumper:
             print('# %s' % function_name)
             self.dump_arguments(function_def)
 
+
+class ModuleLoadHandler(pykd.eventHandler):
+    def __init__(self, modload_handler):
+        pykd.eventHandler.__init__(self)
+        self.modload_handler = modload_handler
+
+    def onLoadModule(self, base_address, name):
+        #print("onLoadModule: %s at 0x%x" % (name, base_address))
+        self.modload_handler(name, base_address)
+        return pykd.executionStatus.Break
+
 class Breakpoints:
     def __init__(self, def_filename = 'windef.json'):
         self.debugger = windbgtool.debugger.DbgEngine()
-        self.breakpoints_map = {}       
+        self.breakpoints_map = {}
         self.return_breakpoints_map = {}
+        self.unresolved_symbols = []
+
         self.dumper = Dumper(def_filename)
+        self.modload_handler = ModuleLoadHandler(self.modload_handler)
 
     def handle_breakpoint(self):
         address = self.debugger.get_instruction_pointer()
@@ -120,6 +134,15 @@ class Breakpoints:
             print('Setting breakpoint for %s (%x)' % (symbol, address))
             self.__add_breakpoint(address)
             self.breakpoints_map[address]['symbol'] = symbol
+            return True
         else:
+            if not symbol in self.unresolved_symbols:
+                self.unresolved_symbols.append(symbol)
             print('Can\'t resolve %s' % (symbol))
+            return False
 
+    def modload_handler(self, module_name, base_address):
+        print('modload_handler: %s' % module_name)
+        for symbol in self.unresolved_symbols:
+            if symbol.lower().startswith(module_name.lower()):
+                self.add(symbol)
