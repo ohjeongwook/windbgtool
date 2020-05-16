@@ -172,5 +172,4 @@ if __name__ == '__main__':
     dumper = Dumper()
     dumper.enumerate_winfuncs()
     dumper.enumerate_winstructs()
-    dumper.print()
-    dumper.save("output.json")
+    dumper.save("windef.json")
