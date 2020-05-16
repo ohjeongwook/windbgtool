@@ -153,7 +153,10 @@ class DbgEngine(object, metaclass=Singleton):
         if symbol in self.symbol_to_address:
             return self.symbol_to_address[symbol] + offset
 
-        return pykd.getOffset(symbol) + offset
+        try:
+            return pykd.getOffset(symbol) + offset
+        except:
+            return 0
 
     def __match_name(self, name, pattern):
         if name.lower().find(pattern.lower()) >= 0:
