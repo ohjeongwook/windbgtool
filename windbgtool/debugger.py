@@ -13,7 +13,6 @@ import pykd
 
 import windbgtool.util
 import windbgtool.log
-import windbgtool.breakpoints
 
 class Singleton(type):
     _instances = {}
@@ -49,7 +48,7 @@ class DbgEngine(object, metaclass=Singleton):
 
     def get_arch(self):
         if not self.arch:
-            self.arch = pykd.getCPUMode()
+            self.arch = str(pykd.getCPUMode())
             return self.arch
         return self.arch
 
@@ -265,7 +264,7 @@ class DbgEngine(object, metaclass=Singleton):
         if self.get_arch() == 'AMD64':
             return pykd.reg("rip")
         else:
-            return pykd.reg("eip")
+            return pykd.reg("rip")
 
         return 0
 
@@ -309,11 +308,6 @@ class DbgEngine(object, metaclass=Singleton):
 
     def get_module_info(self, module):
         return self.windbg_log_parser.parse_lmvm(self.run_command("lmvm "+module))        
-
-    def show_stack(self):
-        print('* Stack----')
-        for dword in pykd.loadDWords(pykd.reg("esp"), 5):
-            print('%x' % dword)
             
     def get_bytes(self, address, length):
         num_arr = pykd.loadBytes(address, length)
