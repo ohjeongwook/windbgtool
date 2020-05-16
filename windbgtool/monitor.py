@@ -64,8 +64,14 @@ class Dumper:
             name = function_def['arg_names'][index][1]
             print(arg_type + ' ' + name)
             argument = arguments[index]
-            if arg_type == 'c_wchar_p':                
-                print('\t' + self.debugger.get_wide_string(argument))
+            if arg_type == 'c_wchar_p':
+                print('\t' + hex(argument))
+                if argument != 0:
+                    try:
+                        print('\t' + self.debugger.get_wide_string(argument))
+                    except:
+                        print('\tException to read memory')
+
             else:
                 print('\t' + hex(argument))
             index += 1
@@ -87,7 +93,6 @@ class Breakpoints:
         address = self.debugger.get_instruction_pointer()
         if address in self.breakpoints_map:
             print('address: %x' % address)
-            pprint.pprint(self.breakpoints_map[address])
 
             symbol = self.breakpoints_map[address]['symbol']
             function_name = symbol.split('!')[-1]
@@ -112,5 +117,9 @@ class Breakpoints:
     def add(self, symbol, handler = None):
         address = self.debugger.resolve_symbol(symbol)       
         if address > 0:
+            print('Setting breakpoint for %s (%x)' % (symbol, address))
             self.__add_breakpoint(address)
             self.breakpoints_map[address]['symbol'] = symbol
+        else:
+            print('Can\'t resolve %s' % (symbol))
+
