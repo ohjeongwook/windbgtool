@@ -62,6 +62,7 @@ PPVOID      = POINTER(PVOID)
 PSTR        = LPSTR
 PWSTR       = LPWSTR
 PCHAR       = LPSTR
+PCSTR       = c_char_p
 PWCHAR      = LPWSTR
 LPBYTE      = POINTER(BYTE)
 LPSBYTE     = POINTER(SBYTE)
