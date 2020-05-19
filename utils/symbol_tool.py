@@ -144,7 +144,7 @@ if __name__ == '__main__':
     def auto_int(x):
         return int(x, 0)
 
-    parser = argparse.ArgumentParser(description='symboltool.py')
+    parser = argparse.ArgumentParser(description='symbol_tool.py')
     parser.add_argument("-c", "--command", dest = "command", default = "enumerate", metavar = "COMMAND", help = "Set command to run")
     parser.add_argument('filename', metavar='FILENAME', help = "filename")
     args = parser.parse_args()
