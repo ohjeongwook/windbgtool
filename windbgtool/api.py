@@ -12,17 +12,31 @@ import base64
 import pykd
 import windbgtool.debugger
 
-class Dumper:
-    def __init__(self, def_filename = 'windef.json'):
-        self.windef = {}
-        if not os.path.isfile(def_filename):
-            def_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), def_filename)
+class Logger:
+    def __init__(self, windows_api_filename = 'windows_api.json'):
+        self.windows_api = {}
+        if not os.path.isfile(windows_api_filename):
+            windows_api_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), windows_api_filename)
 
-        if os.path.isfile(def_filename):
-            with open(def_filename, 'r') as fd:
-                self.windef = json.load(fd)
+        print('Loading ' + windows_api_filename)
+        if os.path.isfile(windows_api_filename):
+            self.load_windows_api_defs(windows_api_filename)
 
         self.debugger = windbgtool.debugger.DbgEngine()
+
+    def load_windows_api_defs(self, filename):
+        with open(filename, 'r') as fd:
+            self.windows_api = json.load(fd)
+
+        self.functions = {}
+        for funcdef in self.windows_api['funcdefs']:
+            if 'name' in funcdef['type']:
+                name = funcdef['type']['name']
+                self.functions[name] = funcdef
+
+    def find_function(self, name):
+        if name in self.functions:
+            return self.functions[name]
 
     def get_arguments(self, count):
         arguments = []
@@ -52,45 +66,44 @@ class Dumper:
         return arguments
 
     def dump_stack(self, length):
-        if self.arch == 'AMD64':
+        if self.debugger.get_arch() == 'AMD64':
             print(pykd.dbgCommand("dqs rsp L%d" % (length)))
         else:
             print(pykd.dbgCommand("dqs esp L%d" % (length)))
 
-    def dump_arguments(self, function_def):
+    def log_arguments(self, function_def):
         index = 0
-        arguments = self.get_arguments(len(function_def['arg_types']))
-        for arg_type in function_def['arg_types']:
-            name = function_def['arg_names'][index][1]
-            print(arg_type + ' ' + name)
-            argument = arguments[index]
+        argument_values = self.get_arguments(len(function_def['arguments']))
+        for argument in function_def['arguments']:
+            print('name: ' + argument['name'])
+            argument_value = argument_values[index]
+            print('\t' + hex(argument_value))
 
-            print('\t' + hex(argument))            
-            if arg_type == 'c_wchar_p':
-                if argument != 0:
+            if argument['type'] in ('LPCWSTR', 'LPWSTR'):
+                if argument_value != 0:
                     try:
-                        print('\t' + self.debugger.get_wide_string(argument))
+                        print('\t' + self.debugger.get_wide_string(argument_value))
                     except:
                         print('\tException to read memory')
-            elif arg_type == 'c_char_p':
-                if argument != 0:
+
+            elif argument['type'] in ('LPCSTR', 'LPSTR'):
+                if argument_value != 0:
                     try:
-                        print('\t' + self.debugger.get_string(argument))
+                        print('\t' + self.debugger.get_string(argument_value))
                     except:
                         print('\tException to read memory')
                 
             index += 1
 
-    def dump_function(self, symbol):
+    def log_function(self, symbol):
         if symbol.find('!') > 0:
             function_name = symbol.split('!')[1]
         else:
             function_name = symbol
 
-        if function_name in self.windef['functions']:
-            function_def = self.windef['functions'][function_name]
-            print('# %s' % function_name)
-            self.dump_arguments(function_def)
+        function_def = self.find_function(function_name)
+        print('# %s' % function_name)
+        self.log_arguments(function_def)
 
 
 class ModuleLoadHandler(pykd.eventHandler):
@@ -104,13 +117,13 @@ class ModuleLoadHandler(pykd.eventHandler):
         return pykd.executionStatus.Break
 
 class Breakpoints:
-    def __init__(self, def_filename = 'windef.json'):
+    def __init__(self, def_filename = 'windows_api.json'):
         self.debugger = windbgtool.debugger.DbgEngine()
         self.breakpoints_map = {}
         self.return_breakpoints_map = {}
         self.unresolved_symbols = []
 
-        self.dumper = Dumper(def_filename)
+        self.logger = Logger(def_filename)
         self.modload_handler = ModuleLoadHandler(self.modload_handler)
 
     def handle_breakpoint(self):
@@ -120,7 +133,7 @@ class Breakpoints:
 
             symbol = self.breakpoints_map[address]['symbol']
             function_name = symbol.split('!')[-1]
-            self.dumper.dump_function(function_name)
+            self.logger.log_function(function_name)
         else:
             print(self.debugger.find_symbol(address))
         print('')
@@ -156,3 +169,11 @@ class Breakpoints:
         for symbol in self.unresolved_symbols:
             if symbol.lower().startswith(module_name.lower()):
                 self.add(symbol)
+
+if __name__ == '__main__':
+    logger = Logger()
+    create_process_a_def = logger.find_function('CreateProcessA')
+    pprint.pprint(create_process_a_def)
+
+    create_process_a_def = logger.find_function('CreateProcessW')
+    pprint.pprint(create_process_a_def)    
