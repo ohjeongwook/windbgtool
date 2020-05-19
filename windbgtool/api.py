@@ -75,7 +75,9 @@ class Logger:
         index = 0
         argument_values = self.get_arguments(len(function_def['arguments']))
         for argument in function_def['arguments']:
-            print('name: ' + argument['name'])
+            if 'name' in argument:
+                print('name: ' + argument['name'])
+
             argument_value = argument_values[index]
             print('\t' + hex(argument_value))
 
@@ -101,9 +103,14 @@ class Logger:
         else:
             function_name = symbol
 
+        if function_name.endswith('Stub'):
+            function_name = function_name[0:-4]
+
         function_def = self.find_function(function_name)
         print('# %s' % function_name)
-        self.log_arguments(function_def)
+
+        if function_def is not None:
+            self.log_arguments(function_def)
 
 
 class ModuleLoadHandler(pykd.eventHandler):
