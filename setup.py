@@ -13,6 +13,8 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/ohjeongwook/windbgtool",
     packages=setuptools.find_packages(),
+    package_data={'': ['windbgtool/windows_api.json']},
+    include_package_data=True, 
     install_requires=[
         'pykd',
         'capstone',
