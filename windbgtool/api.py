@@ -11,32 +11,12 @@ import base64
 
 import pykd
 import windbgtool.debugger
+import windbgtool.windows_api
 
 class Logger:
     def __init__(self, windows_api_filename = 'windows_api.json'):
-        self.windows_api = {}
-        if not os.path.isfile(windows_api_filename):
-            windows_api_filename = os.path.join(os.path.dirname(os.path.realpath(__file__)), windows_api_filename)
-
-        print('Loading ' + windows_api_filename)
-        if os.path.isfile(windows_api_filename):
-            self.load_windows_api_defs(windows_api_filename)
-
         self.debugger = windbgtool.debugger.DbgEngine()
-
-    def load_windows_api_defs(self, filename):
-        with open(filename, 'r') as fd:
-            self.windows_api = json.load(fd)
-
-        self.functions = {}
-        for funcdef in self.windows_api['funcdefs']:
-            if 'name' in funcdef['type']:
-                name = funcdef['type']['name']
-                self.functions[name] = funcdef
-
-    def find_function(self, name):
-        if name in self.functions:
-            return self.functions[name]
+        self.windows_api_resolver = windbgtool.windows_api.Resolver()
 
     def get_arguments(self, count):
         arguments = []
@@ -106,7 +86,7 @@ class Logger:
         if function_name.endswith('Stub'):
             function_name = function_name[0:-4]
 
-        function_def = self.find_function(function_name)
+        function_def = self.windows_api_resolver.find_function(function_name)
         print('# %s' % function_name)
 
         if function_def is not None:
@@ -176,11 +156,3 @@ class Breakpoints:
         for symbol in self.unresolved_symbols:
             if symbol.lower().startswith(module_name.lower()):
                 self.add(symbol)
-
-if __name__ == '__main__':
-    logger = Logger()
-    create_process_a_def = logger.find_function('CreateProcessA')
-    pprint.pprint(create_process_a_def)
-
-    create_process_a_def = logger.find_function('CreateProcessW')
-    pprint.pprint(create_process_a_def)    
