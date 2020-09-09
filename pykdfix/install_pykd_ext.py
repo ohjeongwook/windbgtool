@@ -3,6 +3,7 @@ import shutil
 import urllib.request
 import zipfile
 
+# https://githomelab.ru/pykd/pykd-ext/-/wikis/Downloads
 pykd_ext_file = 'pykd_ext_2.0.0.24'
 pykd_ext_zip_filename = pykd_ext_file + '.zip'
 pykd_ext_url = r'https://githomelab.ru/pykd/pykd-ext/-/wikis/uploads/0bc82100609d24a8fcd1604203e782a6/' + pykd_ext_zip_filename
