@@ -278,7 +278,6 @@ class DbgEngine(object, metaclass=Singleton):
         else:
             return pykd.reg("eax")
 
-
     def get_return_address(self):
         sp = self.get_stack_pointer()        
         
